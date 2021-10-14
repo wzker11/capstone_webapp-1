@@ -28,15 +28,15 @@ export default {
   name: "components",
   components: {
     Hero,
-    BasicElements,
-    Inputs,
+    // BasicElements,
+    // Inputs,
     CustomControls,
-    Navigation,
+    // Navigation,
     JavascriptComponents,
-    Carousel,
-    Icons,
-    Examples,
-    DownloadSection
+    // Carousel,
+    // Icons,
+    // Examples,
+    // DownloadSection
   }
 };
 </script>

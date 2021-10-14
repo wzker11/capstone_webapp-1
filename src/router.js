@@ -57,6 +57,14 @@ export default new Router({
         default: Profile,
         footer: AppFooter
       }
+    },
+    {
+      path: "/annex",
+      name: "annex",
+      components: {
+        header: AppHeader,
+        default: Components
+      }
     }
   ],
   scrollBehavior: to => {
