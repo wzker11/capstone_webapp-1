@@ -71,10 +71,10 @@
                                         <base-input placeholder="Race"></base-input>
                                         <span>Gender:</span>
                                         <div>
+                                            <!-- <base-radio name="radio1" class="mb-3" v-model="radio.radio1">Male</base-radio>
+                                            <base-radio name="radio3" class="mb-3" v-model="radio.radio3">Female</base-radio> -->
                                             <base-radio name="radio1" class="mb-3" v-model="radio.radio1">Male</base-radio>
-                                            <base-radio name="radio3" class="mb-3" v-model="radio.radio3">Female</base-radio>
-<!--                                             <base-radio name="radio1" class="mb-3" v-model="radio.radio1">Male</base-radio>
-                                            <base-radio name="radio0" class="mb-3" v-model="radio.radio1">Female</base-radio> -->
+                                            <base-radio name="radio0" class="mb-3" v-model="radio.radio1">Female</base-radio>
                                             <!-- <base-radio name="radio0" class="mb-3" v-model="radio.radio1">Unchecked</base-radio> -->
                                         </div>
                                         <base-input placeholder="Contact No"></base-input>
