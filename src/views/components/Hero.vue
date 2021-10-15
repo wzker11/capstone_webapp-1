@@ -240,8 +240,10 @@
                             <p> -  Coping strategies</p>
                             <p> - Recommended work arrangements</p>
                             <p>Note: Advocacy for posting is discouraged during counselling sessions. Please contact EBSC for further discussion prior to updating supervisors if a change in posting is recommended. </p>
-                            <br><h6><u>Follow-Up Plans:</u></h6>
-                            <p><i>Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes. </i></p>
+                            <br>
+                            <h2 class="heading mb-2">Follow-up Plans</h2>
+                            <p class="text-muted mb-2"><i>Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes. </i></p>
+                            <base-input label="Next Session Date"><date-pickers></date-pickers></base-input>
                             <textarea name="followUpPlans" row=100 cols=95></textarea>
                         </div>
                         <br><br><br>
@@ -258,9 +260,11 @@
                             <base-input label="Date of Report"><date-pickers></date-pickers></base-input>
                         </div>
                     </div>
-                    <div class="row justify-content-center">
-                        <a href="#">Submit</a>
+                    <div>
+                        <!-- <a href="#">Submit</a> -->
+                        <modals class="row justify-content-center"></modals>
                     </div>
+                    
                     <br>
                     <div class="text-center mt-5">
                             <h2><strong>Annex</strong></h2>
@@ -284,12 +288,14 @@ const DatePickers = () => import("./JavascriptComponents/DatePickers");
 import Tabs from "@/components/Tabs/Tabs.vue";
 import TabPane from "@/components/Tabs/TabPane.vue";
 import TabsSection from "./JavascriptComponents/TabsSection";
+import Modals from "./JavascriptComponents/Modals";
 export default {
   components: {
     DatePickers,
     TabPane,
     Tabs,
-    TabsSection
+    TabsSection,
+    Modals
   },
 };
 </script>
