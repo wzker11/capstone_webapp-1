@@ -24,7 +24,7 @@
         </div> -->
         <div class="col-md-4">
             <base-button block type="warning" class=" mb-3" @click="modals.modal2 = true">
-                Submit
+                Download
             </base-button>
 
             <modal :show.sync="modals.modal2"
@@ -39,7 +39,7 @@
                 </div>
 
                 <template slot="footer">
-                    <base-button type="white">Ok, submit</base-button>
+                    <base-button type="white">Ok, download</base-button>
                     <base-button type="link"
                                  text-color="white"
                                  class="ml-auto"
