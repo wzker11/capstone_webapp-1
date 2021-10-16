@@ -131,6 +131,15 @@
                                 <div>
                                     <h2 class="heading-title text-warning mb-0">Observations of Presentation</h2>
                                     <br>
+                                    <p>Click on the annex button to get a guide for this section. </p>
+                                    <div id="annex">
+                                        <base-button v-on:click="isAnnex = !isAnnex" >Annex</base-button>
+                                        <br>
+                                        <img v-show="isAnnex" width="930px" src="./ANNEX1.png" />
+                                        <img v-show="isAnnex" width="930px" src="./ANNEX2.png" />
+                                        <img v-show="isAnnex" width="930px" src="./ANNEX3.png" />
+                                        <br>
+                                    </div>
                                     <textarea name="obsOfPresentation" row=100 cols=95></textarea>
                                 </div>      
                             </div>
@@ -263,25 +272,14 @@
                         <!-- <a href="#">Submit</a> -->
                         <modals class="row justify-content-center"></modals>
                     </div>
-                    
                     <br>
-                    <div class="text-center mt-5">
-                            <h2><strong>Annex</strong></h2>
-                            <br><br>
-                    </div>
-                    <div>
-                            <h2 class="heading-title text-warning mb-0">Obeservations of Presentation</h2>
-                            <p>Following is a guide for the observable information of the client. </p>
-                            <img width="930px" src="./ANNEX1.png" />
-                            <img width="930px" src="./ANNEX2.png" />
-                            <img width="930px" src="./ANNEX3.png" />
-                    </div>
                 </card>
             </div>
         </section>
     </div>
     </section>
 </template>
+
 <script>
 const DatePickers = () => import("./JavascriptComponents/DatePickers");
 import Tabs from "@/components/Tabs/Tabs.vue";
@@ -289,13 +287,18 @@ import TabPane from "@/components/Tabs/TabPane.vue";
 import TabsSection from "./JavascriptComponents/TabsSection";
 import Modals from "./JavascriptComponents/Modals";
 export default {
-  components: {
-    DatePickers,
-    TabPane,
-    Tabs,
-    TabsSection,
-    Modals
-  },
+    data() {
+        return {
+            isAnnex: false,
+        }
+    },
+    components: {
+        DatePickers,
+        TabPane,
+        Tabs,
+        TabsSection,
+        Modals
+    },
 };
 </script>
 
