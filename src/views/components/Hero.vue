@@ -191,33 +191,58 @@
                             <h2 class="heading-title text-warning mb-0">Suicide Risk Considerations (If Relevant)</h2>
                             <br>
                             <p>Indicate clients’ responses during current session, if applicable.<br>In an event that client presents with active suicidal ideation during the current session, please refer client to a Medical Centre immediately. Please ensure the safety of the client before reaching out to your Parac TL and/or EBSC, if in doubt.</p>
-                            <h5>1. Intent</h5>
-                            <p>Verbalises thoughts of suicide</p>
-                            <textarea name="intent1" row=20 cols=95></textarea>
-                            <p>Ambivalence towards suicide</p>
-                            <textarea name="intent2" row=20 cols=95></textarea>
-                            <br><br>
-                            <h5>2. Plans</h5>
-                            <p>Explore about suicide (e.g., research)</p>
-                            <textarea name="plan1" row=20 cols=95></textarea>
-                            <p>Have concrete plans to attempt suicide</p>
-                            <textarea name="plan2" row=20 cols=95></textarea>
-                            <p>Have access to lethal means for suicide</p>
-                            <textarea name="plan3" row=20 cols=95></textarea>
-                            <br><br>
-                            <h5>3. Resources</h5>
-                            <p>Strength of social support</p>
-                            <textarea name="resources1" row=20 cols=95></textarea>
-                            <p>Problem solving skills</p>
-                            <textarea name="resources2" row=20 cols=95></textarea>
-                            <br><br>
-                            <h5>4. Past Attempt</h5>
-                            <p>History of past suicide attempts</p>
-                            <textarea name="pastAttempt" row=20 cols=95></textarea>
-                            <br><br>
-                            <h5>5. Mental Health</h5>
-                            <p>Presence of mental health illness</p>
-                            <textarea name="mentalHealth" row=20 cols=95></textarea>
+                            <div><base-button v-on:click="isIntent = !isIntent">1. Intent</base-button></div>
+                            <div id="intent" v-show="isIntent">
+                                <br>
+                                <p>Verbalises thoughts of suicide</p>
+                                <textarea name="intent1" row=20 cols=95></textarea>
+                                <br>
+                                <p>Ambivalence towards suicide</p>
+                                <textarea name="intent2" row=20 cols=95></textarea>
+                                <br><br>
+                            </div>
+                            <br>
+
+                            <div><base-button v-on:click="isPlans = !isPlans" >2. Plans</base-button></div>
+                            <div id="plans" v-show="isPlans">
+                                <br>
+                                <p>Explore about suicide (e.g., research)</p>
+                                <textarea name="plan1" row=20 cols=95></textarea>
+                                <p>Have concrete plans to attempt suicide</p>
+                                <textarea name="plan2" row=20 cols=95></textarea>
+                                <p>Have access to lethal means for suicide</p>
+                                <textarea name="plan3" row=20 cols=95></textarea>
+                                <br><br>
+                            </div>
+                            <br>
+
+                            <div><base-button v-on:click="isResources = !isResources">3. Resources</base-button></div>
+                            <div id="resources" v-show="isResources">
+                                <br>
+                                <p>Strength of social support</p>
+                                <textarea name="resources1" row=20 cols=95></textarea>
+                                <p>Problem solving skills</p>
+                                <textarea name="resources2" row=20 cols=95></textarea>
+                                <br><br>
+                            </div>
+                            <br>
+
+                            <div><base-button v-on:click="isPastAttempt = !isPastAttempt">4. Past Attempt</base-button></div>
+                            <div id="pastAttempts" v-show="isPastAttempt">
+                                <br>
+                                <p>History of past suicide attempts</p>
+                                <textarea name="pastAttempt" row=20 cols=95></textarea>
+                                <br><br>
+                            </div>
+                            <br>
+
+                            <div><base-button v-on:click="isMentalHealth = !isMentalHealth">5. Mental Health</base-button></div>
+                            <div id="mentalHealth" v-show="isMentalHealth">
+                                <br>
+                                <p>Presence of mental health illness</p>
+                                <textarea name="mentalHealth" row=20 cols=95></textarea>
+                                <br><br>
+                            </div>
                             <br><br>
 
                             <h2 class="heading-title text-warning mb-0">Overall Risk Level</h2>
@@ -290,6 +315,11 @@ export default {
     data() {
         return {
             isAnnex: false,
+            isIntent: false,
+            isPlans: false,
+            isResources: false,
+            isPastAttempt: false,
+            isMentalHealth: false,
         }
     },
     components: {
