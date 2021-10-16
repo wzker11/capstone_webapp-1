@@ -96,7 +96,7 @@
                                 </div>
                                 <div>
                                     <p>Reason(s) for Referral</p>
-                                    <textarea name="textarea" v-model.lazy.trim="textAreaValue" row=10 cols=95></textarea>
+                                    <textarea name="reasonsForReferral" row=10 cols=95></textarea>
                                 </div>      
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                                 <div>
                                     <h2 class="heading-title text-warning mb-0">Observations of Presentation</h2>
                                     <br>
-                                    <textarea name="textarea" v-model.lazy.trim="textAreaValue" row=100 cols=110></textarea>
+                                    <textarea name="obsOfPresentation" row=100 cols=110></textarea>
                                 </div>      
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                                     <h2 class="heading-title text-warning mb-0">Counselling Goals</h2>
                                     <br>
                                     <p>List down client’s counselling/ therapy goals (mutually agreed) to be achieved for counselling and/or during the current session.</p>
-                                    <textarea name="textarea" v-model.lazy.trim="textAreaValue" row=10 cols=110></textarea>
+                                    <textarea name="counsellingGoals" row=10 cols=110></textarea>
                                     <br><br>
 
                                     <h2 class="heading-title text-warning mb-0">Details Of Session</h2>
