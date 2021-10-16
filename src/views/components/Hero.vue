@@ -39,12 +39,11 @@
                 <card shadow class="card-profile mt--300" no-body>
                     <div class="px-4">
                         <div class="row justify-content-center">
-                            <div class="col-lg-7 order-lg-3">
+                            <div class="col-lg-4.5 order-lg-3">
                                 <span></span>
                                     <br><br>
                                     <base-button type="default" class="mr-4">First Session</base-button>
                                     <base-button type="default" class="mr-4">Subsequent Sessions</base-button>
-                                    <base-button type="default" class="mr-4">Annex</base-button>
                                     <!-- toggle between the sessions -->
                             </div>
                         </div>
@@ -132,7 +131,7 @@
                                 <div>
                                     <h2 class="heading-title text-warning mb-0">Observations of Presentation</h2>
                                     <br>
-                                    <textarea name="obsOfPresentation" row=100 cols=110></textarea>
+                                    <textarea name="obsOfPresentation" row=100 cols=95></textarea>
                                 </div>      
                             </div>
                         </div>
@@ -143,7 +142,7 @@
                                     <h2 class="heading-title text-warning mb-0">Counselling Goals</h2>
                                     <br>
                                     <p>List down client’s counselling/ therapy goals (mutually agreed) to be achieved for counselling and/or during the current session.</p>
-                                    <textarea name="counsellingGoals" row=10 cols=110></textarea>
+                                    <textarea name="counsellingGoals" row=10 cols=95></textarea>
                                     <br><br>
 
                                     <h2 class="heading-title text-warning mb-0">Details Of Session</h2>
