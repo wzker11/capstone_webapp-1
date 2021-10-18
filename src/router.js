@@ -19,6 +19,12 @@ export default new Router({
   routes: [
     {
       path: "/",
+      redirect: {
+        name: "login"
+      }
+    },
+    {
+      path: "/",
       name: "components",
       components: {
         header: AppHeader,
@@ -60,6 +66,23 @@ export default new Router({
         header: AppHeader,
         default: Profile,
         footer: AppFooter
+      }
+    },
+    {
+      path: "/login",
+      name: "login",
+      components: {
+        header: AppHeader,
+        default: Login,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/form",
+      name: "form",
+      components: {
+        header: AppHeader,
+        default: Components
       }
     },
     {
