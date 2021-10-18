@@ -63,11 +63,11 @@
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-6">
-                                        <base-input label="Rank/Name"></base-input>
-                                        <base-input label="NRIC"></base-input>
-                                        <base-input label="Age"></base-input>
-                                        <base-input label="Unit"></base-input>
-                                        <base-input label="Enlistment Date (for NSFs)"><date-pickers></date-pickers></base-input>
+                                        <base-input placeholder="Rank/Name"></base-input>
+                                        <base-input placeholder="NRIC"></base-input>
+                                        <base-input placeholder="Age"></base-input>
+                                        <base-input placeholder="Unit"></base-input>
+                                        <base-input placeholder="Enlistment Date (for NSFs)"></base-input>
                                     </div>
                                     <div class="col-lg-6 col-sm-6">
                                         <base-input label="Marital Status"></base-input>
@@ -138,7 +138,7 @@
                                 </div>
                                 <br><br>
                                 <div>
-                                    <h2 class="heading-title text-warning mb-0">Observations of Presentation</h2>
+                                    <h5 class="heading-title text-warning mb-0">Observations of Presentation</h5>
                                     <br>
                                     <p>Click on the annex button to get a guide for this section. </p>
                                     <div id="annex">
@@ -157,14 +157,11 @@
                         <div>
                             <div>
                                 <div>
-                                    <h2 class="heading-title text-warning mb-0">Counselling Goals</h2>
-                                    <br>
+                                    <h5 class="heading-title text-warning mb-0">Counselling Goals</h5>
                                     <p>List down client’s counselling/ therapy goals (mutually agreed) to be achieved for counselling and/or during the current session.</p>
                                     <textarea name="counsellingGoals" row=10 cols=95></textarea>
                                     <br><br>
-
-                                    <h2 class="heading-title text-warning mb-0">Details Of Session</h2>
-                                    <br>
+                                    <h5 class="heading-title text-warning mb-0">Details Of Session</h5>
                                     <p>Details of the issues discussed during the session. Background information should include
                                         <ul>
                                             <li>family/ childhood background and issues, </li>
@@ -181,14 +178,12 @@
                                     <textarea name="detailsOfSession" row=10 cols=95></textarea>
                                     <br><br><br>
 
-                                    <h2 class="heading-title text-warning mb-0">Case Conceptualisation</h2>
-                                    <br>
+                                    <h5 class="heading-title text-warning mb-0">Case Conceptualisation</h5>
                                     <p>Your assessment of the client’s key underlying issues, obstacles that prevent him / her from resolving the issues, factors that have contributed to his / her progress, personal strengths that could be leveraged to help client manage his / her issues better, perceived social support network to help client manage presenting problem(s), any suspected psychological conditions that the client may be presenting, etc.</p>
                                     <textarea name="caseConceptualisation" v-model.lazy.trim="textAreaValue" row=10 cols=95></textarea>
                                     <br><br><br>
 
-                                    <h2 class="heading-title text-warning mb-0">Intervention(s) provided</h2>
-                                    <br>
+                                    <h5 class="heading-title text-warning mb-0">Intervention(s) provided</h5>
                                     <p><em>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</em></p>
                                     <textarea name="interventionsProvided" row=10 cols=95></textarea>
                                     <br><br><br>
@@ -197,8 +192,7 @@
                             </div>
                         </div>
                         <div>
-                            <h2 class="heading-title text-warning mb-0">Suicide Risk Considerations (If Relevant)</h2>
-                            <br>
+                            <h5 class="heading-title text-warning mb-0">Suicide Risk Considerations (If Relevant)</h5>
                             <p>Indicate clients’ responses during current session, if applicable.<br>In an event that client presents with active suicidal ideation during the current session, please refer client to a Medical Centre immediately. Please ensure the safety of the client before reaching out to your Parac TL and/or EBSC, if in doubt.</p>
                             <div><base-button v-on:click="isIntent = !isIntent">1. Intent</base-button></div>
                             <div id="intent" v-show="isIntent">
@@ -253,21 +247,18 @@
                                 <br><br>
                             </div>
                             <br><br>
-
-                            <h2 class="heading-title text-warning mb-0">Overall Risk Level</h2>
-                            <br>
-                            <tabs tabNavClasses="nav-fill flex-column flex-sm-row">
-                                <tab-pane title="Low"></tab-pane>
-                                <tab-pane title="Moderate"></tab-pane>
-                                <tab-pane title="High"></tab-pane>
-                            </tabs>
+                            <h5>Overall Risk Level</h5>
+                            <div class="col-lg-3 col-md-6">
+                                <base-checkbox class="mb-3">Low</base-checkbox>
+                                <base-checkbox class="mb-3">Moderate</base-checkbox>
+                                <base-checkbox class="mb-3">High</base-checkbox>
+                            </div>
                             <p>It is recommended that suicide risk is managed during and immediately after the session. If there is a high risk of suicide, attending aracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan. <br>The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. <br>When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).
                             </p>
                         </div>
                         <br><br>
                         <div>
-                            <h2 class="heading-title text-warning mb-0">Follow-up Plans</h2>
-                            <br>
+                            <h5 class="heading-title text-warning mb-0">Follow-up Plans</h5>
                             <p>Indicate your follow-up plans for the case.</p>
                             <h6><u>Case management:</u></h6>
                             <p><i>To update or reach out to the following:</i></p>
@@ -290,16 +281,13 @@
                         </div>
                         <br><br><br>
                         <div>
-                            <h2 class="heading-title text-warning mb-0">Summary</h2>
-                            <br>
-                            <small>Report Prepared By:</small>
-                            <tabs tabNavClasses="nav-fill flex-column flex-sm-row">
-                                <tab-pane title="EBSC staff"></tab-pane>
-                                <tab-pane title="Paracounsellor"></tab-pane>
-                            </tabs>
-                            <base-input label="Rank/Name"></base-input>
-                            <base-input label="Signature"></base-input>
-                            <base-input label="Date of Report"><date-pickers></date-pickers></base-input>
+                            <h5 class="heading-title text-warning mb-0">Summary</h5>
+                            <p><strong>Report Prepared By:</strong></p>
+                            <base-input placeholder="Rank/Name"></base-input>
+                            <base-input placeholder="Date of Report"></base-input>
+                            <base-input placeholder="Signature"></base-input>
+                            <base-checkbox class="mb-3">EBSC staff</base-checkbox>
+                            <base-checkbox class="mb-3">Paracounsellor</base-checkbox>
                         </div>
                     </div>
                     <div>
@@ -321,6 +309,9 @@ import TabPane from "@/components/Tabs/TabPane.vue";
 import TabsSection from "./JavascriptComponents/TabsSection";
 import Modals from "./JavascriptComponents/Modals";
 import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue';
+import BaseNav from "@/components/BaseNav";
+import CloseButton from "@/components/CloseButton";
+
 export default {
     data() {
         return {
@@ -329,7 +320,11 @@ export default {
             isPlans: false,
             isResources: false,
             isPastAttempt: false,
-            isMentalHealth: false
+            isMentalHealth: false,
+            radio: {
+              radio1: "radio1",
+              radio2: "radio3"
+            }
         }
     },
     components: {
@@ -338,7 +333,9 @@ export default {
         Tabs,
         TabsSection,
         Modals,
-        VueTimepicker
+        VueTimepicker,
+        BaseNav,
+      CloseButton
     },
     methods: {
     curren_time() {
@@ -349,7 +346,17 @@ export default {
   }
 };
 </script>
-
 <style>
+
+#outer
+{
+    width:100%;
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
+}
 </style>
 
+</style>
