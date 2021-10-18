@@ -247,7 +247,10 @@
                             <textarea name="followUpPlans_S" row=100 cols=95></textarea>
                         </div>
                         <br><br><br>
-
+                        <div>
+                           <!-- <a href="#">Submit</a> -->
+                           <modals class="row justify-content-center"></modals>
+                        </div>
                     </div>
                 </card>
             </div>
