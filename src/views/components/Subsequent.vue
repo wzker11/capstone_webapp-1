@@ -246,7 +246,11 @@
                             <base-input label="Next Session Date"><date-pickers></date-pickers></base-input>
                             <textarea name="followUpPlans_S" row=100 cols=95></textarea>
                         </div>
-                        <br><br><br>
+                        <br>
+                        <div>
+                        <!-- <a href="#">Submit</a> -->
+                        <modals class="row justify-content-center"></modals><br>
+                        </div>
 
                     </div>
                 </card>
