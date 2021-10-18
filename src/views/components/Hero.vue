@@ -257,17 +257,17 @@
                         <a href="#">Submit</a>
                     </div>
                     <br>
-                    <!-- <div class="text-center mt-5">
+                    <div class="text-center mt-5">
                             <h2><strong>Annex</strong></h2>
                             <br><br>
                     </div>
                     <div>
                             <h2 class="heading-title text-warning mb-0">Obeservations of Presentation</h2>
                             <p>Following is a guide for the observable information of the client. </p>
-                            <img width="930px" src="./ANNEX1.png" />
+                            <img width="930px" src="../public/img/brand/ANNEX1.png" />
                             <img width="930px" src="./ANNEX2.png" />
                             <img width="930px" src="./ANNEX3.png" />
-                    </div> -->
+                    </div>
                 </card>
             </div>
         </section>
