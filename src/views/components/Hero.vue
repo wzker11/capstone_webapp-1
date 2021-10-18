@@ -70,35 +70,31 @@
                                         <base-input label="Enlistment Date (for NSFs)"><date-pickers></date-pickers></base-input>
                                     </div>
                                     <div class="col-lg-6 col-sm-6">
-                                            <base-input label="Marital Status"></base-input>
+                                        <base-input label="Marital Status"></base-input>
                                         <base-input label="Race"></base-input>
-                                        <span>Gender:</span>
-                                        <div>
-                                            <base-radio class="mb-3">Male</base-radio>
-                                            <base-radio class="mb-3">Female</base-radio>
-                                            <!-- <base-radio name="radio0" class="mb-3" v-model="radio.radio1">Unchecked</base-radio> -->
-                                        </div>
+                                        <label>Gender</label>
+                                        <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row">
+                                            <tab-pane title="Male"></tab-pane>
+                                            <tab-pane title="Female"></tab-pane>
+                                        </tabs>
                                         <base-input label="Contact No"></base-input>
                                         <base-input label="Expected ORD (for NSFs)"><date-pickers></date-pickers></base-input>
                                     </div>
                                 </div>
                                 <div>
-                                    <span>Source of Referral:</span>
+                                    <label>Source of Referral:</label>
                                     <div class="col-lg-3 col-md-6">
                                         <base-checkbox class="mb-3">Self</base-checkbox>
                                         <base-checkbox class="mb-3">IMH</base-checkbox>
-                                    </div>
-                                    <div class="col-lg-3 col-sm-6 mt-4 mt-md-0">
                                         <base-checkbox class="mb-3">Supervisor</base-checkbox>
                                         <base-checkbox class="mb-3">Medical Officer</base-checkbox>
-                                    </div>
-                                    <div class="col-lg-3 col-sm-6 mt-4 mt-md-0">
                                         <base-checkbox class="mb-3">Others:</base-checkbox>
                                         <base-input></base-input>
                                     </div>
                                 </div>
+                                <br>
                                 <div>
-                                    <p>Reason(s) for Referral</p>
+                                    <label>Reason(s) for Referral</label><br>
                                     <textarea name="reasonsForReferral" row=10 cols=95></textarea>
                                 </div>      
                             </div>
@@ -113,12 +109,21 @@
                                     <div class="col-lg-6 col-sm-6">
                                         <!-- <base-input placeholder="Date"></base-input> -->
                                         <!-- <input type="text" data-input="true" class="form-control datepicker flatpickr-input active"> -->
-                                        <base-input label="Session Date"><date-pickers></date-pickers></base-input>
-                                        <base-input label="Start Time"></base-input>
+                                        <label>Session Date</label><date-pickers></date-pickers>
+                                        <base-input label="Start Time" v-model="time" :placeholder="[[ curren_time() ]]"></base-input>
                                         <base-input label="End Time"></base-input>
+                                        <vue-timepicker input-class="base-input"></vue-timepicker>
                                     </div>
                                     <div class="col-lg-6 col-sm-6">
-                                        <base-input label="Venue"></base-input>
+                                        <base-input label="Venue">
+                                            <select class="form-control">
+                                                <option>Meeting Room 1</option>
+                                                <option>Meeting Room 2</option>
+                                                <option>Meeting Room 3</option>
+                                                <option>Meeting Room 4</option>
+                                                <option>Meeting Room 5</option>
+                                            </select>
+                                        </base-input>
                                         <!-- <base-input placeholder="Counsellor(s)"></base-input> -->
                                         <base-input label= "Counsellor">
                                             <select class="form-control">
@@ -315,6 +320,7 @@ import Tabs from "@/components/Tabs/Tabs.vue";
 import TabPane from "@/components/Tabs/TabPane.vue";
 import TabsSection from "./JavascriptComponents/TabsSection";
 import Modals from "./JavascriptComponents/Modals";
+import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue';
 export default {
     data() {
         return {
@@ -323,7 +329,7 @@ export default {
             isPlans: false,
             isResources: false,
             isPastAttempt: false,
-            isMentalHealth: false,
+            isMentalHealth: false
         }
     },
     components: {
@@ -331,8 +337,16 @@ export default {
         TabPane,
         Tabs,
         TabsSection,
-        Modals
+        Modals,
+        VueTimepicker
     },
+    methods: {
+    curren_time() {
+      const current = new Date();
+      const time = current.getHours() + ":" + current.getMinutes(); // + ":" + current.getSeconds();
+      return time;
+    }
+  }
 };
 </script>
 
