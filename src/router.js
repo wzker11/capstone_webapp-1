@@ -7,12 +7,22 @@ import Landing from "./views/Landing.vue";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
+import First_session from "./views/components/Hero.vue";
+import Subsequent_session from "./views/components/Subsequent.vue";
+import Sub_show from "./views/Sub_show.vue";
+
 
 Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: "active",
   routes: [
+    {
+      path: "/",
+      redirect: {
+        name: "login"
+      }
+    },
     {
       path: "/",
       name: "components",
@@ -59,11 +69,46 @@ export default new Router({
       }
     },
     {
-      path: "/annex",
-      name: "annex",
+      path: "/login",
+      name: "login",
+      components: {
+        header: AppHeader,
+        default: Login,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/form",
+      name: "form",
       components: {
         header: AppHeader,
         default: Components
+      }
+    },
+    {
+      path: "/First_session",
+      name: "First_session",
+      components: {
+        header: AppHeader,
+        default: Components,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/form",
+      name: "form",
+      components: {
+        header: AppHeader,
+        default: Components
+      }
+    },
+    {
+      path: "/Subsequent_session",
+      name: "Subsequent_session",
+      components: {
+        header: AppHeader,
+        default: Sub_show,
+        footer: AppFooter
       }
     }
   ],

@@ -6,14 +6,13 @@
                 <router-view/>
             </fade-transition>
         </main>
-        <router-view name="footer"></router-view>
     </div>
 </template>
+
 <script>
 import { FadeTransition } from "vue2-transitions";
-
 export default {
-  components: {
+  components: { 
     FadeTransition
   }
 };

@@ -1,7 +1,7 @@
 <template>
     <!-- Modals -->
     <div class="row">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
             <base-button block type="primary" class=" mb-3" @click="modals.modal1 = true">
                 Default
             </base-button>
@@ -21,10 +21,10 @@
                     </base-button>
                 </template>
             </modal>
-        </div>
+        </div> -->
         <div class="col-md-4">
             <base-button block type="warning" class=" mb-3" @click="modals.modal2 = true">
-                Notification
+                Download
             </base-button>
 
             <modal :show.sync="modals.modal2"
@@ -34,23 +34,22 @@
 
                 <div class="py-3 text-center">
                     <i class="ni ni-bell-55 ni-3x"></i>
-                    <h4 class="heading mt-4">You should read this!</h4>
-                    <p>A small river named Duden flows by their place and supplies it with the
-                        necessary regelialia.</p>
+                    <h4 class="heading mt-4">You are about to export the file as PDF document</h4>
+                    <p>Please check your changes before proceeding!</p>
                 </div>
 
                 <template slot="footer">
-                    <base-button type="white">Ok, Got it</base-button>
+                    <base-button type="white">Ok, download</base-button>
                     <base-button type="link"
                                  text-color="white"
                                  class="ml-auto"
                                  @click="modals.modal2 = false">
-                        Close
+                        Check again
                     </base-button>
                 </template>
             </modal>
         </div>
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
             <base-button block type="default" class=" mb-3" @click="modals.modal3 = true">
                 Form
             </base-button>
@@ -102,8 +101,8 @@
                         </form>
                     </template>
                 </card>
-            </modal>
-        </div>
+            </modal> -->
+        <!-- </div> -->
     </div>
 </template>
 <script>
