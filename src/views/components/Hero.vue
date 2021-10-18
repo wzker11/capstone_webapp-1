@@ -42,8 +42,12 @@
                             <div class="col-lg-4.5 order-lg-3">
                                 <span></span>
                                     <br><br>
-                                    <base-button type="default" class="mr-4">First Session</base-button>
-                                    <base-button type="default" class="mr-4">Subsequent Sessions</base-button>
+                                    <router-link to="/First_session" title="First Session">
+                                        <base-button type="default" class="mr-4">First Session</base-button>
+                                    </router-link>
+                                    <router-link to="/Subsequent_session" title="Subsequent Session">
+                                        <base-button type="default" class="mr-4">Subsequent Session</base-button>
+                                    </router-link>
                                     <!-- toggle between the sessions -->
                             </div>
                         </div>
