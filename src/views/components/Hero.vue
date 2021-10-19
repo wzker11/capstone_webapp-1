@@ -65,15 +65,16 @@
                                     <div class="col-lg-6 col-sm-6">
                                         <base-input label="Rank/Name"></base-input>
                                         <base-input label="NRIC"></base-input>
-                                        <base-input label="Age"></base-input>
+                                        <label class="mb-3">Age</label>
+                                        <base-input></base-input>
                                         <base-input label="Unit"></base-input>
                                         <base-input label="Enlistment Date (for NSFs)"></base-input>
                                     </div>
                                     <div class="col-lg-6 col-sm-6">
                                         <base-input label="Marital Status"></base-input>
                                         <base-input label="Race"></base-input>
-                                        <label>Gender</label>
-                                        <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row">
+                                        <label class="my-auto">Gender</label>
+                                        <tabs tabNavClasses="nav-fill flex-column flex-sm-row">
                                             <tab-pane title="Male"></tab-pane>
                                             <tab-pane title="Female"></tab-pane>
                                         </tabs>
@@ -81,21 +82,18 @@
                                         <base-input label="Expected ORD (for NSFs)"><date-pickers></date-pickers></base-input>
                                     </div>
                                 </div>
-                                <div>
-                                    <label>Source of Referral:</label>
-                                    <div class="col-lg-3 col-md-6">
-                                        <base-checkbox class="mb-3">Self</base-checkbox>
-                                        <base-checkbox class="mb-3">IMH</base-checkbox>
-                                        <base-checkbox class="mb-3">Supervisor</base-checkbox>
-                                        <base-checkbox class="mb-3">Medical Officer</base-checkbox>
-                                        <base-checkbox class="mb-3">Others:</base-checkbox>
-                                        <base-input></base-input>
-                                    </div>
+                                <label>Source of Referral</label>
+                                <div class="row justify-content-left">
+                                        <base-checkbox class="my-1 ml-3 col-lg-1">Self</base-checkbox>
+                                        <base-checkbox class="my-1 col-lg-1">IMH</base-checkbox>
+                                        <base-checkbox class="my-1 ml-1 col-lg-2">Supervisor</base-checkbox>
+                                        <base-checkbox class="my-1 col-lg-2">Medical Officer</base-checkbox>
+                                        <base-checkbox class="my-1 col-lg-2">Others:</base-checkbox>
+                                        <base-input class="col-lg-3.9"></base-input>
                                 </div>
-                                <br>
                                 <div>
                                     <label>Reason(s) for Referral</label><br>
-                                    <textarea name="reasonsForReferral" row=10 cols=95></textarea>
+                                    <textarea name="reasonsForReferral" row=10 cols=102></textarea>
                                 </div>      
                             </div>
                         </div>
@@ -253,31 +251,48 @@
                                 <tab-pane title="Moderate"></tab-pane>
                                 <tab-pane title="High"></tab-pane>
                             </tabs>
-                            <p>It is recommended that suicide risk is managed during and immediately after the session. If there is a high risk of suicide, attending aracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan. <br>The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. <br>When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).
-                            </p>
+                            <card shadow>
+                                <p class="small mb-1">It is recommended that suicide risk is managed during and immediately after the session. If there is a high risk of suicide, attending aracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan. <br>The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. <br>When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).</p>
+                            </card>
                         </div>
                         <br><br>
                         <div>
                             <h5 class="heading-title text-warning mb-0">Follow-up Plans</h5>
-                            <p>Indicate your follow-up plans for the case.</p>
-                            <h6><u>Case management:</u></h6>
-                            <p><i>To update or reach out to the following:</i></p>
-                            <div>
-                                <base-checkbox class="mb-3">Client’s supervisors</base-checkbox>
-                                <base-checkbox class="mb-3">Unit Paracounsellor to monitor</base-checkbox>
-                                <base-checkbox class="mb-3">Medical Officer</base-checkbox>
-                                <base-checkbox class="mb-3">Other agencies</base-checkbox>
+                            <small>Indicate your follow-up plans for the case.</small>
+                            <br><br>
+                            <h2 class="heading mb-2">Case management</h2>
+                            <small>To update or reach out to the following:</small>
+                            <br><br>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-3">
+                                    <base-checkbox class="mb-3 flex-column flex-md-row">Client’s supervisors</base-checkbox>
+                                    <base-checkbox class="mb-3 flex-column flex-md-row">Unit Paracounsellor to monitor</base-checkbox>
+                                    <base-checkbox class="mb-3 flex-column flex-md-row">Medical Officer</base-checkbox>
+                                    <base-checkbox class="mb-3 flex-column flex-md-row">Other agencies</base-checkbox>
+                                </div>
+
+                                <div class="col-lg-9 mt-5 mt-lg-0">
+                                    <card shadow>
+                                        <p class="small mb-1">Apart from suicide risk, the following are common areas of update (subjected to client’s consent):</p>
+                                        <p class="small mb-1">- Mental health condition</p>
+                                        <p class="small mb-1">- Coping strategies</p>
+                                        <p class="small mb-1">- Recommended work arrangements</p>
+                                        <p class="small mb-1">Note: Advocacy for posting is discouraged during counselling sessions. Please contact EBSC for further discussion prior to updating supervisors if a change in posting is recommended.</p>
+                                    </card>
+                                </div>
                             </div>
-                            <p><i>Apart from suicide risk, the following are common areas of update (subjected to client’s consent): </i></p>
-                            <p> - Mental health condition</p>
-                            <p> -  Coping strategies</p>
-                            <p> - Recommended work arrangements</p>
-                            <p>Note: Advocacy for posting is discouraged during counselling sessions. Please contact EBSC for further discussion prior to updating supervisors if a change in posting is recommended. </p>
+                            <br>
+                            <!-- <p class='small mb-2'><i>Apart from suicide risk, the following are common areas of update (subjected to client’s consent):</i></p>
+                            <p class='small mb-2 col-lg-3'><i>- Mental health condition</i></p>
+                            <p class='small mb-2 col-lg-3'><i>- Coping strategies</i></p>
+                            <p class='small mb-2 col-lg-6'><i>- Recommended work arrangements</i></p>
+                            <p class='small mb-2'><i>Note: Advocacy for posting is discouraged during counselling sessions. Please contact EBSC for further discussion prior to updating supervisors if a change in posting is recommended. </i></p> -->
                             <br>
                             <h2 class="heading mb-2">Follow-up Plans</h2>
-                            <p class="text-muted mb-2"><i>Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes. </i></p>
-                            <base-input label="Next Session Date"><date-pickers></date-pickers></base-input>
-                            <textarea name="followUpPlans" row=100 cols=95></textarea>
+                            <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes.</p>
+                            <base-input class="row justify-content-left col-lg-4" label="Next Session Date"><date-pickers></date-pickers></base-input>
+                            <label>Reason(s) for Closure</label><br>
+                            <textarea name="followUpPlans" row=100 cols=102></textarea>
                         </div>
                         <br><br><br>
                         <div>
@@ -313,6 +328,7 @@ import Modals from "./JavascriptComponents/Modals";
 import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue';
 import BaseNav from "@/components/BaseNav";
 import CloseButton from "@/components/CloseButton";
+import Card from '../../components/Card.vue';
 
 export default {
     data() {
@@ -337,7 +353,8 @@ export default {
         Modals,
         VueTimepicker,
         BaseNav,
-      CloseButton
+        CloseButton,
+        Card
     },
     methods: {
     curren_time() {
