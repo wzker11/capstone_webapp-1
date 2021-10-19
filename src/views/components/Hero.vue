@@ -290,7 +290,8 @@
                             <br>
                             <h2 class="heading mb-2">Follow-up Plans</h2>
                             <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes.</p>
-                            <base-input class="row justify-content-left col-lg-4" label="Next Session Date"><date-pickers></date-pickers></base-input>
+                            <label>Next Session Date</label>
+                            <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
                             <label>Reason(s) for Closure</label><br>
                             <textarea name="followUpPlans" row=100 cols=102></textarea>
                         </div>
