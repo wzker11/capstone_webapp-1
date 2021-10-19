@@ -94,6 +94,78 @@ export default new Router({
         footer: AppFooter
       }
     }
+  },
+  {
+    path: "/",
+    name: "components",
+    components: {
+      header: AppHeader,
+      default: Components,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/landing",
+    name: "landing",
+    components: {
+      header: AppHeader,
+      default: Landing,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/register",
+    name: "register",
+    components: {
+      header: AppHeader,
+      default: Register,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    components: {
+      header: AppHeader,
+      default: Profile,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/login",
+    name: "login",
+    components: {
+      header: AppHeader,
+      default: Login,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/first_session",
+    name: "first_session",
+    components: {
+      header: AppHeader,
+      default: Components,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/form",
+    name: "form",
+    components: {
+      header: AppHeader,
+      default: Components
+    }
+  },
+  {
+    path: "/subsequent_session",
+    name: "subsequent_session",
+    components: {
+      header: AppHeader,
+      default: Sub_show,
+      footer: AppFooter
+    }
+  }
   ],
   scrollBehavior: to => {
     if (to.hash) {
