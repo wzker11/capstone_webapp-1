@@ -59,13 +59,17 @@
                         <div ref="client-information">
                             <div>
                                 <h2 class="heading-title text-warning mb-0">Client Information</h2>
+                                <p> The patient's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                 <br>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
+                                    <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-6 col-sm-6">
-                                        <base-input label="Rank/Name" v-model="name"></base-input>
+                                        <!-- <base-button v-on:click="retrieveData">Retrieve</base-button> -->
                                         <base-input label="NRIC" v-model="nric"></base-input>
-                                        <base-button v-on:click="retrieveData">Retrieve</base-button>
+                                        <base-input label="Rank/Name" v-model="name"></base-input>
                                         <label class="mb-3" >Age</label>
                                         <base-input v-model="age"></base-input>
                                         <base-input label="Unit" v-model="unit"></base-input>
@@ -80,7 +84,8 @@
                                             <tab-pane title="Female"></tab-pane>
                                         </tabs>
                                         <base-input label="Contact No" v-model="contact"></base-input>
-                                        <base-input label="Expected ORD (for NSFs)"><date-pickers></date-pickers></base-input>
+                                        <base-input label="Expected ORD (for NSFs)" v-model = "ord"></base-input>
+                                        <!-- <base-input label="Expected ORD (for NSFs)"><date-pickers></date-pickers></base-input> -->
                                     </div>
                                 </div>
                                 <label>Source of Referral</label>
@@ -350,7 +355,8 @@ export default {
             maritalstatus:'',
             unit: '',
             contact: '',
-            enlistment: ''
+            enlistment: '',
+            ord : ''
         }
     },
     components: {
@@ -370,13 +376,31 @@ export default {
       const time = current.getHours() + ":" + current.getMinutes(); // + ":" + current.getSeconds();
       return time;
     },
-    retrieveData() {        
-        this.race = "Malay"
-        this.name = "Chris"
-        this.maritalstatus = "Single"
-        this.unit = "CDA"
-        this.contact = "912345"
-        this.enlistment = "8 June 2021"
+    retrieveData() {    
+        console.log(this.nric) 
+        if (!this.nric) {
+            alert("Please enter NRIC")
+        }
+        else {
+        var info = firebase.database().ref("/S9614554C")
+        info.on('value', (snapshot) => {
+            const data = snapshot.val()
+            this.race = data['Race']
+            this.name = data['Name']
+            this.maritalstatus = data['Marital Status']
+            this.unit = data['Unit']
+            this.contact = data['Contact Number']
+            this.enlistment = data['Enlistment Date']
+            this.age = data['Age']
+            this.ord = data['ORD Date']
+        })
+        }
+        // this.race = "Malay"
+        // this.name = "Chris"
+        // this.maritalstatus = "Single"
+        // this.unit = "CDA"
+        // this.contact = "912345"
+        // this.enlistment = "8 June 2021"
     }
     }
 };
