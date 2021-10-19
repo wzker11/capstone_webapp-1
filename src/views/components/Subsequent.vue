@@ -57,7 +57,7 @@
                         
                         <div ref="client-information">
                                 <h2 class="heading-title text-warning mb-0">Client Information</h2>
-                                <p> The patient's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
+                                <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                 <br>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
