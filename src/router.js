@@ -17,82 +17,10 @@ Vue.use(Router);
 export default new Router({
   linkExactActiveClass: "active",
   routes: [
-    {
-      path: "/",
-      redirect: {
-        name: "login"
-      }
-    },
-    {
-      path: "/",
-      name: "components",
-      components: {
-        header: AppHeader,
-        default: Components,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/landing",
-      name: "landing",
-      components: {
-        header: AppHeader,
-        default: Landing,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/login",
-      name: "login",
-      components: {
-        header: AppHeader,
-        default: Login,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/register",
-      name: "register",
-      components: {
-        header: AppHeader,
-        default: Register,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/profile",
-      name: "profile",
-      components: {
-        header: AppHeader,
-        default: Profile,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/form",
-      name: "form",
-      components: {
-        header: AppHeader,
-        default: Components
-      }
-    },
-    {
-      path: "/First_session",
-      name: "First_session",
-      components: {
-        header: AppHeader,
-        default: Components,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/Subsequent_session",
-      name: "Subsequent_session",
-      components: {
-        header: AppHeader,
-        default: Sub_show,
-        footer: AppFooter
-      }
+  {
+    path: "/",
+    redirect: {
+      name: "login"
     }
   },
   {
@@ -132,24 +60,6 @@ export default new Router({
     }
   },
   {
-    path: "/login",
-    name: "login",
-    components: {
-      header: AppHeader,
-      default: Login,
-      footer: AppFooter
-    }
-  },
-  {
-    path: "/first_session",
-    name: "first_session",
-    components: {
-      header: AppHeader,
-      default: Components,
-      footer: AppFooter
-    }
-  },
-  {
     path: "/form",
     name: "form",
     components: {
@@ -158,11 +68,29 @@ export default new Router({
     }
   },
   {
-    path: "/subsequent_session",
-    name: "subsequent_session",
+    path: "/First_session",
+    name: "First_session",
+    components: {
+      header: AppHeader,
+      default: Components,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/Subsequent_session",
+    name: "Subsequent_session",
     components: {
       header: AppHeader,
       default: Sub_show,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/landing",
+    name: "landing",
+    components: {
+      header: AppHeader,
+      default: Landing,
       footer: AppFooter
     }
   }
