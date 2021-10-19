@@ -69,15 +69,6 @@ export default new Router({
       }
     },
     {
-      path: "/login",
-      name: "login",
-      components: {
-        header: AppHeader,
-        default: Login,
-        footer: AppFooter
-      }
-    },
-    {
       path: "/form",
       name: "form",
       components: {
@@ -92,14 +83,6 @@ export default new Router({
         header: AppHeader,
         default: Components,
         footer: AppFooter
-      }
-    },
-    {
-      path: "/form",
-      name: "form",
-      components: {
-        header: AppHeader,
-        default: Components
       }
     },
     {

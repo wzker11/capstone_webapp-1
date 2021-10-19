@@ -63,22 +63,23 @@
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-6">
-                                        <base-input label="Rank/Name"></base-input>
-                                        <base-input label="NRIC"></base-input>
-                                        <label class="mb-3">Age</label>
-                                        <base-input></base-input>
-                                        <base-input label="Unit"></base-input>
-                                        <base-input label="Enlistment Date (for NSFs)"></base-input>
+                                        <base-input label="Rank/Name" v-model="name"></base-input>
+                                        <base-input label="NRIC" v-model="nric"></base-input>
+                                        <base-button v-on:click="retrieveData">Retrieve</base-button>
+                                        <label class="mb-3" >Age</label>
+                                        <base-input v-model="age"></base-input>
+                                        <base-input label="Unit" v-model="unit"></base-input>
+                                        <base-input label="Enlistment Date (for NSFs)" v-model = "enlistment"></base-input>
                                     </div>
                                     <div class="col-lg-6 col-sm-6">
-                                        <base-input label="Marital Status"></base-input>
-                                        <base-input label="Race"></base-input>
+                                        <base-input label="Marital Status" v-model="maritalstatus"></base-input>
+                                        <base-input label="Race" v-model="race"></base-input>
                                         <label class="my-auto">Gender</label>
                                         <tabs tabNavClasses="nav-fill flex-column flex-sm-row">
                                             <tab-pane title="Male"></tab-pane>
                                             <tab-pane title="Female"></tab-pane>
                                         </tabs>
-                                        <base-input label="Contact No"></base-input>
+                                        <base-input label="Contact No" v-model="contact"></base-input>
                                         <base-input label="Expected ORD (for NSFs)"><date-pickers></date-pickers></base-input>
                                     </div>
                                 </div>
@@ -332,7 +333,7 @@ import Card from '../../components/Card.vue';
 
 export default {
     data() {
-        return {
+        return {    
             isAnnex: false,
             isIntent: false,
             isPlans: false,
@@ -342,7 +343,14 @@ export default {
             radio: {
               radio1: "radio1",
               radio2: "radio3"
-            }
+            },
+            race: '',
+            name: '',
+            age: '',
+            maritalstatus:'',
+            unit: '',
+            contact: '',
+            enlistment: ''
         }
     },
     components: {
@@ -361,8 +369,16 @@ export default {
       const current = new Date();
       const time = current.getHours() + ":" + current.getMinutes(); // + ":" + current.getSeconds();
       return time;
+    },
+    retrieveData() {        
+        this.race = "Malay"
+        this.name = "Chris"
+        this.maritalstatus = "Single"
+        this.unit = "CDA"
+        this.contact = "912345"
+        this.enlistment = "8 June 2021"
     }
-  }
+    }
 };
 </script>
 <style>
