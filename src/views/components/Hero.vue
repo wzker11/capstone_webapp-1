@@ -63,11 +63,11 @@
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-6">
-                                        <base-input placeholder="Rank/Name"></base-input>
-                                        <base-input placeholder="NRIC"></base-input>
-                                        <base-input placeholder="Age"></base-input>
-                                        <base-input placeholder="Unit"></base-input>
-                                        <base-input placeholder="Enlistment Date (for NSFs)"></base-input>
+                                        <base-input label="Rank/Name"></base-input>
+                                        <base-input label="NRIC"></base-input>
+                                        <base-input label="Age"></base-input>
+                                        <base-input label="Unit"></base-input>
+                                        <base-input label="Enlistment Date (for NSFs)"></base-input>
                                     </div>
                                     <div class="col-lg-6 col-sm-6">
                                         <base-input label="Marital Status"></base-input>
@@ -248,11 +248,11 @@
                             </div>
                             <br><br>
                             <h5>Overall Risk Level</h5>
-                            <div class="col-lg-3 col-md-6">
-                                <base-checkbox class="mb-3">Low</base-checkbox>
-                                <base-checkbox class="mb-3">Moderate</base-checkbox>
-                                <base-checkbox class="mb-3">High</base-checkbox>
-                            </div>
+                            <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row">
+                                <tab-pane title="Low"></tab-pane>
+                                <tab-pane title="Moderate"></tab-pane>
+                                <tab-pane title="High"></tab-pane>
+                            </tabs>
                             <p>It is recommended that suicide risk is managed during and immediately after the session. If there is a high risk of suicide, attending aracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan. <br>The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. <br>When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).
                             </p>
                         </div>
@@ -281,13 +281,15 @@
                         </div>
                         <br><br><br>
                         <div>
-                            <h5 class="heading-title text-warning mb-0">Summary</h5>
-                            <p><strong>Report Prepared By:</strong></p>
-                            <base-input placeholder="Rank/Name"></base-input>
-                            <base-input placeholder="Date of Report"></base-input>
-                            <base-input placeholder="Signature"></base-input>
-                            <base-checkbox class="mb-3">EBSC staff</base-checkbox>
-                            <base-checkbox class="mb-3">Paracounsellor</base-checkbox>
+                            <h5 class="heading-title text-warning mb-0">Summary</h5><br>
+                            <label>Report Prepared By</label>
+                            <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row">
+                                <tab-pane title="EBSC staff"></tab-pane>
+                                <tab-pane title="Paracounsellor"></tab-pane>
+                            </tabs>
+                            <base-input label="Rank/Name"></base-input>
+                            <base-input label="Signature"></base-input>
+                            <base-input label="Date of Report"><date-pickers></date-pickers></base-input>
                         </div>
                     </div>
                     <div>
