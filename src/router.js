@@ -93,7 +93,16 @@ export default new Router({
       default: Landing,
       footer: AppFooter
     }
-  }
+  },
+  {
+      path: "/login",
+      name: "login",
+      components: {
+        header: AppHeader,
+        default: Login,
+        footer: AppFooter
+      }
+    },
   ],
   scrollBehavior: to => {
     if (to.hash) {
