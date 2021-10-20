@@ -59,16 +59,16 @@
                             <div ref="client-information">
                                 <div>
                                     <h2 class="heading-title text-warning mb-0">Client Information</h2>
-                                    <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
-                                    <br>
+                                    <!-- <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
+                                    <br> -->
                                     <!-- <form class="tr" method="post" action="blah.html"> -->
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
-                                        </div>
+                                        </div> -->
                                         <div class="row">
                                             <div class="col-lg-6 col-sm-6">
                                                 <!-- <base-button v-on:click="retrieveData">Retrieve</base-button> -->
-                                                <base-input label="NRIC" v-model="nric"></base-input>
+                                                <base-input label="NRIC" v-model="nric" id="nric"></base-input>
                                                 <base-input label="Rank/Name" v-model="name"></base-input>
                                                 <label class="mb-3" >Age</label>
                                                 <base-input v-model="age"></base-input>
@@ -111,15 +111,13 @@
                                         <!-- <form class="tr" method="post" action="blah.html"> -->
                                             <div class="row">
                                                 <div class="col-lg-6 col-sm-6">
-                                                    <!-- <base-input placeholder="Date"></base-input> -->
-                                                    <!-- <input type="text" data-input="true" class="form-control datepicker flatpickr-input active"> -->
                                                     <label>Session Date</label><date-pickers></date-pickers>
-                                                    <base-input label="Start Time" v-model="time" :placeholder="[[ curren_time() ]]"></base-input>
+                                                    <base-input label="Start Time" v-model="time" :placeholder="[[ curren_time() ]]" id="session_date"></base-input>
                                                     <base-input label="End Time"></base-input>
                                                     <vue-timepicker input-class="base-input"></vue-timepicker>
                                                 </div>
                                                 <div class="col-lg-6 col-sm-6">
-                                                    <base-input label="Venue">
+                                                    <base-input label="Venue" id="venue">
                                                         <select class="form-control">
                                                             <option>Meeting Room 1</option>
                                                             <option>Meeting Room 2</option>
@@ -129,7 +127,7 @@
                                                         </select>
                                                     </base-input>
                                                     <!-- <base-input placeholder="Counsellor(s)"></base-input> -->
-                                                    <base-input label= "Counsellor">
+                                                    <base-input label= "Counsellor" id="counsellor">
                                                         <select class="form-control">
                                                             <option>Shichao</option>
                                                             <option>Clara</option>
@@ -153,7 +151,7 @@
                                                     <img v-show="isAnnex" width="930px" src="./ANNEX3.png" />
                                                     <br>
                                                 </div>
-                                                <textarea name="obsOfPresentation" row=100 cols=95></textarea>
+                                                <textarea name="obsOfPresentation" row=100 cols=95 id="observations"></textarea>
                                             </div>      
                                         </div>
                                     </div>
@@ -163,7 +161,7 @@
                                             <div>
                                                 <h5 class="heading-title text-warning mb-0">Counselling Goals</h5>
                                                 <p>List down client’s counselling/ therapy goals (mutually agreed) to be achieved for counselling and/or during the current session.</p>
-                                                <textarea name="counsellingGoals" row=10 cols=95></textarea>
+                                                <textarea name="counsellingGoals" row=10 cols=95 id="counselling_goals"></textarea>
                                                 <br><br>
                                                 <h5 class="heading-title text-warning mb-0">Details Of Session</h5>
                                                 <p>Details of the issues discussed during the session. Background information should include
@@ -179,15 +177,15 @@
                                                         <li>mental health history (incl. self-harm and suicide behaviours)</li>
                                                     </ul>
                                                 </p>
-                                                <textarea name="detailsOfSession" row=10 cols=95></textarea>
+                                                <textarea name="detailsOfSession" row=10 cols=95 id="details" type="text"></textarea>
                                                 <br><br><br>
 
-                                                <h5 class="heading-title text-warning mb-0">Case Conceptualisation</h5>
+                                                <h5 class="heading-title text-warning mb-0" id="conceptualisation">Case Conceptualisation</h5>
                                                 <p>Your assessment of the client’s key underlying issues, obstacles that prevent him / her from resolving the issues, factors that have contributed to his / her progress, personal strengths that could be leveraged to help client manage his / her issues better, perceived social support network to help client manage presenting problem(s), any suspected psychological conditions that the client may be presenting, etc.</p>
                                                 <textarea name="caseConceptualisation" v-model.lazy.trim="textAreaValue" row=10 cols=95></textarea>
                                                 <br><br><br>
 
-                                                <h5 class="heading-title text-warning mb-0">Intervention(s) provided</h5>
+                                                <h5 class="heading-title text-warning mb-0" id="interventions">Intervention(s) provided</h5>
                                                 <p><em>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</em></p>
                                                 <textarea name="interventionsProvided" row=10 cols=95></textarea>
                                                 <br><br><br>
@@ -252,7 +250,7 @@
                                         </div>
                                         <br><br>
                                         <h5>Overall Risk Level</h5>
-                                        <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row">
+                                        <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row" id="risk_level">
                                             <tab-pane title="Low"></tab-pane>
                                             <tab-pane title="Moderate"></tab-pane>
                                             <tab-pane title="High"></tab-pane>
@@ -270,7 +268,7 @@
                                         <small>To update or reach out to the following:</small>
                                         <br><br>
                                         <div class="row justify-content-center">
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3" id="case_management">
                                                 <base-checkbox class="mb-3 flex-column flex-md-row">Client’s supervisors</base-checkbox>
                                                 <base-checkbox class="mb-3 flex-column flex-md-row">Unit Paracounsellor to monitor</base-checkbox>
                                                 <base-checkbox class="mb-3 flex-column flex-md-row">Medical Officer</base-checkbox>
@@ -315,7 +313,8 @@
                     </div>
                     <div>
                         <!-- <a href="#">Submit</a> -->
-                        <modals class="row justify-content-center"></modals>
+                        <!-- <modals class="row justify-content-center"></modals> -->
+                        <button v-on:click="saveDraft" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Save Draft</button>
                     </div>
                     <br>
                 </card>
@@ -326,40 +325,43 @@
 </template>
 
 <script>
-    const DatePickers = () => import("./JavascriptComponents/DatePickers");
-    import Tabs from "@/components/Tabs/Tabs.vue";
-    import TabPane from "@/components/Tabs/TabPane.vue";
-    import TabsSection from "./JavascriptComponents/TabsSection";
-    import Modals from "./JavascriptComponents/Modals";
-    import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue';
-    import BaseNav from "@/components/BaseNav";
-    import CloseButton from "@/components/CloseButton";
-    import Card from '../../components/Card.vue';
+const DatePickers = () => import("./JavascriptComponents/DatePickers");
+import Tabs from "@/components/Tabs/Tabs.vue";
+import TabPane from "@/components/Tabs/TabPane.vue";
+import TabsSection from "./JavascriptComponents/TabsSection";
+import Modals from "./JavascriptComponents/Modals";
+import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue';
+import BaseNav from "@/components/BaseNav";
+import CloseButton from "@/components/CloseButton";
+import Card from '../../components/Card.vue';
+import firebase from 'firebase'
+import 'firebase/firestore'
+import database from '../../firebase.js'
 
-    export default {
-        data() {
-            return {    
-                isAnnex: false,
-                isIntent: false,
-                isPlans: false,
-                isResources: false,
-                isPastAttempt: false,
-                isMentalHealth: false,
-                radio: {
-                  radio1: "radio1",
-                  radio2: "radio3"
-              },
-              race: '',
-              name: '',
-              age: '',
-              maritalstatus:'',
-              unit: '',
-              contact: '',
-              enlistment: '',
-              ord : ''
-          }
-      },
-      components: {
+export default {
+    data() {
+        return {    
+            isAnnex: false,
+            isIntent: false,
+            isPlans: false,
+            isResources: false,
+            isPastAttempt: false,
+            isMentalHealth: false,
+            radio: {
+              radio1: "radio1",
+              radio2: "radio3"
+          },
+          race: '',
+          name: '',
+          age: '',
+          maritalstatus:'',
+          unit: '',
+          contact: '',
+          enlistment: '',
+          ord : ''
+        }
+    },
+    components: {
 
         DatePickers,
         TabPane,
@@ -373,37 +375,41 @@
     },
     methods: {
         curren_time() {
-          const current = new Date();
-      const time = current.getHours() + ":" + current.getMinutes(); // + ":" + current.getSeconds();
-      return time;
-  },
-  retrieveData() {    
-    console.log(this.nric) 
-    if (!this.nric) {
-        alert("Please enter NRIC")
+            const current = new Date();
+            const time = current.getHours() + ":" + current.getMinutes(); // + ":" + current.getSeconds();
+            return time;
+        },
+        retrieveData() {    
+            console.log(this.nric) 
+            if (!this.nric) {
+                alert("Please enter NRIC")
+            }
+            else {
+                var info = firebase.database().ref("/S9614554C")
+                info.on('value', (snapshot) => {
+                    const data = snapshot.val()
+                    this.race = data['Race']
+                    this.name = data['Name']
+                    this.maritalstatus = data['Marital Status']
+                    this.unit = data['Unit']
+                    this.contact = data['Contact Number']
+                    this.enlistment = data['Enlistment Date']
+                    this.age = data['Age']
+                    this.ord = data['ORD Date']
+                })
+            }
+        },
+        saveDraft: function() {
+            database.collection("forms").add({
+                details: document.getElementById("details").value,
+            }).then(function(docRef) {
+                console.log("First Session Draft Successfully Saved");
+            }).catch(function(error) {
+                console.error("Error Saving Draft: ", error);
+            });
+            setTimeout(window.location = "/form/", 3000);
+        },
     }
-    else {
-        var info = firebase.database().ref("/S9614554C")
-        info.on('value', (snapshot) => {
-            const data = snapshot.val()
-            this.race = data['Race']
-            this.name = data['Name']
-            this.maritalstatus = data['Marital Status']
-            this.unit = data['Unit']
-            this.contact = data['Contact Number']
-            this.enlistment = data['Enlistment Date']
-            this.age = data['Age']
-            this.ord = data['ORD Date']
-        })
-    }
-        // this.race = "Malay"
-        // this.name = "Chris"
-        // this.maritalstatus = "Single"
-        // this.unit = "CDA"
-        // this.contact = "912345"
-        // this.enlistment = "8 June 2021"
-    }
-}
 };
 </script>
 <style>
