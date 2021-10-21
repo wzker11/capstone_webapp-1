@@ -102,11 +102,20 @@
                                         </div>
                                         <div>
                                             <label>Reason(s) for Referral</label><br>
-                                            <textarea name="reasonsForReferral" row=10 cols=102></textarea>
+                                            <!-- <textarea name="reasonsForReferral" row=10 cols=102></textarea> -->
+                                              <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="reasonsForReferral"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
                                         </div>      
                                     </div>
                                 </div>
-                                <br><br><br>
+                                <br><br><br><br><br>
                                 <div>
                                     <div>
                                         <h2 class="heading-title text-warning mb-0">Session Information</h2>
@@ -119,7 +128,7 @@
                                                     <label>Session Date</label><date-pickers></date-pickers>
                                                     <base-input label="Start Time" v-model="time" :placeholder="[[ curren_time() ]]"></base-input>
                                                     <base-input label="End Time"></base-input>
-                                                    <vue-timepicker input-class="base-input"></vue-timepicker>
+                                                    <!-- <vue-timepicker input-class="base-input"></vue-timepicker> -->
                                                 </div>
                                                 <div class="col-lg-6 col-sm-6">
                                                     <base-input label="Venue">
@@ -147,27 +156,46 @@
                                             <div>
                                                 <h5 class="heading-title text-warning mb-0">Observations of Presentation</h5>
                                                 <br>
-                                                <p>Click on the annex button to get a guide for this section. </p>
+                                                <div class="row justify-content-left">
+                                                    <p class="ml-3">Click on the annex button to get a guide for this section. </p><base-button class="ml-4" size="sm" style="height:30px" v-on:click="isAnnex = !isAnnex" >Annex</base-button>
+                                                </div>
+                                                    
                                                 <div id="annex">
-                                                    <base-button v-on:click="isAnnex = !isAnnex" >Annex</base-button>
-                                                    <br>
                                                     <img v-show="isAnnex" width="930px" src="./ANNEX1.png" />
                                                     <img v-show="isAnnex" width="930px" src="./ANNEX2.png" />
                                                     <img v-show="isAnnex" width="930px" src="./ANNEX3.png" />
-                                                    <br>
                                                 </div>
-                                                <textarea name="obsOfPresentation" row=100 cols=95></textarea>
+                                                
+                                                <!-- <textarea name="obsOfPresentation" row=100 cols=95></textarea> -->
+                                                <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="obsOfPresentation"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
                                             </div>      
                                         </div>
                                     </div>
-                                    <br><br>
+                                    <br><br><br><br>
                                     <div>
                                         <div>
                                             <div>
                                                 <h5 class="heading-title text-warning mb-0">Counselling Goals</h5>
                                                 <p>List down client’s counselling/ therapy goals (mutually agreed) to be achieved for counselling and/or during the current session.</p>
-                                                <textarea name="counsellingGoals" row=10 cols=95></textarea>
-                                                <br><br>
+                                                <!-- <textarea name="counsellingGoals" row=10 cols=95></textarea> -->
+                                                 <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="counsellingGoals"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
+                                                <br><br><br><br>
                                                 <h5 class="heading-title text-warning mb-0">Details Of Session</h5>
                                                 <p>Details of the issues discussed during the session. Background information should include
                                                     <ul>
@@ -182,18 +210,45 @@
                                                         <li>mental health history (incl. self-harm and suicide behaviours)</li>
                                                     </ul>
                                                 </p>
-                                                <textarea name="detailsOfSession" row=10 cols=95></textarea>
-                                                <br><br><br>
+                                                <!-- <textarea name="detailsOfSession" row=10 cols=95></textarea> -->
+                                                <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="detailsOfSession"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
+                                                <br><br><br><br>
 
                                                 <h5 class="heading-title text-warning mb-0">Case Conceptualisation</h5>
                                                 <p>Your assessment of the client’s key underlying issues, obstacles that prevent him / her from resolving the issues, factors that have contributed to his / her progress, personal strengths that could be leveraged to help client manage his / her issues better, perceived social support network to help client manage presenting problem(s), any suspected psychological conditions that the client may be presenting, etc.</p>
-                                                <textarea name="caseConceptualisation" v-model.lazy.trim="textAreaValue" row=10 cols=95></textarea>
-                                                <br><br><br>
+                                                <!-- <textarea name="caseConceptualisation" v-model.lazy.trim="textAreaValue" row=10 cols=95></textarea> -->
+                                                <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="caseConceptualisation"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
+                                                <br><br><br><br>
 
                                                 <h5 class="heading-title text-warning mb-0">Intervention(s) provided</h5>
                                                 <p><em>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</em></p>
-                                                <textarea name="interventionsProvided" row=10 cols=95></textarea>
-                                                <br><br><br>
+                                                <!-- <textarea name="interventionsProvided" row=10 cols=95></textarea> -->
+                                                <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="interventionsProvided"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
+                                                <br><br><br><br>
 
                                             </div>
                                         </div>
@@ -302,9 +357,18 @@
                             <label>Next Session Date</label>
                             <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
                             <label>Reason(s) for Closure</label><br>
-                            <textarea name="followUpPlans" row=100 cols=102></textarea>
+                            <!-- <textarea name="followUpPlans" row=100 cols=102></textarea> -->
+                            <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="reasonsForClosure"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
                         </div>
-                        <br><br><br>
+                        <br><br><br><br>
                         <div>
                             <h5 class="heading-title text-warning mb-0">Summary</h5><br>
                             <label>Report Prepared By</label>
@@ -339,6 +403,11 @@
     import BaseNav from "@/components/BaseNav";
     import CloseButton from "@/components/CloseButton";
     import Card from '../../components/Card.vue';
+    import 'quill/dist/quill.core.css';
+    import 'quill/dist/quill.snow.css';
+    import 'quill/dist/quill.bubble.css';
+    import { quillEditor } from 'vue-quill-editor';
+
 
     export default {
         data() {
@@ -360,7 +429,17 @@
               unit: '',
               contact: '',
               enlistment: '',
-              ord : ''
+              ord : '',
+              reasonsForReferral: '',
+              obsOfPresentation:'',
+              counsellingGoals:'',
+              detailsOfSession:'',
+              caseConceptualisation:'',
+              interventionsProvided:'',
+              reasonsForClosure:'',
+              editorOption: {
+                  // Some Quill options...
+                }
           }
       },
       components: {
@@ -373,13 +452,15 @@
         VueTimepicker,
         BaseNav,
         CloseButton,
-        Card
+        Card,
+        quillEditor
     },
     methods: {
         curren_time() {
           const current = new Date();
-      const time = current.getHours() + ":" + current.getMinutes(); // + ":" + current.getSeconds();
-      return time;
+          const minute = current.getMinutes() < 9 ? "0" +current.getMinutes() : current.getMinutes();
+          const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
+          return time;
   },
   retrieveData() {    
     console.log(this.nric) 
@@ -406,8 +487,29 @@
         // this.unit = "CDA"
         // this.contact = "912345"
         // this.enlistment = "8 June 2021"
+  },
+    onEditorBlur(quill) {
+        console.log('editor blur!', quill)
+      },
+      onEditorFocus(quill) {
+        console.log('editor focus!', quill)
+      },
+      onEditorReady(quill) {
+        console.log('editor ready!', quill)
+      },
+      onEditorChange({ quill, html, text }) {
+        console.log('editor change!', quill, html, text)
+        this.content = html
+      }
+    },
+    computed: {
+      editor() {
+        return this.$refs.myQuillEditor.quill
+      }
+    },
+    mounted() {
+      console.log('this is current quill instance object', this.editor)
     }
-}
 };
 </script>
 <style>
@@ -420,10 +522,5 @@
     .inner
     {
         display: inline-block;
-    }
-
-    .base-button
-    {
-        height:20%;
     }
 </style>
