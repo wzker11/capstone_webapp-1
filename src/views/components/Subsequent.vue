@@ -54,15 +54,22 @@
                             <h2><strong>Subsequent Session Form</strong></h2>
                             <br><br>
                         </div>
+                        
                         <div ref="client-information">
-                            <div>
                                 <h2 class="heading-title text-warning mb-0">Client Information</h2>
+                                <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
+                                <br>
+                                <!-- <form class="tr" method="post" action="blah.html"> -->
+                                <div class="row">
+                                    <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
+                                </div>
+                            <div>
                                 <br>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-6">
-                                        <base-input label="Rank/Name"></base-input>
-                                        <base-input label="NRIC"></base-input>
+                                        <base-input label="NRIC" v-model="nric"></base-input>
+                                        <base-input label="Rank/Name" v-model="name"></base-input>
                                     </div>
                                 </div>
                             </div>
@@ -276,6 +283,7 @@ export default {
             isResources: false,
             isPastAttempt: false,
             isMentalHealth: false,
+            name : ''
         }
     },
     components: {
@@ -285,6 +293,21 @@ export default {
         TabsSection,
         Modals
     },
+    methods: {
+        retrieveData() {    
+            console.log(this.nric) 
+            if (!this.nric) {
+                alert("Please enter NRIC")
+            }
+            else {
+                var info = firebase.database().ref("/S9614554C")
+                info.on('value', (snapshot) => {
+                    const data = snapshot.val()
+                    this.name = data['Name']
+            })
+            }
+        }
+    }
 };
 </script>
 
