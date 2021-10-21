@@ -302,7 +302,7 @@ export default {
         retrieveData() {    
             console.log(this.nric) 
             if (!this.nric) {
-                alert("Please enter NRIC")
+                alert("Please enter a valid NRIC number")
             }
             else {
                 var info = firebase.database().ref("/S9614554C")
