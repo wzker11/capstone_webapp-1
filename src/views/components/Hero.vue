@@ -62,13 +62,16 @@
                                     <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                     <br>
                                     <!-- <form class="tr" method="post" action="blah.html"> -->
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
-                                        </div>
+                                        </div> -->
                                         <div class="row">
                                             <div class="col-lg-6 col-sm-6">
                                                 <!-- <base-button v-on:click="retrieveData">Retrieve</base-button> -->
-                                                <base-input label="NRIC" v-model="nric"></base-input>
+                                                <div class="row">
+                                                    <base-input class="col-sm-9" label="NRIC" v-model="nric"></base-input>
+                                                    <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="retrieveData">Retrieve</base-button>
+                                                </div>
                                                 <base-input label="Rank/Name" v-model="name"></base-input>
                                                 <label class="mb-3" >Age</label>
                                                 <base-input v-model="age"></base-input>
@@ -296,7 +299,8 @@
                             <br>
                             <h2 class="heading mb-2">Follow-up Plans</h2>
                             <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes.</p>
-                            <base-input class="row justify-content-left col-lg-4" label="Next Session Date"><date-pickers></date-pickers></base-input>
+                            <label>Next Session Date</label>
+                            <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
                             <label>Reason(s) for Closure</label><br>
                             <textarea name="followUpPlans" row=100 cols=102></textarea>
                         </div>
@@ -416,5 +420,10 @@
     .inner
     {
         display: inline-block;
+    }
+
+    .base-button
+    {
+        height:20%;
     }
 </style>
