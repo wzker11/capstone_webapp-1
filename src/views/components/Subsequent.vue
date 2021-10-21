@@ -60,15 +60,15 @@
                                 <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                 <br>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
-                                <div class="row">
-                                    <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
-                                </div>
                             <div>
                                 <br>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-6">
-                                        <base-input label="NRIC" v-model="nric"></base-input>
+                                                <div class="row">
+                                                    <base-input class="col-sm-9" label="NRIC" v-model="nric"></base-input>
+                                                    <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="retrieveData">Retrieve</base-button>
+                                                </div>
                                         <base-input label="Rank/Name" v-model="name"></base-input>
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@
                                         <!-- <base-input placeholder="Date"></base-input> -->
                                         <!-- <input type="text" data-input="true" class="form-control datepicker flatpickr-input active"> -->
                                         <base-input label="Session Date"><date-pickers></date-pickers></base-input>
-                                        <base-input label="Start Time"></base-input>
+                                        <base-input label="Start Time" v-model="time" :placeholder="[[ curren_time() ]]"></base-input>
                                         <base-input label="End Time"></base-input>
                                     </div>
                                     <div class="col-lg-6 col-sm-6">
@@ -294,6 +294,11 @@ export default {
         Modals
     },
     methods: {
+        curren_time() {
+          const current = new Date();
+            const time = current.getHours() + ":" + current.getMinutes(); // + ":" + current.getSeconds();
+            return time;
+        },
         retrieveData() {    
             console.log(this.nric) 
             if (!this.nric) {
