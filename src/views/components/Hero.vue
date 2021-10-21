@@ -52,63 +52,63 @@
                                 </div>
                             </div>
                             <!-- form start -->
-                            <div class="text-center mt-5">
-                                <h2><strong>First Session Form</strong></h2>
-                                <br><br>
-                            </div>
-                            <div ref="client-information">
-                                <div>
-                                    <h2 class="heading-title text-warning mb-0">Client Information</h2>
-                                    <!-- <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
-                                    <br> -->
-                                    <!-- <form class="tr" method="post" action="blah.html"> -->
-                                        <!-- <div class="row">
-                                            <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
-                                        </div> -->
-                                        <div class="row">
-                                            <div class="col-lg-6 col-sm-6">
-                                                <!-- <base-button v-on:click="retrieveData">Retrieve</base-button> -->
-                                                <base-input label="NRIC" v-model="nric" id="nric"></base-input>
-                                                <base-input label="Rank/Name" v-model="name"></base-input>
-                                                <label class="mb-3" >Age</label>
-                                                <base-input v-model="age"></base-input>
-                                                <base-input label="Unit" v-model="unit"></base-input>
-                                                <base-input label="Enlistment Date (for NSFs)" v-model = "enlistment"></base-input>
-                                            </div>
-                                            <div class="col-lg-6 col-sm-6">
-                                                <base-input label="Marital Status" v-model="maritalstatus"></base-input>
-                                                <base-input label="Race" v-model="race"></base-input>
-                                                <label class="my-auto">Gender</label>
-                                                <tabs tabNavClasses="nav-fill flex-column flex-sm-row">
-                                                    <tab-pane title="Male"></tab-pane>
-                                                    <tab-pane title="Female"></tab-pane>
-                                                </tabs>
-                                                <base-input label="Contact No" v-model="contact"></base-input>
-                                                <base-input label="Expected ORD (for NSFs)" v-model = "ord"></base-input>
-                                                <!-- <base-input label="Expected ORD (for NSFs)"><date-pickers></date-pickers></base-input> -->
-                                            </div>
-                                        </div>
-                                        <label>Source of Referral</label>
-                                        <div class="row justify-content-left">
-                                            <base-checkbox class="my-1 ml-3 col-lg-1">Self</base-checkbox>
-                                            <base-checkbox class="my-1 col-lg-1">IMH</base-checkbox>
-                                            <base-checkbox class="my-1 ml-1 col-lg-2">Supervisor</base-checkbox>
-                                            <base-checkbox class="my-1 col-lg-2">Medical Officer</base-checkbox>
-                                            <base-checkbox class="my-1 col-lg-2">Others:</base-checkbox>
-                                            <base-input class="col-lg-3.9"></base-input>
-                                        </div>
-                                        <div>
-                                            <label>Reason(s) for Referral</label><br>
-                                            <textarea name="reasonsForReferral" row=10 cols=102></textarea>
-                                        </div>      
-                                    </div>
+                            <form id="first-session">
+                                <div class="text-center mt-5">
+                                    <h2><strong>First Session Form</strong></h2>
+                                    <br><br>
                                 </div>
-                                <br><br><br>
-                                <div>
+                            </form>
+                                <div ref="client-information">
                                     <div>
-                                        <h2 class="heading-title text-warning mb-0">Session Information</h2>
+                                        <h2 class="heading-title text-warning mb-0">Client Information</h2>
+                                        <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                         <br>
-                                        <!-- <form class="tr" method="post" action="blah.html"> -->
+                                            <div class="row">
+                                                <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-sm-6">
+                                                    <!-- <base-button v-on:click="retrieveData">Retrieve</base-button> -->
+                                                    <base-input label="NRIC" v-model="nric" id="nric"></base-input>
+                                                    <base-input label="Rank/Name" v-model="name"></base-input>
+                                                    <label class="mb-3" >Age</label>
+                                                    <base-input v-model="age"></base-input>
+                                                    <base-input label="Unit" v-model="unit"></base-input>
+                                                    <base-input label="Enlistment Date (for NSFs)" v-model = "enlistment"></base-input>
+                                                </div>
+                                                <div class="col-lg-6 col-sm-6">
+                                                    <base-input label="Marital Status" v-model="maritalstatus"></base-input>
+                                                    <base-input label="Race" v-model="race"></base-input>
+                                                    <label class="my-auto">Gender</label>
+                                                    <tabs tabNavClasses="nav-fill flex-column flex-sm-row">
+                                                        <tab-pane title="Male"></tab-pane>
+                                                        <tab-pane title="Female"></tab-pane>
+                                                    </tabs>
+                                                    <base-input label="Contact No" v-model="contact"></base-input>
+                                                    <base-input label="Expected ORD (for NSFs)" v-model = "ord"></base-input>
+                                                    <!-- <base-input label="Expected ORD (for NSFs)"><date-pickers></date-pickers></base-input> -->
+                                                </div>
+                                            </div>
+                                            <label>Source of Referral</label>
+                                            <div class="row justify-content-left">
+                                                <base-checkbox class="my-1 ml-3 col-lg-1">Self</base-checkbox>
+                                                <base-checkbox class="my-1 col-lg-1">IMH</base-checkbox>
+                                                <base-checkbox class="my-1 ml-1 col-lg-2">Supervisor</base-checkbox>
+                                                <base-checkbox class="my-1 col-lg-2">Medical Officer</base-checkbox>
+                                                <base-checkbox class="my-1 col-lg-2">Others:</base-checkbox>
+                                                <base-input class="col-lg-3.9"></base-input>
+                                            </div>
+                                            <div>
+                                                <label>Reason(s) for Referral</label><br>
+                                                <textarea name="reasonsForReferral" row=10 cols=102></textarea>
+                                            </div>      
+                                        </div>
+                                    </div>
+                                    <br><br><br>
+                                    <div>
+                                        <div>
+                                            <h2 class="heading-title text-warning mb-0">Session Information</h2>
+                                            <br>
                                             <div class="row">
                                                 <div class="col-lg-6 col-sm-6">
                                                     <label>Session Date</label><date-pickers></date-pickers>
@@ -180,16 +180,15 @@
                                                 <textarea name="detailsOfSession" row=10 cols=95 id="details" type="text"></textarea>
                                                 <br><br><br>
 
-                                                <h5 class="heading-title text-warning mb-0" id="conceptualisation">Case Conceptualisation</h5>
+                                                <h5 class="heading-title text-warning mb-0">Case Conceptualisation</h5>
                                                 <p>Your assessment of the client’s key underlying issues, obstacles that prevent him / her from resolving the issues, factors that have contributed to his / her progress, personal strengths that could be leveraged to help client manage his / her issues better, perceived social support network to help client manage presenting problem(s), any suspected psychological conditions that the client may be presenting, etc.</p>
-                                                <textarea name="caseConceptualisation" v-model.lazy.trim="textAreaValue" row=10 cols=95></textarea>
+                                                <textarea name="caseConceptualisation" v-model.lazy.trim="textAreaValue" row=10 cols=95 id="conceptualisation"></textarea>
                                                 <br><br><br>
 
-                                                <h5 class="heading-title text-warning mb-0" id="interventions">Intervention(s) provided</h5>
+                                                <h5 class="heading-title text-warning mb-0">Intervention(s) provided</h5>
                                                 <p><em>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</em></p>
-                                                <textarea name="interventionsProvided" row=10 cols=95></textarea>
+                                                <textarea name="interventionsProvided" row=10 cols=95 id="interventions"></textarea>
                                                 <br><br><br>
-
                                             </div>
                                         </div>
                                     </div>
@@ -286,42 +285,37 @@
                                             </div>
                                         </div>
                                         <br>
-                            <!-- <p class='small mb-2'><i>Apart from suicide risk, the following are common areas of update (subjected to client’s consent):</i></p>
-                            <p class='small mb-2 col-lg-3'><i>- Mental health condition</i></p>
-                            <p class='small mb-2 col-lg-3'><i>- Coping strategies</i></p>
-                            <p class='small mb-2 col-lg-6'><i>- Recommended work arrangements</i></p>
-                            <p class='small mb-2'><i>Note: Advocacy for posting is discouraged during counselling sessions. Please contact EBSC for further discussion prior to updating supervisors if a change in posting is recommended. </i></p> -->
-                            <br>
-                            <h2 class="heading mb-2">Follow-up Plans</h2>
-                            <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes.</p>
-                            <base-input class="row justify-content-left col-lg-4" label="Next Session Date"><date-pickers></date-pickers></base-input>
-                            <label>Reason(s) for Closure</label><br>
-                            <textarea name="followUpPlans" row=100 cols=102></textarea>
-                        </div>
-                        <br><br><br>
-                        <div>
-                            <h5 class="heading-title text-warning mb-0">Summary</h5><br>
-                            <label>Report Prepared By</label>
-                            <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row">
-                                <tab-pane title="EBSC staff"></tab-pane>
-                                <tab-pane title="Paracounsellor"></tab-pane>
-                            </tabs>
-                            <base-input label="Rank/Name"></base-input>
-                            <base-input label="Signature"></base-input>
-                            <base-input label="Date of Report"><date-pickers></date-pickers></base-input>
-                        </div>
-                    </div>
-                    <div>
-                        <!-- <a href="#">Submit</a> -->
-                        <!-- <modals class="row justify-content-center"></modals> -->
-                        <button v-on:click="saveDraft" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Save Draft</button>
-                    </div>
-                    <br>
-                </card>
-            </div>
-        </section>
-    </div>
-</section>
+                                        <br>
+                                        <h2 class="heading mb-2">Follow-up Plans</h2>
+                                        <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes.</p>
+                                        <base-input class="row justify-content-left col-lg-4" label="Next Session Date"><date-pickers></date-pickers></base-input>
+                                        <label>Reason(s) for Closure</label><br>
+                                        <textarea name="followUpPlans" row=100 cols=102></textarea>
+                                    </div>
+                                    <br><br><br>
+                                    <div>
+                                        <h5 class="heading-title text-warning mb-0">Summary</h5><br>
+                                        <label>Report Prepared By</label>
+                                        <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row">
+                                            <tab-pane title="EBSC staff"></tab-pane>
+                                            <tab-pane title="Paracounsellor"></tab-pane>
+                                        </tabs>
+                                        <base-input label="Rank/Name"></base-input>
+                                        <base-input label="Signature"></base-input>
+                                        <base-input label="Date of Report"><date-pickers></date-pickers></base-input>
+                                    </div>
+                                </div>
+                                <div>
+                                    <!-- <a href="#">Submit</a> -->
+                                    <!-- <modals class="row justify-content-center"></modals> -->
+                                    <button v-on:click="saveDraft" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Save Draft</button>
+                                </div> 
+                        <br>
+                    </card>
+                </div>
+            </section>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -362,7 +356,6 @@ export default {
         }
     },
     components: {
-
         DatePickers,
         TabPane,
         Tabs,
@@ -400,14 +393,14 @@ export default {
             }
         },
         saveDraft: function() {
+            const session_num = 1;
             database.collection("forms").add({
-                details: document.getElementById("details").value,
+                session_num: session_num,
             }).then(function(docRef) {
                 console.log("First Session Draft Successfully Saved");
             }).catch(function(error) {
                 console.error("Error Saving Draft: ", error);
             });
-            setTimeout(window.location = "/form/", 3000);
         },
     }
 };
