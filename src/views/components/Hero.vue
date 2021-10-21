@@ -63,48 +63,48 @@
                                         <h2 class="heading-title text-warning mb-0">Client Information</h2>
                                         <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                         <br>
-                                            <div class="row">
-                                                <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-6 col-sm-6">
-                                                    <!-- <base-button v-on:click="retrieveData">Retrieve</base-button> -->
-                                                    <base-input label="NRIC" v-model="nric" id="nric"></base-input>
-                                                    <base-input label="Rank/Name" v-model="name"></base-input>
-                                                    <label class="mb-3" >Age</label>
-                                                    <base-input v-model="age"></base-input>
-                                                    <base-input label="Unit" v-model="unit"></base-input>
-                                                    <base-input label="Enlistment Date (for NSFs)" v-model = "enlistment"></base-input>
-                                                </div>
-                                                <div class="col-lg-6 col-sm-6">
-                                                    <base-input label="Marital Status" v-model="maritalstatus"></base-input>
-                                                    <base-input label="Race" v-model="race"></base-input>
-                                                    <label class="my-auto">Gender</label>
-                                                    <tabs tabNavClasses="nav-fill flex-column flex-sm-row">
-                                                        <tab-pane title="Male"></tab-pane>
-                                                        <tab-pane title="Female"></tab-pane>
-                                                    </tabs>
-                                                    <base-input label="Contact No" v-model="contact"></base-input>
-                                                    <base-input label="Expected ORD (for NSFs)" v-model = "ord"></base-input>
-                                                    <!-- <base-input label="Expected ORD (for NSFs)"><date-pickers></date-pickers></base-input> -->
-                                                </div>
-                                            </div>
-                                            <label>Source of Referral</label>
-                                            <div class="row justify-content-left">
-                                                <base-checkbox class="my-1 ml-3 col-lg-1">Self</base-checkbox>
-                                                <base-checkbox class="my-1 col-lg-1">IMH</base-checkbox>
-                                                <base-checkbox class="my-1 ml-1 col-lg-2">Supervisor</base-checkbox>
-                                                <base-checkbox class="my-1 col-lg-2">Medical Officer</base-checkbox>
-                                                <base-checkbox class="my-1 col-lg-2">Others:</base-checkbox>
-                                                <base-input class="col-lg-3.9"></base-input>
-                                            </div>
-                                            <div>
-                                                <label>Reason(s) for Referral</label><br>
-                                                <textarea name="reasonsForReferral" row=10 cols=102></textarea>
-                                            </div>      
+                                        <div class="row">
+                                            <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-sm-6">
+                                                <!-- <base-button v-on:click="retrieveData">Retrieve</base-button> -->
+                                                <base-input label="NRIC" v-model="nric" id="nric"></base-input>
+                                                <base-input label="Rank/Name" v-model="name"></base-input>
+                                                <label class="mb-3" >Age</label>
+                                                <base-input v-model="age"></base-input>
+                                                <base-input label="Unit" v-model="unit"></base-input>
+                                                <base-input label="Enlistment Date (for NSFs)" v-model = "enlistment"></base-input>
+                                            </div>
+                                            <div class="col-lg-6 col-sm-6">
+                                                <base-input label="Marital Status" v-model="maritalstatus"></base-input>
+                                                <base-input label="Race" v-model="race"></base-input>
+                                                <label class="my-auto">Gender</label>
+                                                <tabs tabNavClasses="nav-fill flex-column flex-sm-row">
+                                                    <tab-pane title="Male"></tab-pane>
+                                                    <tab-pane title="Female"></tab-pane>
+                                                </tabs>
+                                                <base-input label="Contact No" v-model="contact"></base-input>
+                                                <base-input label="Expected ORD (for NSFs)" v-model = "ord"></base-input>
+                                                <!-- <base-input label="Expected ORD (for NSFs)"><date-pickers></date-pickers></base-input> -->
+                                            </div>
+                                        </div>
+                                        <label>Source of Referral</label>
+                                        <div class="row justify-content-left">
+                                            <base-checkbox class="my-1 ml-3 col-lg-1">Self</base-checkbox>
+                                            <base-checkbox class="my-1 col-lg-1">IMH</base-checkbox>
+                                            <base-checkbox class="my-1 ml-1 col-lg-2">Supervisor</base-checkbox>
+                                            <base-checkbox class="my-1 col-lg-2">Medical Officer</base-checkbox>
+                                            <base-checkbox class="my-1 col-lg-2">Others:</base-checkbox>
+                                            <base-input class="col-lg-3.9"></base-input>
+                                        </div>
+                                        <div>
+                                            <label>Reason(s) for Referral</label><br>
+                                            <textarea name="reasonsForReferral" row=10 cols=102></textarea>
+                                        </div>      
                                     </div>
-                                    <br><br><br>
+                                </div>
+                                <br><br><br>
                                     <div>
                                         <div>
                                             <h2 class="heading-title text-warning mb-0">Session Information</h2>
@@ -117,8 +117,8 @@
                                                     <vue-timepicker input-class="base-input"></vue-timepicker>
                                                 </div>
                                                 <div class="col-lg-6 col-sm-6">
-                                                    <base-input label="Venue" id="venue">
-                                                        <select class="form-control">
+                                                    <base-input label="Venue">
+                                                        <select class="form-control" id="venue">
                                                             <option>Meeting Room 1</option>
                                                             <option>Meeting Room 2</option>
                                                             <option>Meeting Room 3</option>
@@ -127,8 +127,8 @@
                                                         </select>
                                                     </base-input>
                                                     <!-- <base-input placeholder="Counsellor(s)"></base-input> -->
-                                                    <base-input label= "Counsellor" id="counsellor">
-                                                        <select class="form-control">
+                                                    <base-input label= "Counsellor">
+                                                        <select class="form-control" id="counsellor">
                                                             <option>Shichao</option>
                                                             <option>Clara</option>
                                                             <option>Keif</option>
@@ -199,10 +199,10 @@
                                         <div id="intent" v-show="isIntent">
                                             <br>
                                             <p>Verbalises thoughts of suicide</p>
-                                            <textarea name="intent1" row=20 cols=95></textarea>
+                                            <textarea name="intent1" row=20 cols=95 id='verbal-intent'></textarea>
                                             <br>
                                             <p>Ambivalence towards suicide</p>
-                                            <textarea name="intent2" row=20 cols=95></textarea>
+                                            <textarea name="intent2" row=20 cols=95 id='ambivalence-intent'></textarea>
                                             <br><br>
                                         </div>
                                         <br>
@@ -211,11 +211,11 @@
                                         <div id="plans" v-show="isPlans">
                                             <br>
                                             <p>Explore about suicide (e.g., research)</p>
-                                            <textarea name="plan1" row=20 cols=95></textarea>
+                                            <textarea name="plan1" row=20 cols=95 id='explore-plans'></textarea>
                                             <p>Have concrete plans to attempt suicide</p>
-                                            <textarea name="plan2" row=20 cols=95></textarea>
+                                            <textarea name="plan2" row=20 cols=95 id='concrete-plans'></textarea>
                                             <p>Have access to lethal means for suicide</p>
-                                            <textarea name="plan3" row=20 cols=95></textarea>
+                                            <textarea name="plan3" row=20 cols=95 id='lethal-means'></textarea>
                                             <br><br>
                                         </div>
                                         <br>
@@ -224,9 +224,9 @@
                                         <div id="resources" v-show="isResources">
                                             <br>
                                             <p>Strength of social support</p>
-                                            <textarea name="resources1" row=20 cols=95></textarea>
+                                            <textarea name="resources1" row=20 cols=95 id='social-resource'></textarea>
                                             <p>Problem solving skills</p>
-                                            <textarea name="resources2" row=20 cols=95></textarea>
+                                            <textarea name="resources2" row=20 cols=95 id='skills-resource'></textarea>
                                             <br><br>
                                         </div>
                                         <br>
@@ -235,7 +235,7 @@
                                         <div id="pastAttempts" v-show="isPastAttempt">
                                             <br>
                                             <p>History of past suicide attempts</p>
-                                            <textarea name="pastAttempt" row=20 cols=95></textarea>
+                                            <textarea name="pastAttempt" row=20 cols=95 id='suicide-attempt'></textarea>
                                             <br><br>
                                         </div>
                                         <br>
@@ -244,7 +244,7 @@
                                         <div id="mentalHealth" v-show="isMentalHealth">
                                             <br>
                                             <p>Presence of mental health illness</p>
-                                            <textarea name="mentalHealth" row=20 cols=95></textarea>
+                                            <textarea name="mentalHealth" row=20 cols=95 id='mental-health'></textarea>
                                             <br><br>
                                         </div>
                                         <br><br>
@@ -290,7 +290,7 @@
                                         <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes.</p>
                                         <base-input class="row justify-content-left col-lg-4" label="Next Session Date"><date-pickers></date-pickers></base-input>
                                         <label>Reason(s) for Closure</label><br>
-                                        <textarea name="followUpPlans" row=100 cols=102></textarea>
+                                        <textarea name="followUpPlans" row=100 cols=102 id=follow-up></textarea>
                                     </div>
                                     <br><br><br>
                                     <div>
@@ -332,6 +332,10 @@ import firebase from 'firebase'
 import 'firebase/firestore'
 import database from '../../firebase.js'
 
+export class Form {
+
+}
+
 export default {
     data() {
         return {    
@@ -341,20 +345,31 @@ export default {
             isResources: false,
             isPastAttempt: false,
             isMentalHealth: false,
-            radio: {
-              radio1: "radio1",
-              radio2: "radio3"
-          },
-          race: '',
-          name: '',
-          age: '',
-          maritalstatus:'',
-          unit: '',
-          contact: '',
-          enlistment: '',
-          ord : ''
+            race: '',
+            name: '',
+            age: '',
+            maritalstatus:'',
+            unit: '',
+            contact: '',
+            enlistment: '',
+            ord : '',
+
+            counselling_goals:'',
+            details: '',
+            conceptualisation: '',
+            verbal_intent: '',
+            ambivalence_intent: '',
+            explore_plans: '',
+            concrete_plans: '',
+            lethal_means: '',
+            social_resource: '',
+            skills_resource: '',
+            suicide_attempt: '',
+            mental_health: '',
+            follow_up: ''
         }
     },
+
     components: {
         DatePickers,
         TabPane,
@@ -366,6 +381,7 @@ export default {
         CloseButton,
         Card
     },
+
     methods: {
         curren_time() {
             const current = new Date();
@@ -394,8 +410,46 @@ export default {
         },
         saveDraft: function() {
             const session_num = 1;
-            database.collection("forms").add({
+            var nric = document.getElementById('nric').value;
+
+            // in order of form
+            // var venue = document.getElementById('venue');
+            // var venue_value = venue.options[venue.selectedIndex].innerText;
+            // var counsellor = document.getElementById('counsellor');
+            // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
+            var counselling_goals = document.getElementById('counselling_goals').value;
+            var details = document.getElementById('details').value;
+            var conceptualisation = document.getElementById('conceptualisation').value;
+            var verbal_intent = document.getElementById('verbal-intent').value;
+            var ambivalence_intent = document.getElementById('ambivalence-intent').value;
+            var explore_plans = document.getElementById('explore-plans').value; 
+            var concrete_plans = document.getElementById('concrete-plans').value;
+            var lethal_means = document.getElementById('lethal-means').value;
+            var social_resource = document.getElementById('social-resource').value;
+            var skills_resource = document.getElementById('skills-resource').value;
+            var suicide_attempt = document.getElementById('suicide-attempt').value;
+            var mental_health = document.getElementById('mental-health').value;
+            // var risk_level = document.getElementById('risk_level');
+            // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
+            var follow_up = document.getElementById('follow-up').value;
+
+            database.collection("forms").doc(this.nric).set({
                 session_num: session_num,
+                // venue: venue_value,
+                // counsellor: counsellor_value,
+                counselling_goals: counselling_goals,
+                details: details,
+                conceptualisation: conceptualisation,
+                verbal_intent: verbal_intent,
+                ambivalence_intent: ambivalence_intent,
+                explore_plans: explore_plans,
+                concrete_plans: concrete_plans,
+                lethal_means: lethal_means,
+                social_resource: social_resource,
+                skills_resource: skills_resource,
+                suicide_attempt: suicide_attempt,
+                mental_health: mental_health,
+                follow_up: follow_up
             }).then(function(docRef) {
                 console.log("First Session Draft Successfully Saved");
             }).catch(function(error) {
