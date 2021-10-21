@@ -156,7 +156,8 @@
                                                 <h5 class="heading-title text-warning mb-0">Observations of Presentation</h5>
                                                 <br>
                                                 <div class="row justify-content-left">
-                                                    <p class="ml-3">Click on the annex button to get a guide for this section. </p><base-button class="ml-4" size="sm" style="height:30px" v-on:click="isAnnex = !isAnnex" >Annex</base-button>
+                                                    <p class="ml-3">Click on the annex button to get a guide for this section. </p>
+                                                    <base-button class="ml-4" size="sm" style="height:30px" v-on:click="isAnnex = !isAnnex" >Annex</base-button>
                                                 </div>
                                                     
                                                 <div id="annex">
@@ -344,28 +345,24 @@
                                             </div>
                                         </div>
                                         <br>
-                            <!-- <p class='small mb-2'><i>Apart from suicide risk, the following are common areas of update (subjected to client’s consent):</i></p>
-                            <p class='small mb-2 col-lg-3'><i>- Mental health condition</i></p>
-                            <p class='small mb-2 col-lg-3'><i>- Coping strategies</i></p>
-                            <p class='small mb-2 col-lg-6'><i>- Recommended work arrangements</i></p>
-                            <p class='small mb-2'><i>Note: Advocacy for posting is discouraged during counselling sessions. Please contact EBSC for further discussion prior to updating supervisors if a change in posting is recommended. </i></p> -->
-                            <br>
-                            <h2 class="heading mb-2">Follow-up Plans</h2>
-                            <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes.</p>
-                            <label>Next Session Date</label>
-                            <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
-                            <label>Reason(s) for Closure</label><br>
-                            <!-- <textarea name="followUpPlans" row=100 cols=102></textarea> -->
-                            <quill-editor
-                                              ref="myQuillEditor"
-                                              style="height:150px"
-                                              theme="snow"
-                                              v-model="reasonsForClosure"
-                                              :options="editorOption"
-                                              @blur="onEditorBlur($event)"
-                                              @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/>
-                        </div>
+                           
+                                        <br>
+                                        <h2 class="heading mb-2">Follow-up Plans</h2>
+                                        <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes.</p>
+                                        <label>Next Session Date</label>
+                                        <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
+                                        <label>Reason(s) for Closure</label><br>
+                                        <!-- <textarea name="followUpPlans" row=100 cols=102></textarea> -->
+                                        <quill-editor 
+                                        ref="myQuillEditor" 
+                                        style="height:150px" 
+                                        theme="snow" 
+                                        v-model="reasonsForClosure" 
+                                        :options="editorOption" 
+                                        @blur="onEditorBlur($event)"
+                                        @focus="onEditorFocus($event)"
+                                        @ready="onEditorReady($event)"/>
+                                    </div>
                         <br><br><br><br>
                         <div>
                             <h5 class="heading-title text-warning mb-0">Summary</h5><br>

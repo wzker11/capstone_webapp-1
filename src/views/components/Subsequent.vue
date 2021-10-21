@@ -61,34 +61,41 @@
                                 <br>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
-                                    <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
+                                    <base-input class="col-sm-6" label="NRIC" v-model="nric"></base-input>
+                                    <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="retrieveData">Retrieve</base-button>
+                                    <!-- <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button> -->
                                 </div>
                             <div>
-                                <br>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-6">
-                                        <base-input label="NRIC" v-model="nric"></base-input>
+                                        <!-- <base-input label="NRIC" v-model="nric"></base-input> -->
                                         <base-input label="Rank/Name" v-model="name"></base-input>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        <br>
                         <div>
                                 <h2 class="heading-title text-warning mb-0">Session Information</h2>
                                 <br>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-6">
-                                        <!-- <base-input placeholder="Date"></base-input> -->
-                                        <!-- <input type="text" data-input="true" class="form-control datepicker flatpickr-input active"> -->
-                                        <base-input label="Session Date"><date-pickers></date-pickers></base-input>
-                                        <base-input label="Start Time"></base-input>
+                                        <label>Session Date</label><date-pickers></date-pickers>
+                                        <base-input label="Start Time" v-model="time" :placeholder="[[ curren_time() ]]"></base-input>
                                         <base-input label="End Time"></base-input>
                                     </div>
                                     <div class="col-lg-6 col-sm-6">
-                                        <base-input label="Venue"></base-input>
+                                        <base-input label="Venue">
+                                            <select class="form-control">
+                                                <option>Meeting Room 1</option>
+                                                <option>Meeting Room 2</option>
+                                                <option>Meeting Room 3</option>
+                                                <option>Meeting Room 4</option>
+                                                <option>Meeting Room 5</option>
+                                            </select>
+                                        </base-input>
                                         <!-- <base-input placeholder="Counsellor(s)"></base-input> -->
                                         <base-input label= "Counsellor">
                                             <select class="form-control">
@@ -105,19 +112,29 @@
                                 <div>
                                     <h2 class="heading-title text-warning mb-0">Observations of Presentation</h2>
                                     <br>
-                                    <p>Click on the annex button to get a guide for this section. </p>
+                                    <div class="row justify-content-left">
+                                        <p class="ml-3">Click on the annex button to get a guide for this section. </p>
+                                        <base-button class="ml-4" size="sm" style="height:30px" v-on:click="isAnnex = !isAnnex" >Annex</base-button>
+                                    </div>
                                     <div id="annex">
-                                        <base-button v-on:click="isAnnex = !isAnnex" >Annex</base-button>
                                         <br>
                                         <img v-show="isAnnex" width="930px" src="./ANNEX1.png" />
                                         <img v-show="isAnnex" width="930px" src="./ANNEX2.png" />
                                         <img v-show="isAnnex" width="930px" src="./ANNEX3.png" />
-                                        <br>
                                     </div>
-                                    <textarea name="obsOfPresentation_S" row=100 cols=95></textarea>
+                                    <!-- <textarea name="obsOfPresentation_S" row=100 cols=95></textarea> -->
+                                    <quill-editor
+                                    ref="myQuillEditor"
+                                    style="height:150px"
+                                    theme="snow"
+                                    v-model="obsOfPresentation"
+                                    :options="editorOption"
+                                    @blur="onEditorBlur($event)"
+                                    @focus="onEditorFocus($event)"
+                                    @ready="onEditorReady($event)"/>
                                 </div>      
                             </div>
-                            <br><br>
+                            <br><br><br><br>
 
                         <div>
                             <div>
@@ -125,8 +142,17 @@
                                     <h2 class="heading-title text-warning mb-0">Counselling Goals</h2>
                                     <br>
                                     <p>List down client’s counselling/ therapy goals (mutually agreed) to be achieved for counselling and/or during the current session.</p>
-                                    <textarea name="counsellingGoals_S" row=10 cols=95></textarea>
-                                    <br><br>
+                                    <!-- <textarea name="counsellingGoals_S" row=10 cols=95></textarea> -->
+                                    <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="counsellingGoals"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
+                                    <br><br><br><br>
 
                                     <h2 class="heading-title text-warning mb-0">Details Of Session</h2>
                                     <br>
@@ -141,20 +167,47 @@
                                             <li>Feedback on assigned practices/exercises</li>
                                         </ul>
                                     </p>
-                                    <textarea name="detailsOfSession_S" row=10 cols=95></textarea>
-                                    <br><br><br>
+                                    <!-- <textarea name="detailsOfSession_S" row=10 cols=95></textarea> -->
+                                    <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="detailsOfSession"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
+                                    <br><br><br><br>
 
                                     <h2 class="heading-title text-warning mb-0">Intervention(s) provided</h2>
                                     <br>
                                     <p><em>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</em></p>
-                                    <textarea name="interventionsProvided_S" row=10 cols=95></textarea>
-                                    <br><br><br>
+                                    <!-- <textarea name="interventionsProvided_S" row=10 cols=95></textarea> -->
+                                    <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="interventionsProvided"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
+                                    <br><br><br><br>
 
                                     <h2 class="heading-title text-warning mb-0">Comments</h2>
                                     <br>
                                     <p>Your assessment of the factors that have contributed to his / her progress, effectiveness of the intervention(s) provided, etc.</p>
-                                    <textarea name="Comments" row=10 cols=95></textarea>
-                                    <br><br><br>
+                                    <!-- <textarea name="Comments" row=10 cols=95></textarea> -->
+                                    <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="comments"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
+                                    <br><br><br><br>
 
                                 </div>
                             </div>
@@ -226,34 +279,53 @@
                                 <tab-pane title="Moderate"></tab-pane>
                                 <tab-pane title="High"></tab-pane>
                             </tabs>
-                            <p>It is recommended that suicide risk is managed during and immediately after the session. If there is a high risk of suicide, attending aracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan. <br>The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. <br>When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).
-                            </p>
+                            <card shadow>
+                                <p class="small mb-1">It is recommended that suicide risk is managed during and immediately after the session. If there is a high risk of suicide, attending aracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan. <br>The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. <br>When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).</p>
+                            </card>
                         </div>
                         <br><br>
                         <div>
                             <h2 class="heading-title text-warning mb-0">Follow-up Plans</h2>
                             <br>
-                            <p>Indicate your follow-up plans for the case.</p>
-                            <h6><u>Case management:</u></h6>
-                            <p><i>To update or reach out to the following:</i></p>
-                            <div>
-                                <base-checkbox class="mb-3">Client’s supervisors</base-checkbox>
-                                <base-checkbox class="mb-3">Unit Paracounsellor to monitor</base-checkbox>
-                                <base-checkbox class="mb-3">Medical Officer</base-checkbox>
-                                <base-checkbox class="mb-3">Other agencies</base-checkbox>
+                            <p class="small">Indicate your follow-up plans for the case.</p>
+                            <h2 class="heading mb-2">Case management</h2>
+                            <p class="small">To update or reach out to the following:</p>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-3">
+                                    <base-checkbox class="mb-3 flex-column flex-md-row">Client’s supervisors</base-checkbox>
+                                    <base-checkbox class="mb-3 flex-column flex-md-row">Unit Paracounsellor to monitor</base-checkbox>
+                                    <base-checkbox class="mb-3 flex-column flex-md-row">Medical Officer</base-checkbox>
+                                    <base-checkbox class="mb-3 flex-column flex-md-row">Other agencies</base-checkbox>
+                                </div>
+
+                                <div class="col-lg-9 mt-5 mt-lg-0">
+                                    <card shadow>
+                                        <p class="small mb-1">Apart from suicide risk, the following are common areas of update (subjected to client’s consent):</p>
+                                        <p class="small mb-1">- Mental health condition</p>
+                                        <p class="small mb-1">- Coping strategies</p>
+                                        <p class="small mb-1">- Recommended work arrangements</p>
+                                        <p class="small mb-1">Note: Advocacy for posting is discouraged during counselling sessions. Please contact EBSC for further discussion prior to updating supervisors if a change in posting is recommended.</p>
+                                    </card>
+                                </div>
                             </div>
-                            <p><i>Apart from suicide risk, the following are common areas of update (subjected to client’s consent): </i></p>
-                            <p> - Mental health condition</p>
-                            <p> -  Coping strategies</p>
-                            <p> - Recommended work arrangements</p>
-                            <p>Note: Advocacy for posting is discouraged during counselling sessions. Please contact EBSC for further discussion prior to updating supervisors if a change in posting is recommended. </p>
-                            <br>
+                            
+                            <br><br>
                             <h2 class="heading mb-2">Follow-up Plans</h2>
-                            <p class="text-muted mb-2"><i>Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes. </i></p>
-                            <base-input label="Next Session Date"><date-pickers></date-pickers></base-input>
-                            <textarea name="followUpPlans_S" row=100 cols=95></textarea>
+                            <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes. </p>
+                            <label>Next Session Date</label>
+                            <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
+                            <label>Reason(s) for Closure</label><br>
+                            <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="reasonsForClosure"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
                         </div>
-                        <br><br><br>
+                        <br><br><br><br>
                        
                         <div>
                         <!-- <a href="#">Submit</a> -->
@@ -274,6 +346,11 @@ import Tabs from "@/components/Tabs/Tabs.vue";
 import TabPane from "@/components/Tabs/TabPane.vue";
 import TabsSection from "./JavascriptComponents/TabsSection";
 import Modals from "./JavascriptComponents/Modals";
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+import { quillEditor } from 'vue-quill-editor';
+
 export default {
     data() {
         return {
@@ -283,7 +360,16 @@ export default {
             isResources: false,
             isPastAttempt: false,
             isMentalHealth: false,
-            name : ''
+            name : '',
+            obsOfPresentation:'',
+            counsellingGoals:'',
+            detailsOfSession:'',
+            comments:'',
+            interventionsProvided:'',
+            reasonsForClosure:'',
+            editorOption: {
+                // Some Quill options...
+            }
         }
     },
     components: {
@@ -291,7 +377,8 @@ export default {
         TabPane,
         Tabs,
         TabsSection,
-        Modals
+        Modals,
+        quillEditor
     },
     methods: {
         retrieveData() {    
@@ -304,9 +391,35 @@ export default {
                 info.on('value', (snapshot) => {
                     const data = snapshot.val()
                     this.name = data['Name']
-            })
+                })
             }
+        },
+        curren_time() {
+            const current = new Date();
+            const minute = current.getMinutes() < 9 ? "0" +current.getMinutes() : current.getMinutes();
+            const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
+            return time;},
+        onEditorBlur(quill) {
+            console.log('editor blur!', quill)
+        },
+        onEditorFocus(quill) {
+            console.log('editor focus!', quill)
+        },
+        onEditorReady(quill) {
+            console.log('editor ready!', quill)
+        },
+        onEditorChange({ quill, html, text }) {
+            console.log('editor change!', quill, html, text)
+            this.content = html
         }
+    },
+    computed: {
+        editor() {
+            return this.$refs.myQuillEditor.quill
+        }
+    },
+    mounted() {
+        console.log('this is current quill instance object', this.editor)
     }
 };
 </script>
