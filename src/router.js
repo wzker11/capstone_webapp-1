@@ -7,8 +7,8 @@ import Landing from "./views/Landing.vue";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
-import First_session from "./views/components/Hero.vue";
-import Subsequent_session from "./views/components/Subsequent.vue";
+import first-session from "./views/components/Hero.vue";
+import subsequent-session from "./views/components/Subsequent.vue";
 import Sub_show from "./views/Sub_show.vue";
 
 
@@ -68,8 +68,8 @@ export default new Router({
     }
   },
   {
-    path: "/First_session",
-    name: "First_session",
+    path: "/first-session",
+    name: "first-session",
     components: {
       header: AppHeader,
       default: Components,
@@ -77,8 +77,8 @@ export default new Router({
     }
   },
   {
-    path: "/Subsequent_session",
-    name: "Subsequent_session",
+    path: "/subsequent-session",
+    name: "subsequent-session",
     components: {
       header: AppHeader,
       default: Sub_show,
