@@ -7,8 +7,8 @@ import Landing from "./views/Landing.vue";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
-import first-session from "./views/components/Hero.vue";
-import subsequent-session from "./views/components/Subsequent.vue";
+// import first-session from "./views/components/Hero.vue";
+// import subsequent-session from "./views/components/Subsequent.vue";
 import Sub_show from "./views/Sub_show.vue";
 
 
