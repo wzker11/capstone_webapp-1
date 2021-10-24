@@ -7,8 +7,8 @@ import Landing from "./views/Landing.vue";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
-import First_session from "./views/components/Hero.vue";
-import Subsequent_session from "./views/components/Subsequent.vue";
+// import first-session from "./views/components/Hero.vue";
+// import subsequent-session from "./views/components/Subsequent.vue";
 import Sub_show from "./views/Sub_show.vue";
 
 
@@ -17,25 +17,84 @@ Vue.use(Router);
 export default new Router({
   linkExactActiveClass: "active",
   routes: [
-    {
-      path: "/",
-      name: "components",
-      components: {
-        header: AppHeader,
-        default: Components,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/landing",
-      name: "landing",
-      components: {
-        header: AppHeader,
-        default: Landing,
-        footer: AppFooter
-      }
-    },
-    {
+  {
+    path: "/",
+    redirect: {
+      name: "login"
+    }
+  },
+  {
+    path: "/",
+    name: "components",
+    components: {
+      header: AppHeader,
+      default: Components,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/landing",
+    name: "landing",
+    components: {
+      header: AppHeader,
+      default: Landing,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/register",
+    name: "register",
+    components: {
+      header: AppHeader,
+      default: Register,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    components: {
+      header: AppHeader,
+      default: Profile,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/form",
+    name: "form",
+    components: {
+      header: AppHeader,
+      default: Components
+    }
+  },
+  {
+    path: "/first-session",
+    name: "first-session",
+    components: {
+      header: AppHeader,
+      default: Components,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/subsequent-session",
+    name: "subsequent-session",
+    components: {
+      header: AppHeader,
+      default: Sub_show,
+      footer: AppFooter
+    }
+  },
+  {
+    path: "/landing",
+    name: "landing",
+    components: {
+      header: AppHeader,
+      default: Landing,
+      footer: AppFooter
+    }
+  },
+  {
       path: "/login",
       name: "login",
       components: {
@@ -44,42 +103,6 @@ export default new Router({
         footer: AppFooter
       }
     },
-    {
-      path: "/register",
-      name: "register",
-      components: {
-        header: AppHeader,
-        default: Register,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/profile",
-      name: "profile",
-      components: {
-        header: AppHeader,
-        default: Profile,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/First_session",
-      name: "First_session",
-      components: {
-        header: AppHeader,
-        default: Components,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/Subsequent_session",
-      name: "Subsequent_session",
-      components: {
-        header: AppHeader,
-        default: Sub_show,
-        footer: AppFooter
-      }
-    }
   ],
   scrollBehavior: to => {
     if (to.hash) {

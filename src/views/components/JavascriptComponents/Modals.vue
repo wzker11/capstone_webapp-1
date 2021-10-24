@@ -105,6 +105,7 @@
         <!-- </div> -->
     </div>
 </template>
+
 <script>
 import Modal from "@/components/Modal.vue";
 export default {
@@ -122,5 +123,6 @@ export default {
   }
 };
 </script>
+
 <style>
 </style>
