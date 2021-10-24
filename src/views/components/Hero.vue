@@ -57,7 +57,6 @@
                                     <h2><strong>First Session Form</strong></h2>
                                     <br><br>
                                 </div>
-                            </form>
                                 <div ref="client-information">
                                     <div>
                                         <h2 class="heading-title text-warning mb-0">Client Information</h2>
@@ -373,10 +372,14 @@
                             <base-input label="Signature"></base-input>
                             <base-input label="Date of Report"><date-pickers></date-pickers></base-input>
                         </div>
+                        </form>
                     </div>
-                    <div>
+                    <div id="editor"></div>
+                    <div class="row justify-content-center">
                         <!-- <a href="#">Submit</a> -->
-                        <modals class="row justify-content-center"></modals>
+                        <!-- <modals class="row justify-content-center"></modals> -->
+                        <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="saveDraft">Save Draft</base-button>
+                        <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="submit" id="submit-btn">Submit</base-button>
                     </div>
                     <br>
                 </card>
@@ -400,6 +403,9 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
 import { quillEditor } from 'vue-quill-editor';
+import html2pdf from 'html2pdf.js';
+import { jsPDF } from "jspdf";
+
 export default {
     data() {
         return {    
@@ -409,31 +415,28 @@ export default {
             isResources: false,
             isPastAttempt: false,
             isMentalHealth: false,
-            radio: {
-              radio1: "radio1",
-              radio2: "radio3"
-          },
-          race: '',
-          name: '',
-          age: '',
-          maritalstatus:'',
-          unit: '',
-          contact: '',
-          enlistment: '',
-          ord : '',
-          reasonsForReferral: '',
-          obsOfPresentation:'',
-          counsellingGoals:'',
-          detailsOfSession:'',
-          caseConceptualisation:'',
-          interventionsProvided:'',
-          reasonsForClosure:'',
-          editorOption: {
-                  // Some Quill options...
-              }
-          }
-      },
-      components: {
+            race: '',
+            name: '',
+            age: '',
+            maritalstatus:'',
+            unit: '',
+            contact: '',
+            enlistment: '',
+            ord : '',
+            reasonsForReferral: '',
+            obsOfPresentation:'',
+            counsellingGoals:'',
+            detailsOfSession:'',
+            caseConceptualisation:'',
+            interventionsProvided:'',
+            reasonsForClosure:'',
+            editorOption: {
+                // Some Quill options...
+            }
+        }
+    },
+
+    components: {
         DatePickers,
         TabPane,
         Tabs,
@@ -443,38 +446,41 @@ export default {
         BaseNav,
         CloseButton,
         Card,
-        quillEditor
+        quillEditor,
+        html2pdf,
+        jsPDF
     },
+
     methods: {
         curren_time() {
           const current = new Date();
           const minute = current.getMinutes() < 9 ? "0" +current.getMinutes() : current.getMinutes();
           const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
           return time;
-      },
-      retrieveData() {    
-        console.log(this.nric) 
-        if (!this.nric) {
-            alert("Please enter NRIC")
-        }
-        else {
-            var info = firebase.database().ref("/S9614554C")
-            info.on('value', (snapshot) => {
-                const data = snapshot.val()
-                this.race = data['Race']
-                this.name = data['Name']
-                this.maritalstatus = data['Marital Status']
-                this.unit = data['Unit']
-                this.contact = data['Contact Number']
-                this.enlistment = data['Enlistment Date']
-                this.age = data['Age']
-                this.ord = data['ORD Date']
-            })
-        }
-    },
-    saveDraft: function() {
-        const session_num = 1;
-        var nric = document.getElementById('nric').value;
+        },
+        retrieveData() {    
+            console.log(this.nric) 
+            if (!this.nric) {
+                alert("Please enter NRIC")
+            }
+            else {
+                var info = firebase.database().ref("/S9614554C")
+                info.on('value', (snapshot) => {
+                    const data = snapshot.val()
+                    this.race = data['Race']
+                    this.name = data['Name']
+                    this.maritalstatus = data['Marital Status']
+                    this.unit = data['Unit']
+                    this.contact = data['Contact Number']
+                    this.enlistment = data['Enlistment Date']
+                    this.age = data['Age']
+                    this.ord = data['ORD Date']
+                })
+            }
+        },
+        saveDraft: function() {
+            const session_num = 1;
+            var nric = document.getElementById('nric').value;
 
             // in order of form
             // var venue = document.getElementById('venue');
@@ -520,6 +526,39 @@ export default {
                 console.error("Error Saving Draft: ", error);
             });
         },
+
+        submit: function() {
+
+            window.jsPDF = window.jspdf.jsPDF;
+            const doc = new jsPDF();
+
+            var specialElementHandlers = {
+                '#editor': function (element, renderer) {
+                    return true;
+                }
+            };
+            doc.fromHTML($('#first-session').html(), 15, 15, {
+                'width': 170,
+                'elementHandlers': specialElementHandlers
+            });
+            doc.save('sample-file.pdf');
+
+            // var filled_form = document.getElementById('first-session');
+            // var options = {
+            //     jsPDF: {
+            //         format: 'a4'
+            //     },
+            //     html2canvas:  {letterRendering: true, useCORS: true, logging: true},
+            //     margin: 1,
+            //     image: {type: 'jpeg', quality: 1}
+            // };
+            // html2pdf(filled_form);
+            //with options
+            // html2pdf().set(options).from(filled_form).toPdf().save('myfile.pdf');
+            //without options
+            // html2PDF().from(element).toPdf().save('myfile.pdf');
+        },
+
         onEditorBlur(quill) {
             console.log('editor blur!', quill)
         },
@@ -534,6 +573,7 @@ export default {
             this.content = html
         }
     },
+
     computed: {
       editor() {
         return this.$refs.myQuillEditor.quill
