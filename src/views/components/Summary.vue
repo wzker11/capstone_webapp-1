@@ -36,7 +36,7 @@
         <section class="section section-skew">
             <div class="container" style = "margin-top: -32.8%;">
                 <card shadow class="card-profile mt--300" no-body>
-                                    <div>
+                <div>
                     <base-button size="sm " type="primary" style = "height:30px; width:90px; margin-top:31px; margin-left: 90%" v-on:click="signOut">Sign Out</base-button>
                 </div>
                     <div class="px-4">
@@ -50,7 +50,9 @@
                                     <router-link to="/subsequent-session" title="Subsequent Session">
                                         <base-button type="default" class="mr-4">Subsequent Session</base-button>
                                     </router-link>
-                                    <base-button type="default" class="mr-4">Summary</base-button>
+                                    <router-link to="/summary" title="Summary">
+                                        <base-button type="default" class="mr-4">Summary</base-button>
+                                    </router-link>
                                     <!-- toggle between the sessions -->
                             </div>
                         </div>
