@@ -60,19 +60,16 @@
                                 </div>
                             </div>
                             <!-- form start -->
-                            <div class="text-center mt-5">
-                                <h2><strong>First Session Form</strong></h2>
-                                <br><br>
-                            </div>
-                            <div ref="client-information">
-                                <div>
-                                    <h2 class="heading-title text-warning mb-0">Client Information</h2>
-                                    <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
-                                    <br>
-                                    <!-- <form class="tr" method="post" action="blah.html"> -->
-                                        <!-- <div class="row">
-                                            <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
-                                        </div> -->
+                            <form id="first-session">
+                                <div class="text-center mt-5">
+                                    <h2><strong>First Session Form</strong></h2>
+                                    <br><br>
+                                </div>
+                                <div ref="client-information">
+                                    <div>
+                                        <h2 class="heading-title text-warning mb-0">Client Information</h2>
+                                        <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
+                                        <br>
                                         <div class="row">
                                             <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 85%" v-on:click="clearFields">Clear All Fields</base-button>
                                         </div>
@@ -328,10 +325,14 @@
                             <base-input label="Signature"></base-input>
                             <base-input label="Date of Report"><date-pickers></date-pickers></base-input>
                         </div>
+                        </form>
                     </div>
-                    <div>
+                    <div id="editor"></div>
+                    <div class="row justify-content-center">
                         <!-- <a href="#">Submit</a> -->
-                        <modals class="row justify-content-center"></modals>
+                        <!-- <modals class="row justify-content-center"></modals> -->
+                        <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="saveDraft">Save Draft</base-button>
+                        <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="submit" id="submit-btn">Submit</base-button>
                     </div>
                     <br>
                 </card>
@@ -350,84 +351,208 @@ import Modals from "./JavascriptComponents/Modals";
 import VueTimepicker from "vue2-timepicker/src/vue-timepicker.vue";
 import BaseNav from "@/components/BaseNav";
 import CloseButton from "@/components/CloseButton";
-import Card from "../../components/Card.vue";
+import Card from '../../components/Card.vue';
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+import { quillEditor } from 'vue-quill-editor';
+import html2pdf from 'html2pdf.js';
+import { jsPDF } from "jspdf";
 
 export default {
-  data() {
-    return {
-      isAnnex: false,
-      isIntent: false,
-      isPlans: false,
-      isResources: false,
-      isPastAttempt: false,
-      isMentalHealth: false,
-      radio: {
-        radio1: "radio1",
-        radio2: "radio3",
-      },
-      race: "",
-      name: "",
-      age: "",
-      maritalstatus: "",
-      unit: "",
-      contact: "",
-      enlistment: "",
-      ord: "",
-      nric: "",
-    };
-  },
-  components: {
-    DatePickers,
-    TabPane,
-    Tabs,
-    TabsSection,
-    Modals,
-    VueTimepicker,
-    BaseNav,
-    CloseButton,
-    Card,
-  },
-  methods: {
-    signOut() {
-      this.$router.push("login");
+    data() {
+        return {    
+            isAnnex: false,
+            isIntent: false,
+            isPlans: false,
+            isResources: false,
+            isPastAttempt: false,
+            isMentalHealth: false,
+            race: '',
+            name: '',
+            age: '',
+            maritalstatus:'',
+            unit: '',
+            contact: '',
+            enlistment: '',
+            ord : '',
+            reasonsForReferral: '',
+            obsOfPresentation:'',
+            counsellingGoals:'',
+            detailsOfSession:'',
+            caseConceptualisation:'',
+            interventionsProvided:'',
+            reasonsForClosure:'',
+            editorOption: {
+                // Some Quill options...
+            }
+        }
     },
-    current_time() {
-      const current = new Date();
-      const time = current.getHours() + ":" + current.getMinutes(); // + ":" + current.getSeconds();
-      return time;
+
+    components: {
+        DatePickers,
+        TabPane,
+        Tabs,
+        TabsSection,
+        Modals,
+        VueTimepicker,
+        BaseNav,
+        CloseButton,
+        Card,
+        quillEditor,
+        html2pdf,
+        jsPDF
     },
-    retrieveData() {
-      var input_nric = this.nric;
-      var patients = ["S9596412E", "S9614554C"];
-      if (!patients.includes(input_nric)) {
-        alert("Please enter a valid NRIC number");
-        return;
-      }
-      var info = firebase.database().ref("/" + input_nric);
-      info.on("value", (snapshot) => {
-        const data = snapshot.val();
-        this.race = data["Race"];
-        this.name = data["Name"];
-        this.maritalstatus = data["Marital Status"];
-        this.unit = data["Unit"];
-        this.contact = data["Contact Number"];
-        this.enlistment = data["Enlistment Date"];
-        this.age = data["Age"];
-        this.ord = data["ORD Date"];
-      });
+
+    methods: {
+        signOut() {
+          this.$router.push("login");
+        },
+        curren_time() {
+          const current = new Date();
+          const minute = current.getMinutes() < 9 ? "0" +current.getMinutes() : current.getMinutes();
+          const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
+          return time;
+        },
+        retrieveData() {
+            var input_nric = this.nric;
+            var patients = ["S9596412E", "S9614554C"];
+            if (!patients.includes(input_nric)) {
+              alert("Please enter a valid NRIC number");
+              return;
+            }
+            var info = firebase.database().ref("/" + input_nric);
+            info.on("value", (snapshot) => {
+              const data = snapshot.val();
+              this.race = data["Race"];
+              this.name = data["Name"];
+              this.maritalstatus = data["Marital Status"];
+              this.unit = data["Unit"];
+              this.contact = data["Contact Number"];
+              this.enlistment = data["Enlistment Date"];
+              this.age = data["Age"];
+              this.ord = data["ORD Date"];
+            });
+          },
+          clearFields() {
+              this.race = "";
+              this.name = "";
+              this.maritalstatus = "";
+              this.unit = "";
+              this.contact = "";
+              this.enlistment = "";
+              this.age = "";
+              this.ord = "";
+              this.nric = "";
+            },
+          },
+        saveDraft: function() {
+            const session_num = 1;
+            var nric = document.getElementById('nric').value;
+
+            // in order of form
+            // var venue = document.getElementById('venue');
+            // var venue_value = venue.options[venue.selectedIndex].innerText;
+            // var counsellor = document.getElementById('counsellor');
+            // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
+            var counselling_goals = document.getElementById('counselling_goals').value;
+            var details = document.getElementById('details').value;
+            var conceptualisation = document.getElementById('conceptualisation').value;
+            var verbal_intent = document.getElementById('verbal-intent').value;
+            var ambivalence_intent = document.getElementById('ambivalence-intent').value;
+            var explore_plans = document.getElementById('explore-plans').value; 
+            var concrete_plans = document.getElementById('concrete-plans').value;
+            var lethal_means = document.getElementById('lethal-means').value;
+            var social_resource = document.getElementById('social-resource').value;
+            var skills_resource = document.getElementById('skills-resource').value;
+            var suicide_attempt = document.getElementById('suicide-attempt').value;
+            var mental_health = document.getElementById('mental-health').value;
+            // var risk_level = document.getElementById('risk_level');
+            // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
+            var follow_up = document.getElementById('follow-up').value;
+
+            database.collection("forms").doc(this.nric).set({
+                session_num: session_num,
+                // venue: venue_value,
+                // counsellor: counsellor_value,
+                counselling_goals: counselling_goals,
+                details: details,
+                conceptualisation: conceptualisation,
+                verbal_intent: verbal_intent,
+                ambivalence_intent: ambivalence_intent,
+                explore_plans: explore_plans,
+                concrete_plans: concrete_plans,
+                lethal_means: lethal_means,
+                social_resource: social_resource,
+                skills_resource: skills_resource,
+                suicide_attempt: suicide_attempt,
+                mental_health: mental_health,
+                follow_up: follow_up
+            }).then(function(docRef) {
+                console.log("First Session Draft Successfully Saved");
+            }).catch(function(error) {
+                console.error("Error Saving Draft: ", error);
+            });
+        },
+
+        submit: function() {
+
+            // window.jsPDF = window.jspdf.jsPDF;
+            // const doc = new jsPDF();
+            // console.log(doc);
+
+            // var specialElementHandlers = {
+            //     '#editor': function (element, renderer) {
+            //         return true;
+            //     }
+            // };
+            // doc.fromHTML($('#first-session').html(), 15, 15, {
+            //     'width': 170,
+            //     'elementHandlers': specialElementHandlers
+            // });
+            // doc.save('sample-file.pdf');
+
+            var filled_form = document.getElementById('first-session');
+            console.log(filled_form);
+            var options = {
+                jsPDF: {
+                    format: 'a4'
+                },
+                html2canvas:  {letterRendering: true, useCORS: true, logging: true},
+                margin: 2,
+                image: {type: 'jpeg', quality: 1}
+            };
+            console.log(options);
+            // html2pdf(filled_form);
+            // with options
+            html2pdf().set(options).from(filled_form).toPdf().save('myfile.pdf');
+            // without options
+            // html2PDF().from(element).toPdf().save('myfile.pdf');
+        },
+
+        onEditorBlur(quill) {
+            console.log('editor blur!', quill)
+        },
+        onEditorFocus(quill) {
+            console.log('editor focus!', quill)
+        },
+        onEditorReady(quill) {
+            console.log('editor ready!', quill)
+        },
+        onEditorChange({ quill, html, text }) {
+            console.log('editor change!', quill, html, text)
+            this.content = html
+        }
     },
-    clearFields() {
-      this.race = "";
-      this.name = "";
-      this.maritalstatus = "";
-      this.unit = "";
-      this.contact = "";
-      this.enlistment = "";
-      this.age = "";
-      this.ord = "";
-      this.nric = "";
-    },
-  },
+
+    computed: {
+      editor() {
+        return this.$refs.myQuillEditor.quill
+    }
+},
+mounted() {
+  console.log('this is current quill instance object', this.editor)
+}
 };
 </script>
 <style>
