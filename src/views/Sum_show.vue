@@ -1,7 +1,9 @@
 <template>
     <div>
-        <hero></hero>
-        <basic-elements></basic-elements>
+        
+        <br><br><br><br><br><br>
+        <p>Sum</p>
+        <summary></summary>
         <inputs></inputs>
         <custom-controls></custom-controls>
         <navigation></navigation>
@@ -13,7 +15,8 @@
     </div>
 </template>
 <script>
-import Hero from "./components/Hero";
+
+import Summary from "./components/Summary";
 import BasicElements from "./components/BasicElements";
 import Inputs from "./components/Inputs";
 import CustomControls from "./components/CustomControls";
@@ -27,16 +30,16 @@ import DownloadSection from "./components/DownloadSection";
 export default {
   name: "components",
   components: {
-    Hero,
-    // BasicElements,
-    // Inputs,
+    Summary,
+    BasicElements,
+    Inputs,
     CustomControls,
-    // Navigation,
+    Navigation,
     JavascriptComponents,
-    // Carousel,
-    // Icons,
-    // Examples,
-    // DownloadSection
+    Carousel,
+    Icons,
+    Examples,
+    DownloadSection
   }
 };
 </script>
