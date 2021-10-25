@@ -1,4 +1,5 @@
 <template>
+    <div class="scroll">
     <section class="section-hero section-shaped my-0">
         <div class="shape shape-style-1 shape-primary">
             <span class="span-150"></span>
@@ -71,6 +72,7 @@
         </section>
         </div>
     </section>
+    </div>
 </template>
 
 <script>
@@ -201,6 +203,9 @@ export default {
 </script>
 
 <style scoped>
+.scroll{
+  overflow: scroll;
+}
 .grid-container {
     display: grid;
     column-gap: 20px;
@@ -237,7 +242,7 @@ export default {
 #homeAnimalPic {
     width: 200px;
     height: 200px; 
-    border-radius: 50%;
+    border-radius: 30%;
     object-fit:cover;
 }
 #genericNames {
@@ -247,13 +252,10 @@ export default {
     font-family: Mohave;
     font-style: normal;
     font-weight: 500;
-    font-size: 34px;
+    font-size: 20px;
     text-align: center;
-    color: white;
-    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-             0px 8px 13px rgba(0,0,0,0.1),
-             0px 18px 23px rgba(0,0,0,0.1); 
-    margin-bottom: 0;
+    color: #191970;
+    margin-bottom: 20px;
 }
 
 </style>

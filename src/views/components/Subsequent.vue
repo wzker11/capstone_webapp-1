@@ -467,5 +467,6 @@ export default {
 .inner {
   display: inline-block;
 }
+
 </style>
 
