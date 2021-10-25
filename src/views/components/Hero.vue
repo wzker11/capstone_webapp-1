@@ -72,8 +72,13 @@
                                         <br>
                                         <div class="row">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 85%" v-on:click="clearFields">Clear All Fields</base-button>
                                         </div>
+=======
+                                            <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
+                                        </div> -->
+>>>>>>> parent of eb16338 (Fix bugs from merge)
 =======
                                             <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
                                         </div> -->
