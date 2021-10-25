@@ -36,7 +36,7 @@
         <section class="section section-skew">
             <div class="container" style = "margin-top: -32.8%;">
                 <card shadow class="card-profile mt--300" no-body>
-                <div>
+                                    <div>
                     <base-button size="sm " type="primary" style = "height:30px; width:90px; margin-top:31px; margin-left: 90%" v-on:click="signOut">Sign Out</base-button>
                 </div>
                     <div class="px-4">
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="text-center mt-5">
-                            <h2><strong>Summary Page</strong></h2>
+                            <h2><strong>Summary</strong></h2>
                             <br><br>
                         </div>
                     </div>
@@ -113,6 +113,46 @@ export default {
     signOut() {
       this.$router.push("login");
     },
+    retrieveData() {
+      var input_nric = this.nric;
+      var patients = ["S9596412E", "S9614554C"];
+      if (!patients.includes(input_nric)) {
+        alert("Please enter a valid NRIC number");
+        return;
+      }
+      var info = firebase.database().ref("/" + input_nric);
+      info.on("value", (snapshot) => {
+        const data = snapshot.val();
+        this.race = data["Race"];
+        this.name = data["Name"];
+        this.maritalstatus = data["Marital Status"];
+        this.unit = data["Unit"];
+        this.contact = data["Contact Number"];
+        this.enlistment = data["Enlistment Date"];
+        this.age = data["Age"];
+        this.ord = data["ORD Date"];
+      });
+    },
+    clearFields() {
+      this.race = "";
+      this.name = "";
+      this.maritalstatus = "";
+      this.unit = "";
+      this.contact = "";
+      this.enlistment = "";
+      this.age = "";
+      this.ord = "";
+      this.nric = "";
+    },
+    current_time() {
+      const current = new Date();
+      const minute =
+        current.getMinutes() < 9
+          ? "0" + current.getMinutes()
+          : current.getMinutes();
+      const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
+      return time;
+    },
     onEditorBlur(quill) {
       console.log("editor blur!", quill);
     },
@@ -139,12 +179,6 @@ export default {
 </script>
 
 <style>
-#outer {
-  width: 100%;
-  text-align: center;
-}
-.inner {
-  display: inline-block;
-}
+
 </style>
 

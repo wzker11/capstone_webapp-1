@@ -11,6 +11,7 @@ import Profile from "./views/Profile.vue";
 // import subsequent-session from "./views/components/Subsequent.vue";
 import Sub_show from "./views/Sub_show.vue";
 import Sum_show from "./views/Sum_show.vue";
+import Summary from "./views/components/Summary.vue";
 
 
 Vue.use(Router);
@@ -90,7 +91,9 @@ export default new Router({
     path: "/summary",
     name: "summary",
     components: {
-      default: Sum_show,
+      header: AppHeader,
+      default: Summary,
+      footer: AppFooter
     }
   },
   {
