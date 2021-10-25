@@ -529,33 +529,36 @@ export default {
 
         submit: function() {
 
-            window.jsPDF = window.jspdf.jsPDF;
-            const doc = new jsPDF();
+            // window.jsPDF = window.jspdf.jsPDF;
+            // const doc = new jsPDF();
+            // console.log(doc);
 
-            var specialElementHandlers = {
-                '#editor': function (element, renderer) {
-                    return true;
-                }
-            };
-            doc.fromHTML($('#first-session').html(), 15, 15, {
-                'width': 170,
-                'elementHandlers': specialElementHandlers
-            });
-            doc.save('sample-file.pdf');
-
-            // var filled_form = document.getElementById('first-session');
-            // var options = {
-            //     jsPDF: {
-            //         format: 'a4'
-            //     },
-            //     html2canvas:  {letterRendering: true, useCORS: true, logging: true},
-            //     margin: 1,
-            //     image: {type: 'jpeg', quality: 1}
+            // var specialElementHandlers = {
+            //     '#editor': function (element, renderer) {
+            //         return true;
+            //     }
             // };
+            // doc.fromHTML($('#first-session').html(), 15, 15, {
+            //     'width': 170,
+            //     'elementHandlers': specialElementHandlers
+            // });
+            // doc.save('sample-file.pdf');
+
+            var filled_form = document.getElementById('first-session');
+            console.log(filled_form);
+            var options = {
+                jsPDF: {
+                    format: 'a4'
+                },
+                html2canvas:  {letterRendering: true, useCORS: true, logging: true},
+                margin: 2,
+                image: {type: 'jpeg', quality: 1}
+            };
+            console.log(options);
             // html2pdf(filled_form);
-            //with options
-            // html2pdf().set(options).from(filled_form).toPdf().save('myfile.pdf');
-            //without options
+            // with options
+            html2pdf().set(options).from(filled_form).toPdf().save('myfile.pdf');
+            // without options
             // html2PDF().from(element).toPdf().save('myfile.pdf');
         },
 
