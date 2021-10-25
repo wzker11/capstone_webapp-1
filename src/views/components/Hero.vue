@@ -71,8 +71,13 @@
                                         <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                         <br>
                                         <div class="row">
+<<<<<<< HEAD
                                             <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 85%" v-on:click="clearFields">Clear All Fields</base-button>
                                         </div>
+=======
+                                            <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
+                                        </div> -->
+>>>>>>> parent of eb16338 (Fix bugs from merge)
                                         <div class="row">
                                             <div class="col-lg-6 col-sm-6">
                                                 <!-- <base-button v-on:click="retrieveData">Retrieve</base-button> -->
@@ -300,6 +305,7 @@
                                             </div>
                                         </div>
                                         <br>
+<<<<<<< HEAD
                             <!-- <p class='small mb-2'><i>Apart from suicide risk, the following are common areas of update (subjected to client’s consent):</i></p>
                             <p class='small mb-2 col-lg-3'><i>- Mental health condition</i></p>
                             <p class='small mb-2 col-lg-3'><i>- Coping strategies</i></p>
@@ -314,6 +320,27 @@
                             <textarea name="followUpPlans" row=100 cols=102></textarea>
                         </div>
                         <br><br><br>
+=======
+                           
+                                        <br>
+                                        <h2 class="heading mb-2">Follow-up Plans</h2>
+                                        <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes.</p>
+                                        <label>Next Session Date</label>
+                                        <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
+                                        <label>Reason(s) for Closure</label><br>
+                                        <!-- <textarea name="followUpPlans" row=100 cols=102></textarea> -->
+                                        <quill-editor 
+                                        ref="myQuillEditor" 
+                                        style="height:150px" 
+                                        theme="snow" 
+                                        v-model="reasonsForClosure" 
+                                        :options="editorOption" 
+                                        @blur="onEditorBlur($event)"
+                                        @focus="onEditorFocus($event)"
+                                        @ready="onEditorReady($event)"/>
+                                    </div>
+                        <br><br><br><br>
+>>>>>>> parent of eb16338 (Fix bugs from merge)
                         <div>
                             <h5 class="heading-title text-warning mb-0">Summary</h5><br>
                             <label>Report Prepared By</label>
