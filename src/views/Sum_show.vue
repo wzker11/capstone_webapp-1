@@ -1,10 +1,21 @@
 <template>
     <div>
-        <summary></summary>
         
+        <br><br><br><br><br><br>
+        <p>Sum</p>
+        <summary></summary>
+        <inputs></inputs>
+        <custom-controls></custom-controls>
+        <navigation></navigation>
+        <javascript-components></javascript-components>
+        <icons></icons>
+        <examples></examples>
+        <download-section></download-section>
+        <carousel></carousel>
     </div>
 </template>
 <script>
+
 import Summary from "./components/Summary";
 import BasicElements from "./components/BasicElements";
 import Inputs from "./components/Inputs";
