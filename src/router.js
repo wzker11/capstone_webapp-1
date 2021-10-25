@@ -10,8 +10,6 @@ import Profile from "./views/Profile.vue";
 // import first-session from "./views/components/Hero.vue";
 // import subsequent-session from "./views/components/Subsequent.vue";
 import Sub_show from "./views/Sub_show.vue";
-import Sum_show from "./views/Sum_show.vue";
-import Summary from "./views/components/Summary.vue";
 
 
 Vue.use(Router);
@@ -84,24 +82,6 @@ export default new Router({
     components: {
       header: AppHeader,
       default: Sub_show,
-      footer: AppFooter
-    }
-  },
-  {
-    path: "/summary",
-    name: "summary",
-    components: {
-      header: AppHeader,
-      default: Summary,
-      footer: AppFooter
-    }
-  },
-  {
-    path: "/landing",
-    name: "landing",
-    components: {
-      header: AppHeader,
-      default: Landing,
       footer: AppFooter
     }
   },
