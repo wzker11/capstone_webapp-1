@@ -12,7 +12,6 @@
             <span class="span-50"></span>
             <span class="span-100"></span>
         </div>
-
         <div class="container shape-container d-flex align-items-center">
             <div class="col px-0">
                 <div class="row justify-content-center align-items-center">
@@ -37,9 +36,8 @@
             
             <section class="section section-skew">
                 <div class="container" style = "margin-top: -32.8%;">
-                    
                     <card shadow class="card-profile mt--300" no-body>
-                <div>
+                  <div>
                     <base-button size="sm " type="primary" style = "height:30px; width:90px; margin-top:31px; margin-left: 90%" v-on:click="signOut">Sign Out</base-button>
                 </div>
                         <div class="px-4">
@@ -53,7 +51,7 @@
                                     <router-link to="/subsequent-session" title="Subsequent Session">
                                         <base-button type="default" class="mr-4">Subsequent Session</base-button>
                                     </router-link>
-                                    <router-link to="/summary" title="Summary">
+                                                                        <router-link to="/summary" title="Summary">
                                         <base-button type="default" class="mr-4">Summary</base-button>
                                     </router-link>
                                     <!-- toggle between the sessions -->
@@ -70,14 +68,14 @@
                                         <h2 class="heading-title text-warning mb-0">Client Information</h2>
                                         <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                         <br>
-                                        <div class="row">
+                                                                                <div class="row">
                                             <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 85%" v-on:click="clearFields">Clear All Fields</base-button>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 col-sm-6">
                                                 <!-- <base-button v-on:click="retrieveData">Retrieve</base-button> -->
                                                 <div class="row">
-                                                    <base-input class="col-sm-9" label="NRIC" v-model="nric"></base-input>
+                                                    <base-input class="col-sm-9" label="NRIC" v-model="nric" id="nric"></base-input>
                                                     <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="retrieveData">Retrieve</base-button>
                                                 </div>
                                                 <base-input label="Rank/Name" v-model="name"></base-input>
@@ -110,29 +108,35 @@
                                         </div>
                                         <div>
                                             <label>Reason(s) for Referral</label><br>
-                                            <textarea name="reasonsForReferral" row=10 cols=102></textarea>
+                                            <!-- <textarea name="reasonsForReferral" row=10 cols=102></textarea> -->
+                                              <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="reasonsForReferral"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
                                         </div>      
                                     </div>
                                 </div>
-                                <br><br><br>
+                                <br><br><br><br><br>
                                 <div>
-
                                     <div>
-                                        <h2 class="heading-title text-warning mb-0">Session Information</h2>
-                                        <br>
-                                        <!-- <form class="tr" method="post" action="blah.html"> -->
+                                        <div>
+                                            <h2 class="heading-title text-warning mb-0">Session Information</h2>
+                                            <br>
                                             <div class="row">
                                                 <div class="col-lg-6 col-sm-6">
-                                                    <!-- <base-input placeholder="Date"></base-input> -->
-                                                    <!-- <input type="text" data-input="true" class="form-control datepicker flatpickr-input active"> -->
                                                     <label>Session Date</label><date-pickers></date-pickers>
-                                                    <base-input label="Start Time" v-model="time" :placeholder="[[ current_time() ]]"></base-input>
+                                                    <base-input label="Start Time" v-model="time" :placeholder="[[ curren_time() ]]" id="session_date"></base-input>
                                                     <base-input label="End Time"></base-input>
-                                                    <vue-timepicker input-class="base-input"></vue-timepicker>
+                                                    <!-- <vue-timepicker input-class="base-input"></vue-timepicker> -->
                                                 </div>
                                                 <div class="col-lg-6 col-sm-6">
                                                     <base-input label="Venue">
-                                                        <select class="form-control">
+                                                        <select class="form-control" id="venue">
                                                             <option>Meeting Room 1</option>
                                                             <option>Meeting Room 2</option>
                                                             <option>Meeting Room 3</option>
@@ -142,7 +146,7 @@
                                                     </base-input>
                                                     <!-- <base-input placeholder="Counsellor(s)"></base-input> -->
                                                     <base-input label= "Counsellor">
-                                                        <select class="form-control">
+                                                        <select class="form-control" id="counsellor">
                                                             <option>Shichao</option>
                                                             <option>Clara</option>
                                                             <option>Keif</option>
@@ -156,27 +160,47 @@
                                             <div>
                                                 <h5 class="heading-title text-warning mb-0">Observations of Presentation</h5>
                                                 <br>
-                                                <p>Click on the annex button to get a guide for this section. </p>
-                                                <div id="annex" style = "margin-bottom: 10px;">
-                                                    <base-button v-on:click="isAnnex = !isAnnex" >Annex</base-button>
-                                                    <br>
+                                                <div class="row justify-content-left">
+                                                    <p class="ml-3">Click on the annex button to get a guide for this section. </p>
+                                                    <base-button class="ml-4" size="sm" style="height:30px" v-on:click="isAnnex = !isAnnex" >Annex</base-button>
+                                                </div>
+                                                    
+                                                <div id="annex">
                                                     <img v-show="isAnnex" width="930px" src="./ANNEX1.png" />
                                                     <img v-show="isAnnex" width="930px" src="./ANNEX2.png" />
                                                     <img v-show="isAnnex" width="930px" src="./ANNEX3.png" />
-                                                    <br>
                                                 </div>
-                                                <textarea name="obsOfPresentation" row=100 cols=95></textarea>
+                                                
+                                                <!-- <textarea name="obsOfPresentation" row=100 cols=95></textarea> -->
+                                                <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="obsOfPresentation"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)" id="observations"/>
                                             </div>      
                                         </div>
                                     </div>
-                                    <br><br>
+                                    <br><br><br><br>
                                     <div>
                                         <div>
                                             <div>
                                                 <h5 class="heading-title text-warning mb-0">Counselling Goals</h5>
                                                 <p>List down client’s counselling/ therapy goals (mutually agreed) to be achieved for counselling and/or during the current session.</p>
-                                                <textarea name="counsellingGoals" row=10 cols=95></textarea>
-                                                <br><br>
+                                                <!-- <textarea name="counsellingGoals" row=10 cols=95></textarea> -->
+                                                 <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="counsellingGoals"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)" id="counselling_goals"/>
+                                                <br><br><br><br>
                                                 <h5 class="heading-title text-warning mb-0">Details Of Session</h5>
                                                 <p>Details of the issues discussed during the session. Background information should include
                                                     <ul>
@@ -191,19 +215,45 @@
                                                         <li>mental health history (incl. self-harm and suicide behaviours)</li>
                                                     </ul>
                                                 </p>
-                                                <textarea name="detailsOfSession" row=10 cols=95></textarea>
-                                                <br><br><br>
+                                                <!-- <textarea name="detailsOfSession" row=10 cols=95></textarea> -->
+                                                <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="detailsOfSession"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)" id="details"/>
+                                                <br><br><br><br>
 
                                                 <h5 class="heading-title text-warning mb-0">Case Conceptualisation</h5>
                                                 <p>Your assessment of the client’s key underlying issues, obstacles that prevent him / her from resolving the issues, factors that have contributed to his / her progress, personal strengths that could be leveraged to help client manage his / her issues better, perceived social support network to help client manage presenting problem(s), any suspected psychological conditions that the client may be presenting, etc.</p>
-                                                <textarea name="caseConceptualisation" v-model.lazy.trim="textAreaValue" row=10 cols=95></textarea>
-                                                <br><br><br>
+                                                <!-- <textarea name="caseConceptualisation" v-model.lazy.trim="textAreaValue" row=10 cols=95></textarea> -->
+                                                <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="caseConceptualisation"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
+                                                <br><br><br><br>
 
                                                 <h5 class="heading-title text-warning mb-0">Intervention(s) provided</h5>
                                                 <p><em>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</em></p>
-                                                <textarea name="interventionsProvided" row=10 cols=95></textarea>
-                                                <br><br><br>
-
+                                                <!-- <textarea name="interventionsProvided" row=10 cols=95></textarea> -->
+                                                <quill-editor
+                                              ref="myQuillEditor"
+                                              style="height:150px"
+                                              theme="snow"
+                                              v-model="interventionsProvided"
+                                              :options="editorOption"
+                                              @blur="onEditorBlur($event)"
+                                              @focus="onEditorFocus($event)"
+                                              @ready="onEditorReady($event)"/>
+                                                <br><br><br><br>
                                             </div>
                                         </div>
                                     </div>
@@ -214,10 +264,10 @@
                                         <div id="intent" v-show="isIntent">
                                             <br>
                                             <p>Verbalises thoughts of suicide</p>
-                                            <textarea name="intent1" row=20 cols=95></textarea>
+                                            <textarea name="intent1" row=20 cols=95 id='verbal-intent'></textarea>
                                             <br>
                                             <p>Ambivalence towards suicide</p>
-                                            <textarea name="intent2" row=20 cols=95></textarea>
+                                            <textarea name="intent2" row=20 cols=95 id='ambivalence-intent'></textarea>
                                             <br><br>
                                         </div>
                                         <br>
@@ -226,11 +276,11 @@
                                         <div id="plans" v-show="isPlans">
                                             <br>
                                             <p>Explore about suicide (e.g., research)</p>
-                                            <textarea name="plan1" row=20 cols=95></textarea>
+                                            <textarea name="plan1" row=20 cols=95 id='explore-plans'></textarea>
                                             <p>Have concrete plans to attempt suicide</p>
-                                            <textarea name="plan2" row=20 cols=95></textarea>
+                                            <textarea name="plan2" row=20 cols=95 id='concrete-plans'></textarea>
                                             <p>Have access to lethal means for suicide</p>
-                                            <textarea name="plan3" row=20 cols=95></textarea>
+                                            <textarea name="plan3" row=20 cols=95 id='lethal-means'></textarea>
                                             <br><br>
                                         </div>
                                         <br>
@@ -239,9 +289,9 @@
                                         <div id="resources" v-show="isResources">
                                             <br>
                                             <p>Strength of social support</p>
-                                            <textarea name="resources1" row=20 cols=95></textarea>
+                                            <textarea name="resources1" row=20 cols=95 id='social-resource'></textarea>
                                             <p>Problem solving skills</p>
-                                            <textarea name="resources2" row=20 cols=95></textarea>
+                                            <textarea name="resources2" row=20 cols=95 id='skills-resource'></textarea>
                                             <br><br>
                                         </div>
                                         <br>
@@ -250,7 +300,7 @@
                                         <div id="pastAttempts" v-show="isPastAttempt">
                                             <br>
                                             <p>History of past suicide attempts</p>
-                                            <textarea name="pastAttempt" row=20 cols=95></textarea>
+                                            <textarea name="pastAttempt" row=20 cols=95 id='suicide-attempt'></textarea>
                                             <br><br>
                                         </div>
                                         <br>
@@ -259,18 +309,18 @@
                                         <div id="mentalHealth" v-show="isMentalHealth">
                                             <br>
                                             <p>Presence of mental health illness</p>
-                                            <textarea name="mentalHealth" row=20 cols=95></textarea>
+                                            <textarea name="mentalHealth" row=20 cols=95 id='mental-health'></textarea>
                                             <br><br>
                                         </div>
                                         <br><br>
                                         <h5>Overall Risk Level</h5>
-                                        <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row">
+                                        <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row" id="risk_level">
                                             <tab-pane title="Low"></tab-pane>
                                             <tab-pane title="Moderate"></tab-pane>
                                             <tab-pane title="High"></tab-pane>
                                         </tabs>
                                         <card shadow>
-                                            <p class="small mb-1">It is recommended that suicide risk is managed during and immediately after the session. If there is a high risk of suicide, attending paracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan. <br>The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. <br>When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).</p>
+                                            <p class="small mb-1">It is recommended that suicide risk is managed during and immediately after the session. If there is a high risk of suicide, attending aracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan. <br>The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. <br>When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).</p>
                                         </card>
                                     </div>
                                     <br><br>
@@ -282,7 +332,7 @@
                                         <small>To update or reach out to the following:</small>
                                         <br><br>
                                         <div class="row justify-content-center">
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3" id="case_management">
                                                 <base-checkbox class="mb-3 flex-column flex-md-row">Client’s supervisors</base-checkbox>
                                                 <base-checkbox class="mb-3 flex-column flex-md-row">Unit Paracounsellor to monitor</base-checkbox>
                                                 <base-checkbox class="mb-3 flex-column flex-md-row">Medical Officer</base-checkbox>
@@ -300,20 +350,26 @@
                                             </div>
                                         </div>
                                         <br>
-                            <!-- <p class='small mb-2'><i>Apart from suicide risk, the following are common areas of update (subjected to client’s consent):</i></p>
-                            <p class='small mb-2 col-lg-3'><i>- Mental health condition</i></p>
-                            <p class='small mb-2 col-lg-3'><i>- Coping strategies</i></p>
-                            <p class='small mb-2 col-lg-6'><i>- Recommended work arrangements</i></p>
-                            <p class='small mb-2'><i>Note: Advocacy for posting is discouraged during counselling sessions. Please contact EBSC for further discussion prior to updating supervisors if a change in posting is recommended. </i></p> -->
-                            <br>
-                            <h2 class="heading mb-2">Follow-up Plans</h2>
-                            <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes.</p>
-                            <label>Next Session Date</label>
-                            <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
-                            <label>Reason(s) for Closure</label><br>
-                            <textarea name="followUpPlans" row=100 cols=102></textarea>
-                        </div>
-                        <br><br><br>
+                           
+                                        <br>
+                                        <h2 class="heading mb-2">Follow-up Plans</h2>
+                                        <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes.</p>
+                                        <label>Next Session Date</label>
+                                        <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
+                                        <label>Reason(s) for Closure</label><br>
+                                        <!-- <textarea name="followUpPlans" row=100 cols=102></textarea> -->
+                                        <quill-editor 
+                                        ref="myQuillEditor" 
+                                        style="height:150px" 
+                                        theme="snow" 
+                                        v-model="reasonsForClosure" 
+                                        :options="editorOption" 
+                                        @blur="onEditorBlur($event)"
+                                        @focus="onEditorFocus($event)"
+                                        @ready="onEditorReady($event)"/>
+                                    </div>
+                                </div>
+                        <br><br><br><br>
                         <div>
                             <h5 class="heading-title text-warning mb-0">Summary</h5><br>
                             <label>Report Prepared By</label>
@@ -325,7 +381,8 @@
                             <base-input label="Signature"></base-input>
                             <base-input label="Date of Report"><date-pickers></date-pickers></base-input>
                         </div>
-                        </form>
+                      </form>
+
                     </div>
                     <div id="editor"></div>
                     <div class="row justify-content-center">
@@ -340,7 +397,8 @@
         </section>
     </div>
 </section>
-</template>
+</template> 
+
 
 <script>
 const DatePickers = () => import("./JavascriptComponents/DatePickers");
@@ -351,208 +409,215 @@ import Modals from "./JavascriptComponents/Modals";
 import VueTimepicker from "vue2-timepicker/src/vue-timepicker.vue";
 import BaseNav from "@/components/BaseNav";
 import CloseButton from "@/components/CloseButton";
-import Card from '../../components/Card.vue';
-import 'quill/dist/quill.core.css';
-import 'quill/dist/quill.snow.css';
-import 'quill/dist/quill.bubble.css';
-import { quillEditor } from 'vue-quill-editor';
+import Card from "../../components/Card.vue";
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
+import "quill/dist/quill.bubble.css";
+import { quillEditor } from "vue-quill-editor";
 import html2pdf from 'html2pdf.js';
 import { jsPDF } from "jspdf";
 
 export default {
-    data() {
-        return {    
-            isAnnex: false,
-            isIntent: false,
-            isPlans: false,
-            isResources: false,
-            isPastAttempt: false,
-            isMentalHealth: false,
-            race: '',
-            name: '',
-            age: '',
-            maritalstatus:'',
-            unit: '',
-            contact: '',
-            enlistment: '',
-            ord : '',
-            reasonsForReferral: '',
-            obsOfPresentation:'',
-            counsellingGoals:'',
-            detailsOfSession:'',
-            caseConceptualisation:'',
-            interventionsProvided:'',
-            reasonsForClosure:'',
-            editorOption: {
-                // Some Quill options...
-            }
-        }
+  data() {
+    return {
+      isAnnex: false,
+      isIntent: false,
+      isPlans: false,
+      isResources: false,
+      isPastAttempt: false,
+      isMentalHealth: false,
+      radio: {
+        radio1: "radio1",
+        radio2: "radio3",
+      },
+      race: "",
+      name: "",
+      age: "",
+      maritalstatus: "",
+      unit: "",
+      contact: "",
+      enlistment: "",
+      ord: "",
+      nric: "",
+      reasonsForReferral: "",
+      obsOfPresentation: "",
+      counsellingGoals: "",
+      detailsOfSession: "",
+      caseConceptualisation: "",
+      interventionsProvided: "",
+      reasonsForClosure: "",
+      editorOption: {
+        // Some Quill options...
+      },
+    };
+  },
+  components: {
+    DatePickers,
+    TabPane,
+    Tabs,
+    TabsSection,
+    Modals,
+    VueTimepicker,
+    BaseNav,
+    CloseButton,
+    Card,
+    quillEditor,
+  },
+  methods: {
+    signOut() {
+      this.$router.push("login");
     },
-
-    components: {
-        DatePickers,
-        TabPane,
-        Tabs,
-        TabsSection,
-        Modals,
-        VueTimepicker,
-        BaseNav,
-        CloseButton,
-        Card,
-        quillEditor,
-        html2pdf,
-        jsPDF
+    curren_time() {
+      const current = new Date();
+      const minute =
+        current.getMinutes() < 9
+          ? "0" + current.getMinutes()
+          : current.getMinutes();
+      const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
+      return time;
     },
-
-    methods: {
-        signOut() {
-          this.$router.push("login");
-        },
-        curren_time() {
-          const current = new Date();
-          const minute = current.getMinutes() < 9 ? "0" +current.getMinutes() : current.getMinutes();
-          const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
-          return time;
-        },
-        retrieveData() {
-            var input_nric = this.nric;
-            var patients = ["S9596412E", "S9614554C"];
-            if (!patients.includes(input_nric)) {
-              alert("Please enter a valid NRIC number");
-              return;
-            }
-            var info = firebase.database().ref("/" + input_nric);
-            info.on("value", (snapshot) => {
-              const data = snapshot.val();
-              this.race = data["Race"];
-              this.name = data["Name"];
-              this.maritalstatus = data["Marital Status"];
-              this.unit = data["Unit"];
-              this.contact = data["Contact Number"];
-              this.enlistment = data["Enlistment Date"];
-              this.age = data["Age"];
-              this.ord = data["ORD Date"];
-            });
-          },
-          clearFields() {
-              this.race = "";
-              this.name = "";
-              this.maritalstatus = "";
-              this.unit = "";
-              this.contact = "";
-              this.enlistment = "";
-              this.age = "";
-              this.ord = "";
-              this.nric = "";
-            },
-          },
-        saveDraft: function() {
-            const session_num = 1;
-            var nric = document.getElementById('nric').value;
-
-            // in order of form
-            // var venue = document.getElementById('venue');
-            // var venue_value = venue.options[venue.selectedIndex].innerText;
-            // var counsellor = document.getElementById('counsellor');
-            // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
-            var counselling_goals = document.getElementById('counselling_goals').value;
-            var details = document.getElementById('details').value;
-            var conceptualisation = document.getElementById('conceptualisation').value;
-            var verbal_intent = document.getElementById('verbal-intent').value;
-            var ambivalence_intent = document.getElementById('ambivalence-intent').value;
-            var explore_plans = document.getElementById('explore-plans').value; 
-            var concrete_plans = document.getElementById('concrete-plans').value;
-            var lethal_means = document.getElementById('lethal-means').value;
-            var social_resource = document.getElementById('social-resource').value;
-            var skills_resource = document.getElementById('skills-resource').value;
-            var suicide_attempt = document.getElementById('suicide-attempt').value;
-            var mental_health = document.getElementById('mental-health').value;
-            // var risk_level = document.getElementById('risk_level');
-            // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
-            var follow_up = document.getElementById('follow-up').value;
-
-            database.collection("forms").doc(this.nric).set({
-                session_num: session_num,
-                // venue: venue_value,
-                // counsellor: counsellor_value,
-                counselling_goals: counselling_goals,
-                details: details,
-                conceptualisation: conceptualisation,
-                verbal_intent: verbal_intent,
-                ambivalence_intent: ambivalence_intent,
-                explore_plans: explore_plans,
-                concrete_plans: concrete_plans,
-                lethal_means: lethal_means,
-                social_resource: social_resource,
-                skills_resource: skills_resource,
-                suicide_attempt: suicide_attempt,
-                mental_health: mental_health,
-                follow_up: follow_up
-            }).then(function(docRef) {
-                console.log("First Session Draft Successfully Saved");
-            }).catch(function(error) {
-                console.error("Error Saving Draft: ", error);
-            });
-        },
-
-        submit: function() {
-
-            // window.jsPDF = window.jspdf.jsPDF;
-            // const doc = new jsPDF();
-            // console.log(doc);
-
-            // var specialElementHandlers = {
-            //     '#editor': function (element, renderer) {
-            //         return true;
-            //     }
-            // };
-            // doc.fromHTML($('#first-session').html(), 15, 15, {
-            //     'width': 170,
-            //     'elementHandlers': specialElementHandlers
-            // });
-            // doc.save('sample-file.pdf');
-
-            var filled_form = document.getElementById('first-session');
-            console.log(filled_form);
-            var options = {
-                jsPDF: {
-                    format: 'a4'
-                },
-                html2canvas:  {letterRendering: true, useCORS: true, logging: true},
-                margin: 2,
-                image: {type: 'jpeg', quality: 1}
-            };
-            console.log(options);
-            // html2pdf(filled_form);
-            // with options
-            html2pdf().set(options).from(filled_form).toPdf().save('myfile.pdf');
-            // without options
-            // html2PDF().from(element).toPdf().save('myfile.pdf');
-        },
-
-        onEditorBlur(quill) {
-            console.log('editor blur!', quill)
-        },
-        onEditorFocus(quill) {
-            console.log('editor focus!', quill)
-        },
-        onEditorReady(quill) {
-            console.log('editor ready!', quill)
-        },
-        onEditorChange({ quill, html, text }) {
-            console.log('editor change!', quill, html, text)
-            this.content = html
-        }
+    retrieveData() {
+      var input_nric = this.nric;
+      var patients = ["S9596412E", "S9614554C"];
+      if (!patients.includes(input_nric)) {
+        alert("Please enter a valid NRIC number");
+        return;
+      }
+      var info = firebase.database().ref("/" + input_nric);
+      info.on("value", (snapshot) => {
+        const data = snapshot.val();
+        this.race = data["Race"];
+        this.name = data["Name"];
+        this.maritalstatus = data["Marital Status"];
+        this.unit = data["Unit"];
+        this.contact = data["Contact Number"];
+        this.enlistment = data["Enlistment Date"];
+        this.age = data["Age"];
+        this.ord = data["ORD Date"];
+      });
     },
+    clearFields() {
+      this.race = "";
+      this.name = "";
+      this.maritalstatus = "";
+      this.unit = "";
+      this.contact = "";
+      this.enlistment = "";
+      this.age = "";
+      this.ord = "";
+      this.nric = "";
+    },
+    saveDraft: function () {
+      const session_num = 1;
+      var nric = document.getElementById("nric").value;
 
-    computed: {
-      editor() {
-        return this.$refs.myQuillEditor.quill
-    }
-},
-mounted() {
-  console.log('this is current quill instance object', this.editor)
-}
+      // in order of form
+      // var venue = document.getElementById('venue');
+      // var venue_value = venue.options[venue.selectedIndex].innerText;
+      // var counsellor = document.getElementById('counsellor');
+      // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
+      var counselling_goals =
+        document.getElementById("counselling_goals").value;
+      var details = document.getElementById("details").value;
+      var conceptualisation =
+        document.getElementById("conceptualisation").value;
+      var verbal_intent = document.getElementById("verbal-intent").value;
+      var ambivalence_intent =
+        document.getElementById("ambivalence-intent").value;
+      var explore_plans = document.getElementById("explore-plans").value;
+      var concrete_plans = document.getElementById("concrete-plans").value;
+      var lethal_means = document.getElementById("lethal-means").value;
+      var social_resource = document.getElementById("social-resource").value;
+      var skills_resource = document.getElementById("skills-resource").value;
+      var suicide_attempt = document.getElementById("suicide-attempt").value;
+      var mental_health = document.getElementById("mental-health").value;
+      // var risk_level = document.getElementById('risk_level');
+      // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
+      var follow_up = document.getElementById("follow-up").value;
+
+      database
+        .collection("forms")
+        .doc(this.nric)
+        .set({
+          session_num: session_num,
+          // venue: venue_value,
+          // counsellor: counsellor_value,
+          counselling_goals: counselling_goals,
+          details: details,
+          conceptualisation: conceptualisation,
+          verbal_intent: verbal_intent,
+          ambivalence_intent: ambivalence_intent,
+          explore_plans: explore_plans,
+          concrete_plans: concrete_plans,
+          lethal_means: lethal_means,
+          social_resource: social_resource,
+          skills_resource: skills_resource,
+          suicide_attempt: suicide_attempt,
+          mental_health: mental_health,
+          follow_up: follow_up,
+        })
+        .then(function (docRef) {
+          console.log("First Session Draft Successfully Saved");
+        })
+        .catch(function (error) {
+          console.error("Error Saving Draft: ", error);
+        });
+    },
+    submit: function () {
+      // window.jsPDF = window.jspdf.jsPDF;
+      // const doc = new jsPDF();
+      // console.log(doc);
+
+      // var specialElementHandlers = {
+      //     '#editor': function (element, renderer) {
+      //         return true;
+      //     }
+      // };
+      // doc.fromHTML($('#first-session').html(), 15, 15, {
+      //     'width': 170,
+      //     'elementHandlers': specialElementHandlers
+      // });
+      // doc.save('sample-file.pdf');
+
+      var filled_form = document.getElementById("first-session");
+      console.log(filled_form);
+      var options = {
+        jsPDF: {
+          format: "a4",
+        },
+        html2canvas: { letterRendering: true, useCORS: true, logging: true },
+        margin: 2,
+        image: { type: "jpeg", quality: 1 },
+      };
+      console.log(options);
+      // html2pdf(filled_form);
+      // with options
+      html2pdf().set(options).from(filled_form).toPdf().save("myfile.pdf");
+      // without options
+      // html2PDF().from(element).toPdf().save('myfile.pdf');
+    },
+    onEditorBlur(quill) {
+      console.log("editor blur!", quill);
+    },
+    onEditorFocus(quill) {
+      console.log("editor focus!", quill);
+    },
+    onEditorReady(quill) {
+      console.log("editor ready!", quill);
+    },
+    onEditorChange({ quill, html, text }) {
+      console.log("editor change!", quill, html, text);
+      this.content = html;
+    },
+  },
+  computed: {
+    editor() {
+      return this.$refs.myQuillEditor.quill;
+    },
+  },
+  mounted() {
+    console.log("this is current quill instance object", this.editor);
+  },
 };
 </script>
 <style>
@@ -563,8 +628,5 @@ mounted() {
 .inner {
   display: inline-block;
 }
-
-.base-button {
-  height: 20%;
-}
 </style>
+

@@ -36,7 +36,7 @@
         <section class="section section-skew">
             <div class="container" style = "margin-top: -32.8%;">
                 <card shadow class="card-profile mt--300" no-body>
-                                    <div>
+                                                        <div>
                     <base-button size="sm " type="primary" style = "height:30px; width:90px; margin-top:31px; margin-left: 90%" v-on:click="signOut">Sign Out</base-button>
                 </div>
                     <div class="px-4">
@@ -65,7 +65,7 @@
                                 <h2 class="heading-title text-warning mb-0">Client Information</h2>
                                 <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                 <br>
-                                 <div class="row">
+                                                                 <div class="row">
                                     <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 85%" v-on:click="clearFields">Clear All Fields</base-button>
                                 </div>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
@@ -92,7 +92,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-6">
                                         <label>Session Date</label><date-pickers></date-pickers>
-                                        <base-input label="Start Time" v-model="time" :placeholder="[[ current_time() ]]"></base-input>
+                                        <base-input label="Start Time" v-model="time" :placeholder="[[ curren_time() ]]"></base-input>
                                         <base-input label="End Time"></base-input>
                                     </div>
                                     <div class="col-lg-6 col-sm-6">
@@ -289,7 +289,7 @@
                                 <tab-pane title="High"></tab-pane>
                             </tabs>
                             <card shadow>
-                                <p class="small mb-1">It is recommended that suicide risk is managed during and immediately after the session. If there is a high risk of suicide, attending paracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan. <br>The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. <br>When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).</p>
+                                <p class="small mb-1">It is recommended that suicide risk is managed during and immediately after the session. If there is a high risk of suicide, attending aracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan. <br>The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. <br>When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).</p>
                             </card>
                         </div>
                         <br><br>
@@ -355,43 +355,43 @@ import Tabs from "@/components/Tabs/Tabs.vue";
 import TabPane from "@/components/Tabs/TabPane.vue";
 import TabsSection from "./JavascriptComponents/TabsSection";
 import Modals from "./JavascriptComponents/Modals";
-import "quill/dist/quill.core.css";
-import "quill/dist/quill.snow.css";
-import "quill/dist/quill.bubble.css";
-import { quillEditor } from "vue-quill-editor";
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+import { quillEditor } from 'vue-quill-editor';
 
 export default {
-  data() {
-    return {
-      isAnnex: false,
-      isIntent: false,
-      isPlans: false,
-      isResources: false,
-      isPastAttempt: false,
-      isMentalHealth: false,
-      nric: "",
-      name: "",
-      obsOfPresentation: "",
-      counsellingGoals: "",
-      detailsOfSession: "",
-      comments: "",
-      interventionsProvided: "",
-      reasonsForClosure: "",
-      editorOption: {
-        // Some Quill options...
-      },
-    };
-  },
-  components: {
-    DatePickers,
-    TabPane,
-    Tabs,
-    TabsSection,
-    Modals,
-    quillEditor,
-  },
-  methods: {
-    signOut() {
+    data() {
+        return {
+            isAnnex: false,
+            isIntent: false,
+            isPlans: false,
+            isResources: false,
+            isPastAttempt: false,
+            isMentalHealth: false,
+            name : '',
+            nric: '',
+            obsOfPresentation:'',
+            counsellingGoals:'',
+            detailsOfSession:'',
+            comments:'',
+            interventionsProvided:'',
+            reasonsForClosure:'',
+            editorOption: {
+                // Some Quill options...
+            }
+        }
+    },
+    components: {
+        DatePickers,
+        TabPane,
+        Tabs,
+        TabsSection,
+        Modals,
+        quillEditor
+    },
+    methods: {
+signOut() {
       this.$router.push("login");
     },
     retrieveData() {
@@ -425,48 +425,45 @@ export default {
       this.ord = "";
       this.nric = "";
     },
-    current_time() {
-      const current = new Date();
-      const minute =
-        current.getMinutes() < 9
-          ? "0" + current.getMinutes()
-          : current.getMinutes();
-      const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
-      return time;
+        curren_time() {
+            const current = new Date();
+            const minute = current.getMinutes() < 9 ? "0" +current.getMinutes() : current.getMinutes();
+            const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
+            return time;},
+        onEditorBlur(quill) {
+            console.log('editor blur!', quill)
+        },
+        onEditorFocus(quill) {
+            console.log('editor focus!', quill)
+        },
+        onEditorReady(quill) {
+            console.log('editor ready!', quill)
+        },
+        onEditorChange({ quill, html, text }) {
+            console.log('editor change!', quill, html, text)
+            this.content = html
+        }
     },
-    onEditorBlur(quill) {
-      console.log("editor blur!", quill);
+    computed: {
+        editor() {
+            return this.$refs.myQuillEditor.quill
+        }
     },
-    onEditorFocus(quill) {
-      console.log("editor focus!", quill);
-    },
-    onEditorReady(quill) {
-      console.log("editor ready!", quill);
-    },
-    onEditorChange({ quill, html, text }) {
-      console.log("editor change!", quill, html, text);
-      this.content = html;
-    },
-  },
-  computed: {
-    editor() {
-      return this.$refs.myQuillEditor.quill;
-    },
-  },
-  mounted() {
-    console.log("this is current quill instance object", this.editor);
-  },
+    mounted() {
+        console.log('this is current quill instance object', this.editor)
+    }
 };
 </script>
 
 <style>
-#outer {
-  width: 100%;
-  text-align: center;
+#outer
+{
+    width:100%;
+    text-align: center;
 }
-.inner {
-  display: inline-block;
+.inner
+{
+    display: inline-block;
 }
-
 </style>
 
