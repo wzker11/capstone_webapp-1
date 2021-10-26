@@ -64,6 +64,7 @@
                             <div v-for="(form, index) in forms" :key="index" class="each-grid">
                                <img id = 'homeAnimalPic' src='./Form.png'/>
                                <p id = 'genericNames' >{{ form.name}}</p>
+                               <p id = 'SgenericNames' >{{ form.status}}</p>
                             </div>
                         </div>
                     </div>
@@ -249,12 +250,24 @@ export default {
     position: relative;
     width: auto;
     height: auto;
-    font-family: Mohave;
+    font-family: Monospace;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 20px;
     text-align: center;
     color: #191970;
+    margin-bottom: 10px;
+}
+#SgenericNames {
+    position: relative;
+    width: auto;
+    height: auto;
+    font-family: Monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    color: black;
     margin-bottom: 20px;
 }
 
