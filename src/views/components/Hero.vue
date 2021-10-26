@@ -51,7 +51,7 @@
                                     <router-link to="/subsequent-session" title="Subsequent Session">
                                         <base-button type="default" class="mr-4">Subsequent Session</base-button>
                                     </router-link>
-                                                                        <router-link to="/summary" title="Summary">
+                                    <router-link to="/summary" title="Summary">
                                         <base-button type="default" class="mr-4">Summary</base-button>
                                     </router-link>
                                     <!-- toggle between the sessions -->
