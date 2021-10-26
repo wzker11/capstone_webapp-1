@@ -71,7 +71,6 @@
 <script>
 import Vue from "vue";
 import VueRouter from "vue-router";
-import auth from "../firebase.js";
 
 Vue.use(VueRouter);
 
@@ -90,7 +89,7 @@ export default {
       else {
           console.log("Login successful")
           //Change landing page
-          this.$router.push('form')
+          this.$router.push('first-session')
       }
     }
   },

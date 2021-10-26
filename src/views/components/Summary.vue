@@ -1,4 +1,5 @@
 <template>
+    <div class="scroll">
     <section class="section-hero section-shaped my-0">
         <div class="shape shape-style-1 shape-primary">
             <span class="span-150"></span>
@@ -50,13 +51,20 @@
                                     <router-link to="/subsequent-session" title="Subsequent Session">
                                         <base-button type="default" class="mr-4">Subsequent Session</base-button>
                                     </router-link>
-                                    <base-button type="default" class="mr-4">Summary</base-button>
+                                    <router-link to="/summary" title="Summary">
+                                        <base-button type="default" class="mr-4">Summary</base-button>
+                                    </router-link>
                                     <!-- toggle between the sessions -->
                             </div>
                         </div>
                         <div class="text-center mt-5">
-                            <h2><strong>Summary Page</strong></h2>
-                            <br><br>
+                            <h2><strong>Summary</strong></h2>
+                        </div>
+                        <div class="grid-container">
+                            <div v-for="(form, index) in forms" :key="index" class="each-grid">
+                               <img id = 'homeAnimalPic' src='./Form.png'/>
+                               <p id = 'genericNames' >{{ form.name}}</p>
+                            </div>
                         </div>
                     </div>
                 </card>
@@ -64,9 +72,11 @@
         </section>
         </div>
     </section>
+    </div>
 </template>
 
 <script>
+
 const DatePickers = () => import("./JavascriptComponents/DatePickers");
 import Tabs from "@/components/Tabs/Tabs.vue";
 import TabPane from "@/components/Tabs/TabPane.vue";
@@ -76,6 +86,7 @@ import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 import { quillEditor } from "vue-quill-editor";
+import database from '../../firebase.js';
 
 export default {
   data() {
@@ -97,6 +108,7 @@ export default {
       editorOption: {
         // Some Quill options...
       },
+      forms:[],
     };
   },
   components: {
@@ -111,6 +123,46 @@ export default {
     signOut() {
       this.$router.push("login");
     },
+    retrieveData() {
+      var input_nric = this.nric;
+      var patients = ["S9596412E", "S9614554C"];
+      if (!patients.includes(input_nric)) {
+        alert("Please enter a valid NRIC number");
+        return;
+      }
+      var info = firebase.database().ref("/" + input_nric);
+      info.on("value", (snapshot) => {
+        const data = snapshot.val();
+        this.race = data["Race"];
+        this.name = data["Name"];
+        this.maritalstatus = data["Marital Status"];
+        this.unit = data["Unit"];
+        this.contact = data["Contact Number"];
+        this.enlistment = data["Enlistment Date"];
+        this.age = data["Age"];
+        this.ord = data["ORD Date"];
+      });
+    },
+    clearFields() {
+      this.race = "";
+      this.name = "";
+      this.maritalstatus = "";
+      this.unit = "";
+      this.contact = "";
+      this.enlistment = "";
+      this.age = "";
+      this.ord = "";
+      this.nric = "";
+    },
+    current_time() {
+      const current = new Date();
+      const minute =
+        current.getMinutes() < 9
+          ? "0" + current.getMinutes()
+          : current.getMinutes();
+      const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
+      return time;
+    },
     onEditorBlur(quill) {
       console.log("editor blur!", quill);
     },
@@ -124,6 +176,16 @@ export default {
       console.log("editor change!", quill, html, text);
       this.content = html;
     },
+    fetchItems:function() {
+        database.collection('forms').get().then(snapshot => {
+            snapshot.docs.forEach(doc => {
+             this.forms.push(doc.data());})
+             })
+         },
+    route:function(name) {
+        this.$router.push({name: 'indivform', params: {name: name}})
+      }
+
   },
   computed: {
     editor() {
@@ -133,16 +195,68 @@ export default {
   mounted() {
     console.log("this is current quill instance object", this.editor);
   },
+  created:function() {
+    this.fetchItems();
+    } 
 };
+
 </script>
 
-<style>
-#outer {
-  width: 100%;
-  text-align: center;
+<style scoped>
+.scroll{
+  overflow: scroll;
 }
-.inner {
-  display: inline-block;
+.grid-container {
+    display: grid;
+    column-gap: 20px;
+    row-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+    z-index: 2;
+    top: 20px;
 }
+.each-grid {
+    border-radius: 0% 0% 0% 0% / 0% 0% 0% 0% ;
+    transition: all .4s ease;
+    box-shadow: 0px 0px white;
+}
+.each-grid:hover {
+  border-radius: 0% 0% 50% 50% / 0% 0% 0% 0% ;
+  box-shadow: 5px 5px lightgray;
+}
+#statusText {
+    position: relative;
+    max-height: 100%;
+    max-width: 100%;
+    font-family: Mohave;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+     text-align: center;
+    color: white;
+    margin: 0;
+    padding-top: 0;
+    position: relative;
+    
+}
+#homeAnimalPic {
+    width: 200px;
+    height: 200px; 
+    border-radius: 30%;
+    object-fit:cover;
+}
+#genericNames {
+    position: relative;
+    width: auto;
+    height: auto;
+    font-family: Mohave;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    color: #191970;
+    margin-bottom: 20px;
+}
+
 </style>
 
