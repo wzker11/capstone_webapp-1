@@ -36,6 +36,7 @@
                   v-model="user.password"
                 >
                 </base-input>
+                
                 <!-- <base-checkbox>
                                     Remember me
                                 </base-checkbox> -->
@@ -49,6 +50,8 @@
                   <!-- </router-link> -->
                   <!-- <base-button type="primary" class="my-4" v-on:click="authenticate">Sign In</base-button> -->
                 </div>
+                <br>
+                <router-link :to="{name: 'register'}">Register</router-link>
               </form>
             </template>
           </card>
