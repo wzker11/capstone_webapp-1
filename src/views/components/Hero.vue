@@ -1,5 +1,5 @@
 <template>
-    <section class="section-hero section-shaped my-0">
+    <section class="section section-shaped my-0">
         <div class="shape shape-style-1 shape-primary">
             <span class="span-150"></span>
             <span class="span-50"></span>
@@ -37,9 +37,9 @@
             <section class="section section-skew">
                 <div class="container" style = "margin-top: -32.8%;">
                     <card shadow class="card-profile mt--300" no-body>
-                  <div>
-                    <base-button size="sm " type="primary" style = "height:30px; width:90px; margin-top:31px; margin-left: 90%" v-on:click="signOut">Sign Out</base-button>
-                </div>
+                    <div>
+                        <base-button size="sm " type="primary" style = "height:30px; width:90px; margin-top:31px; margin-left: 90%" v-on:click="signOut">Sign Out</base-button>
+                    </div>
                         <div class="px-4">
                             <div class="row justify-content-center">
                                 <div class="col-lg-4.5 order-lg-3">
@@ -68,7 +68,7 @@
                                         <h2 class="heading-title text-warning mb-0">Client Information</h2>
                                         <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                         <br>
-                                                                                <div class="row">
+                                        <div class="row">
                                             <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 85%" v-on:click="clearFields">Clear All Fields</base-button>
                                         </div>
                                         <div class="row">
@@ -449,6 +449,7 @@ export default {
       editorOption: {
         // Some Quill options...
       },
+      session_num: 1,
     };
   },
   components: {
@@ -508,7 +509,7 @@ export default {
       this.nric = "";
     },
     saveDraft: function () {
-      const session_num = 1;
+      const session_num = this.session_num;
       var nric = document.getElementById("nric").value;
 
       // in order of form
@@ -564,23 +565,8 @@ export default {
         });
     },
     submit: function () {
-      // window.jsPDF = window.jspdf.jsPDF;
-      // const doc = new jsPDF();
-      // console.log(doc);
-
-      // var specialElementHandlers = {
-      //     '#editor': function (element, renderer) {
-      //         return true;
-      //     }
-      // };
-      // doc.fromHTML($('#first-session').html(), 15, 15, {
-      //     'width': 170,
-      //     'elementHandlers': specialElementHandlers
-      // });
-      // doc.save('sample-file.pdf');
-
       var filled_form = document.getElementById("first-session");
-      console.log(filled_form);
+      // console.log(filled_form);
       var options = {
         jsPDF: {
           format: "a4",
@@ -589,12 +575,9 @@ export default {
         margin: 2,
         image: { type: "jpeg", quality: 1 },
       };
+      var file_name = this.nric + "_" + this.session_num.toString() + ".pdf";
       console.log(options);
-      // html2pdf(filled_form);
-      // with options
-      html2pdf().set(options).from(filled_form).toPdf().save("myfile.pdf");
-      // without options
-      // html2PDF().from(element).toPdf().save('myfile.pdf');
+      html2pdf().set(options).from(filled_form).toPdf().save(file_name);
     },
     onEditorBlur(quill) {
       console.log("editor blur!", quill);
