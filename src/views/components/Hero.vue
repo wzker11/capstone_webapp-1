@@ -112,7 +112,7 @@
                                         </div>      
                                     </div>
                                 </div>
-                                <br><br><br><br><br>
+                                <br><br><br>
                                 <div>
                                     <div>
                                         <div>
@@ -165,7 +165,7 @@
                                             </div>      
                                         </div>
                                     </div>
-                                    <br><br><br><br>
+                                    <br><br><br>
                                     <div>
                                         <div>
                                             <div>
@@ -189,7 +189,7 @@
                                                 </p>
 
                                               <vue-editor v-model="detailsOfSession"></vue-editor>
-                                                <br><br><br><br>
+                                                <br><br><br>
 
                                                 <h5 class="heading-title text-warning mb-0">Case Conceptualisation</h5>
                                                 <p>Your assessment of the client’s key underlying issues, obstacles that prevent him / her from resolving the issues, factors that have contributed to his / her progress, personal strengths that could be leveraged to help client manage his / her issues better, perceived social support network to help client manage presenting problem(s), any suspected psychological conditions that the client may be presenting, etc.</p>
