@@ -12,11 +12,12 @@
             <span class="span-50"></span>
             <span class="span-100"></span>
         </div>
-        <div class="container shape-container d-flex align-items-center">
+        <div class="container shape-container d-flex align-items-center" style="height:100px">
+          
             <div class="col px-0">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-7 text-center pt-lg">
-                        <h1 class="text-white mt-5 mb-6"><span>Session Case Notes</span></h1>
+                        <h1 class="text-white mt-0 mb-9">Session Case Notes</h1>
                     </div>
                 </div>
             </div>
@@ -71,6 +72,9 @@
                                         <div class="row">
                                             <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 85%" v-on:click="clearFields">Clear All Fields</base-button>
                                         </div>
+                                        <!-- <div class="row">
+                                            <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
+                                        </div> -->
                                         <div class="row">
                                             <div class="col-lg-6 col-sm-6">
                                                 <!-- <base-button v-on:click="retrieveData">Retrieve</base-button> -->
@@ -470,11 +474,9 @@ export default {
     },
     curren_time() {
       const current = new Date();
-      const minute =
-        current.getMinutes() < 9
-          ? "0" + current.getMinutes()
-          : current.getMinutes();
-      const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
+      const minute = current.getMinutes() < 9 ? "0" + current.getMinutes() : current.getMinutes();
+      const hour = current.getHours() < 9 ? "0" + current.getHours() : current.getHours();
+      const time = hour + ":" + minute;
       return time;
     },
     retrieveData() {
