@@ -430,10 +430,6 @@ export default {
       isResources: false,
       isPastAttempt: false,
       isMentalHealth: false,
-      radio: {
-        radio1: "radio1",
-        radio2: "radio3",
-      },
       race: "",
       name: "",
       age: "",

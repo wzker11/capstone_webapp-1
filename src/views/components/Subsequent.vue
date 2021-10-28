@@ -1,5 +1,5 @@
 <template>
-    <section class="section-hero section-shaped my-0">
+    <section class="section section-shaped my-0">
         <div class="shape shape-style-1 shape-primary">
             <span class="span-150"></span>
             <span class="span-50"></span>
@@ -56,6 +56,7 @@
                                     <!-- toggle between the sessions -->
                             </div>
                         </div>
+                        <form id="sub-session">
                         <div class="text-center mt-5">
                             <h2><strong>Subsequent Session Form</strong></h2>
                             <br><br>
@@ -334,13 +335,16 @@
                                               @focus="onEditorFocus($event)"
                                               @ready="onEditorReady($event)"/>
                         </div>
+                        </form>
                         <br><br><br><br>
                        
-                        <div>
+                        <div class="row justify-content-center">
                         <!-- <a href="#">Submit</a> -->
-                        <modals class="row justify-content-center"></modals><br>
-                        </div>
-
+                        <!-- <modals class="row justify-content-center"></modals> -->
+                        <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="saveDraft">Save Draft</base-button>
+                        <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="submit" id="submit-btn">Submit</base-button>
+                    </div>
+                    <br>
                     </div>
                 </card>
             </div>
@@ -359,6 +363,9 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
 import { quillEditor } from 'vue-quill-editor';
+import html2pdf from 'html2pdf.js';
+import { jsPDF } from "jspdf";
+
 
 export default {
     data() {
@@ -379,7 +386,8 @@ export default {
             reasonsForClosure:'',
             editorOption: {
                 // Some Quill options...
-            }
+            },
+            session_num: 2,
         }
     },
     components: {
@@ -391,45 +399,117 @@ export default {
         quillEditor
     },
     methods: {
-signOut() {
-      this.$router.push("login");
-    },
-    retrieveData() {
-      var input_nric = this.nric;
-      var patients = ["S9596412E", "S9614554C"];
-      if (!patients.includes(input_nric)) {
-        alert("Please enter a valid NRIC number");
-        return;
-      }
-      var info = firebase.database().ref("/" + input_nric);
-      info.on("value", (snapshot) => {
-        const data = snapshot.val();
-        this.race = data["Race"];
-        this.name = data["Name"];
-        this.maritalstatus = data["Marital Status"];
-        this.unit = data["Unit"];
-        this.contact = data["Contact Number"];
-        this.enlistment = data["Enlistment Date"];
-        this.age = data["Age"];
-        this.ord = data["ORD Date"];
-      });
-    },
-    clearFields() {
-      this.race = "";
-      this.name = "";
-      this.maritalstatus = "";
-      this.unit = "";
-      this.contact = "";
-      this.enlistment = "";
-      this.age = "";
-      this.ord = "";
-      this.nric = "";
-    },
+        signOut() {
+          this.$router.push("login");
+        },
+        retrieveData() {
+          var input_nric = this.nric;
+          var patients = ["S9596412E", "S9614554C"];
+          if (!patients.includes(input_nric)) {
+            alert("Please enter a valid NRIC number");
+            return;
+          }
+          var info = firebase.database().ref("/" + input_nric);
+          info.on("value", (snapshot) => {
+            const data = snapshot.val();
+            this.race = data["Race"];
+            this.name = data["Name"];
+            this.maritalstatus = data["Marital Status"];
+            this.unit = data["Unit"];
+            this.contact = data["Contact Number"];
+            this.enlistment = data["Enlistment Date"];
+            this.age = data["Age"];
+            this.ord = data["ORD Date"];
+          });
+        },
+        clearFields() {
+          this.race = "";
+          this.name = "";
+          this.maritalstatus = "";
+          this.unit = "";
+          this.contact = "";
+          this.enlistment = "";
+          this.age = "";
+          this.ord = "";
+          this.nric = "";
+        },
         curren_time() {
             const current = new Date();
             const minute = current.getMinutes() < 9 ? "0" +current.getMinutes() : current.getMinutes();
             const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
-            return time;},
+            return time;
+        },
+        saveDraft: function () {
+          const session_num = this.session_num;
+          var nric = document.getElementById("nric").value;
+
+          // in order of form
+          // var venue = document.getElementById('venue');
+          // var venue_value = venue.options[venue.selectedIndex].innerText;
+          // var counsellor = document.getElementById('counsellor');
+          // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
+          var counselling_goals =
+            document.getElementById("counselling_goals").value;
+          var details = document.getElementById("details").value;
+          var conceptualisation =
+            document.getElementById("conceptualisation").value;
+          var verbal_intent = document.getElementById("verbal-intent").value;
+          var ambivalence_intent =
+            document.getElementById("ambivalence-intent").value;
+          var explore_plans = document.getElementById("explore-plans").value;
+          var concrete_plans = document.getElementById("concrete-plans").value;
+          var lethal_means = document.getElementById("lethal-means").value;
+          var social_resource = document.getElementById("social-resource").value;
+          var skills_resource = document.getElementById("skills-resource").value;
+          var suicide_attempt = document.getElementById("suicide-attempt").value;
+          var mental_health = document.getElementById("mental-health").value;
+          // var risk_level = document.getElementById('risk_level');
+          // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
+          var follow_up = document.getElementById("follow-up").value;
+
+          database
+            .collection("forms")
+            .doc(this.nric)
+            .set({
+              session_num: session_num,
+              // venue: venue_value,
+              // counsellor: counsellor_value,
+              counselling_goals: counselling_goals,
+              details: details,
+              conceptualisation: conceptualisation,
+              verbal_intent: verbal_intent,
+              ambivalence_intent: ambivalence_intent,
+              explore_plans: explore_plans,
+              concrete_plans: concrete_plans,
+              lethal_means: lethal_means,
+              social_resource: social_resource,
+              skills_resource: skills_resource,
+              suicide_attempt: suicide_attempt,
+              mental_health: mental_health,
+              follow_up: follow_up,
+            })
+            .then(function (docRef) {
+              console.log("First Session Draft Successfully Saved");
+            })
+            .catch(function (error) {
+              console.error("Error Saving Draft: ", error);
+            });
+        },
+        submit: function () {
+          var filled_form = document.getElementById("sub-session");
+          // console.log(filled_form);
+          var options = {
+            jsPDF: {
+              format: "a4",
+            },
+            html2canvas: { letterRendering: true, useCORS: true, logging: true },
+            margin: 2,
+            image: { type: "jpeg", quality: 1 },
+          };
+          var file_name = this.nric + "_" + this.session_num.toString() + ".pdf";
+          console.log(options);
+          html2pdf().set(options).from(filled_form).toPdf().save(file_name);
+        },
         onEditorBlur(quill) {
             console.log('editor blur!', quill)
         },
