@@ -1,8 +1,6 @@
 <template>
     <div>
         <hero></hero>
-        <!-- <custom-controls></custom-controls> -->
-        <!-- <javascript-components></javascript-components> -->
     </div>
 </template>
 <script>
