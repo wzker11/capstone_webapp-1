@@ -12,86 +12,45 @@
         </div>
         <div class="vue-tempalte">
             <div class="container pt-lg-md">
-            <div class="row justify-content-center">
-            <div class="col-lg-5">
-            <card type="secondary" shadow
-                          header-classes="bg-white pb-5"
-                          body-classes="px-lg-5 py-lg-5"
-                          class="border-0">
-            <form @submit.prevent="userRegistration">
-                <h3>Sign Up</h3>
-
-                <div class="form-group">
-                    <label>Email</label>
-                    <!-- <input type="email" class="form-control form-control-lg" v-model="user.email" /> -->
-                    <base-input alternative class="mb-3"
-                                            placeholder="Email"
-                                            type="email"
-                                            addon-left-icon="ni ni-email-83"
-                                            v-model="user.email"></base-input>
-                </div>
-
-                <div class="form-group">
-                    <label>Password</label>
-                    <!-- <input type="password" class="form-control form-control-lg" v-model="user.password" /> -->
-                    <base-input alternative
-                                            type="password"
-                                            placeholder="Password"
-                                            addon-left-icon="ni ni-lock-circle-open"
-                                            v-model="user.password">
-                                </base-input>
-                </div>
-
-                <button type="submit" class="btn btn-dark btn-lg btn-block">
-                Sign Up
-                </button>
-
-                <p class="forgot-password text-right">
-                    Already registered 
-                    <router-link :to="{name: 'login'}">sign in?</router-link>
-                </p>
-            </form>
-            </card>
-            </div>
-            </div>
-            </div>
-        </div>
-        <!-- <div class="container pt-lg-md">
-            <div class="row justify-content-center">
-                <div class="col-lg-5">
-                    <card type="secondary" shadow
-                          header-classes="bg-white pb-5"
-                          body-classes="px-lg-5 py-lg-5"
-                          class="border-0">
-                        <template>
-                            <form role="form" @submit.prevent="userRegistration">
-                                <base-input alternative
-                                            class="mb-3"
-                                            placeholder="Email"
-                                            type="email"
-                                            addon-left-icon="ni ni-email-83"
-                                            v-model="user.email">
-                                </base-input>
-                                <base-input alternative
-                                            type="password"
-                                            placeholder="Password"
-                                            addon-left-icon="ni ni-lock-circle-open"
-                                            v-model="user.password">
-                                </base-input>
-                                <div class="text-center">
-                                    <base-button type="submit" class="my-4">Create account</base-button>
-                                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <card type="secondary" shadow
+                                    header-classes="bg-white pb-5"
+                                    body-classes="px-lg-5 py-lg-5"
+                                    class="border-0">
+                            <form @submit.prevent="userRegistration">
+                                <h6 class="text-center">Sign Up With Your SCDF email</h6>
                                 <br>
-                                <p class="text-center forgot-password">
+                                <div class="form-group">
+                                    <base-input alternative class="mb-3"
+                                                            placeholder="Email"
+                                                            type="email"
+                                                            addon-left-icon="ni ni-email-83"
+                                                            v-model="user.email"></base-input>
+                                </div>
+
+                                <div class="form-group">
+                                    <base-input alternative
+                                                            type="password"
+                                                            placeholder="Password"
+                                                            addon-left-icon="ni ni-lock-circle-open"
+                                                            v-model="user.password">
+                                                </base-input>
+                                </div>
+                                <button type="submit" class="btn btn-dark btn-lg btn-block">
+                                Sign Up
+                                </button>
+                                <br>
+                                <p class="forgot-password text-right">
                                     Already registered 
                                     <router-link :to="{name: 'login'}">sign in?</router-link>
                                 </p>
                             </form>
-                        </template>
-                    </card>
+                        </card>
+                    </div>
                 </div>
             </div>
-        </div> -->
+        </div>
     </section>
 </template>
 <script>
@@ -103,7 +62,8 @@ export default {
       user: {
         name: '',
         email: '',
-        password: ''
+        password: '',
+        password2:''
       }
     };
   },
