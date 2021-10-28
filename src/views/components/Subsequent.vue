@@ -34,18 +34,24 @@
             </div>
         </section>
         <section class="section section-skew">
-            <div class="container">
+            <div class="container" style = "margin-top: -32.8%;">
                 <card shadow class="card-profile mt--300" no-body>
+                                                        <div>
+                    <base-button size="sm " type="primary" style = "height:30px; width:90px; margin-top:31px; margin-left: 90%" v-on:click="signOut">Sign Out</base-button>
+                </div>
                     <div class="px-4">
                         <div class="row justify-content-center">
                             <div class="col-lg-4.5 order-lg-3">
                                 <span></span>
                                     <br><br>
-                                    <router-link to="/First_session" title="First Session">
+                                    <router-link to="/first-session" title="First Session">
                                         <base-button type="default" class="mr-4">First Session</base-button>
                                     </router-link>
-                                    <router-link to="/Subsequent_session" title="Subsequent Session">
+                                    <router-link to="/subsequent-session" title="Subsequent Session">
                                         <base-button type="default" class="mr-4">Subsequent Session</base-button>
+                                    </router-link>
+                                    <router-link to="/summary" title="Summary">
+                                        <base-button type="default" class="mr-4">Summary</base-button>
                                     </router-link>
                                     <!-- toggle between the sessions -->
                             </div>
@@ -59,6 +65,9 @@
                                 <h2 class="heading-title text-warning mb-0">Client Information</h2>
                                 <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                 <br>
+                                                                 <div class="row">
+                                    <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 85%" v-on:click="clearFields">Clear All Fields</base-button>
+                                </div>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
                                     <base-input class="col-sm-6" label="NRIC" v-model="nric"></base-input>
@@ -361,6 +370,7 @@ export default {
             isPastAttempt: false,
             isMentalHealth: false,
             name : '',
+            nric: '',
             obsOfPresentation:'',
             counsellingGoals:'',
             detailsOfSession:'',
@@ -381,19 +391,40 @@ export default {
         quillEditor
     },
     methods: {
-        retrieveData() {    
-            console.log(this.nric) 
-            if (!this.nric) {
-                alert("Please enter NRIC")
-            }
-            else {
-                var info = firebase.database().ref("/S9614554C")
-                info.on('value', (snapshot) => {
-                    const data = snapshot.val()
-                    this.name = data['Name']
-                })
-            }
-        },
+signOut() {
+      this.$router.push("login");
+    },
+    retrieveData() {
+      var input_nric = this.nric;
+      var patients = ["S9596412E", "S9614554C"];
+      if (!patients.includes(input_nric)) {
+        alert("Please enter a valid NRIC number");
+        return;
+      }
+      var info = firebase.database().ref("/" + input_nric);
+      info.on("value", (snapshot) => {
+        const data = snapshot.val();
+        this.race = data["Race"];
+        this.name = data["Name"];
+        this.maritalstatus = data["Marital Status"];
+        this.unit = data["Unit"];
+        this.contact = data["Contact Number"];
+        this.enlistment = data["Enlistment Date"];
+        this.age = data["Age"];
+        this.ord = data["ORD Date"];
+      });
+    },
+    clearFields() {
+      this.race = "";
+      this.name = "";
+      this.maritalstatus = "";
+      this.unit = "";
+      this.contact = "";
+      this.enlistment = "";
+      this.age = "";
+      this.ord = "";
+      this.nric = "";
+    },
         curren_time() {
             const current = new Date();
             const minute = current.getMinutes() < 9 ? "0" +current.getMinutes() : current.getMinutes();

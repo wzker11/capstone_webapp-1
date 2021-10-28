@@ -1,5 +1,5 @@
 <template>
-    <section class="section-hero section-shaped my-0">
+    <section class="section section-shaped my-0">
         <div class="shape shape-style-1 shape-primary">
             <span class="span-150"></span>
             <span class="span-50"></span>
@@ -35,36 +35,42 @@
             </section>
             
             <section class="section section-skew">
-                <div class="container">
+                <div class="container" style = "margin-top: -32.8%;">
                     <card shadow class="card-profile mt--300" no-body>
+                    <div>
+                        <base-button size="sm " type="primary" style = "height:30px; width:90px; margin-top:31px; margin-left: 90%" v-on:click="signOut">Sign Out</base-button>
+                    </div>
                         <div class="px-4">
                             <div class="row justify-content-center">
                                 <div class="col-lg-4.5 order-lg-3">
                                     <span></span>
                                     <br><br>
-                                    <router-link to="/First_session" title="First Session">
+                                    <router-link to="/first-session" title="First Session">
                                         <base-button type="default" class="mr-4">First Session</base-button>
                                     </router-link>
-                                    <router-link to="/Subsequent_session" title="Subsequent Session">
+                                    <router-link to="/subsequent-session" title="Subsequent Session">
                                         <base-button type="default" class="mr-4">Subsequent Session</base-button>
+                                    </router-link>
+                                    <router-link to="/summary" title="Summary">
+                                        <base-button type="default" class="mr-4">Summary</base-button>
                                     </router-link>
                                     <!-- toggle between the sessions -->
                                 </div>
                             </div>
                             <!-- form start -->
-                            <div class="text-center mt-5">
-                                <h2><strong>First Session Form</strong></h2>
-                                <br><br>
-                            </div>
-                            <div ref="client-information">
-                                <div>
-                                    <h2 class="heading-title text-warning mb-0">Client Information</h2>
-                                    <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
-                                    <br>
-                                    <!-- <form class="tr" method="post" action="blah.html"> -->
-                                        <!-- <div class="row">
-                                            <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
-                                        </div> -->
+                            <form id="first-session">
+                                <div class="text-center mt-5">
+                                    <h2><strong>First Session Form</strong></h2>
+                                    <br><br>
+                                </div>
+                                <div ref="client-information">
+                                    <div>
+                                        <h2 class="heading-title text-warning mb-0">Client Information</h2>
+                                        <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
+                                        <br>
+                                        <div class="row">
+                                            <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 85%" v-on:click="clearFields">Clear All Fields</base-button>
+                                        </div>
                                         <div class="row">
                                             <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button>
                                         </div> -->
@@ -72,7 +78,7 @@
                                             <div class="col-lg-6 col-sm-6">
                                                 <!-- <base-button v-on:click="retrieveData">Retrieve</base-button> -->
                                                 <div class="row">
-                                                    <base-input class="col-sm-9" label="NRIC" v-model="nric"></base-input>
+                                                    <base-input class="col-sm-9" label="NRIC" v-model="nric" id="nric"></base-input>
                                                     <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="retrieveData">Retrieve</base-button>
                                                 </div>
                                                 <base-input label="Rank/Name" v-model="name"></base-input>
@@ -121,21 +127,19 @@
                                 <br><br><br><br><br>
                                 <div>
                                     <div>
-                                        <h2 class="heading-title text-warning mb-0">Session Information</h2>
-                                        <br>
-                                        <!-- <form class="tr" method="post" action="blah.html"> -->
+                                        <div>
+                                            <h2 class="heading-title text-warning mb-0">Session Information</h2>
+                                            <br>
                                             <div class="row">
                                                 <div class="col-lg-6 col-sm-6">
-                                                    <!-- <base-input placeholder="Date"></base-input> -->
-                                                    <!-- <input type="text" data-input="true" class="form-control datepicker flatpickr-input active"> -->
                                                     <label>Session Date</label><date-pickers></date-pickers>
-                                                    <base-input label="Start Time" v-model="time" :placeholder="[[ curren_time() ]]"></base-input>
+                                                    <base-input label="Start Time" v-model="time" :placeholder="[[ curren_time() ]]" id="session_date"></base-input>
                                                     <base-input label="End Time"></base-input>
                                                     <!-- <vue-timepicker input-class="base-input"></vue-timepicker> -->
                                                 </div>
                                                 <div class="col-lg-6 col-sm-6">
                                                     <base-input label="Venue">
-                                                        <select class="form-control">
+                                                        <select class="form-control" id="venue">
                                                             <option>Meeting Room 1</option>
                                                             <option>Meeting Room 2</option>
                                                             <option>Meeting Room 3</option>
@@ -145,7 +149,7 @@
                                                     </base-input>
                                                     <!-- <base-input placeholder="Counsellor(s)"></base-input> -->
                                                     <base-input label= "Counsellor">
-                                                        <select class="form-control">
+                                                        <select class="form-control" id="counsellor">
                                                             <option>Shichao</option>
                                                             <option>Clara</option>
                                                             <option>Keif</option>
@@ -179,7 +183,7 @@
                                               :options="editorOption"
                                               @blur="onEditorBlur($event)"
                                               @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/>
+                                              @ready="onEditorReady($event)" id="observations"/>
                                             </div>      
                                         </div>
                                     </div>
@@ -198,7 +202,7 @@
                                               :options="editorOption"
                                               @blur="onEditorBlur($event)"
                                               @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/>
+                                              @ready="onEditorReady($event)" id="counselling_goals"/>
                                                 <br><br><br><br>
                                                 <h5 class="heading-title text-warning mb-0">Details Of Session</h5>
                                                 <p>Details of the issues discussed during the session. Background information should include
@@ -223,7 +227,7 @@
                                               :options="editorOption"
                                               @blur="onEditorBlur($event)"
                                               @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/>
+                                              @ready="onEditorReady($event)" id="details"/>
                                                 <br><br><br><br>
 
                                                 <h5 class="heading-title text-warning mb-0">Case Conceptualisation</h5>
@@ -253,7 +257,6 @@
                                               @focus="onEditorFocus($event)"
                                               @ready="onEditorReady($event)"/>
                                                 <br><br><br><br>
-
                                             </div>
                                         </div>
                                     </div>
@@ -264,10 +267,10 @@
                                         <div id="intent" v-show="isIntent">
                                             <br>
                                             <p>Verbalises thoughts of suicide</p>
-                                            <textarea name="intent1" row=20 cols=95></textarea>
+                                            <textarea name="intent1" row=20 cols=95 id='verbal-intent'></textarea>
                                             <br>
                                             <p>Ambivalence towards suicide</p>
-                                            <textarea name="intent2" row=20 cols=95></textarea>
+                                            <textarea name="intent2" row=20 cols=95 id='ambivalence-intent'></textarea>
                                             <br><br>
                                         </div>
                                         <br>
@@ -276,11 +279,11 @@
                                         <div id="plans" v-show="isPlans">
                                             <br>
                                             <p>Explore about suicide (e.g., research)</p>
-                                            <textarea name="plan1" row=20 cols=95></textarea>
+                                            <textarea name="plan1" row=20 cols=95 id='explore-plans'></textarea>
                                             <p>Have concrete plans to attempt suicide</p>
-                                            <textarea name="plan2" row=20 cols=95></textarea>
+                                            <textarea name="plan2" row=20 cols=95 id='concrete-plans'></textarea>
                                             <p>Have access to lethal means for suicide</p>
-                                            <textarea name="plan3" row=20 cols=95></textarea>
+                                            <textarea name="plan3" row=20 cols=95 id='lethal-means'></textarea>
                                             <br><br>
                                         </div>
                                         <br>
@@ -289,9 +292,9 @@
                                         <div id="resources" v-show="isResources">
                                             <br>
                                             <p>Strength of social support</p>
-                                            <textarea name="resources1" row=20 cols=95></textarea>
+                                            <textarea name="resources1" row=20 cols=95 id='social-resource'></textarea>
                                             <p>Problem solving skills</p>
-                                            <textarea name="resources2" row=20 cols=95></textarea>
+                                            <textarea name="resources2" row=20 cols=95 id='skills-resource'></textarea>
                                             <br><br>
                                         </div>
                                         <br>
@@ -300,7 +303,7 @@
                                         <div id="pastAttempts" v-show="isPastAttempt">
                                             <br>
                                             <p>History of past suicide attempts</p>
-                                            <textarea name="pastAttempt" row=20 cols=95></textarea>
+                                            <textarea name="pastAttempt" row=20 cols=95 id='suicide-attempt'></textarea>
                                             <br><br>
                                         </div>
                                         <br>
@@ -309,12 +312,12 @@
                                         <div id="mentalHealth" v-show="isMentalHealth">
                                             <br>
                                             <p>Presence of mental health illness</p>
-                                            <textarea name="mentalHealth" row=20 cols=95></textarea>
+                                            <textarea name="mentalHealth" row=20 cols=95 id='mental-health'></textarea>
                                             <br><br>
                                         </div>
                                         <br><br>
                                         <h5>Overall Risk Level</h5>
-                                        <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row">
+                                        <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row" id="risk_level">
                                             <tab-pane title="Low"></tab-pane>
                                             <tab-pane title="Moderate"></tab-pane>
                                             <tab-pane title="High"></tab-pane>
@@ -332,7 +335,7 @@
                                         <small>To update or reach out to the following:</small>
                                         <br><br>
                                         <div class="row justify-content-center">
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3" id="case_management">
                                                 <base-checkbox class="mb-3 flex-column flex-md-row">Client’s supervisors</base-checkbox>
                                                 <base-checkbox class="mb-3 flex-column flex-md-row">Unit Paracounsellor to monitor</base-checkbox>
                                                 <base-checkbox class="mb-3 flex-column flex-md-row">Medical Officer</base-checkbox>
@@ -368,6 +371,7 @@
                                         @focus="onEditorFocus($event)"
                                         @ready="onEditorReady($event)"/>
                                     </div>
+                                </div>
                         <br><br><br><br>
                         <div>
                             <h5 class="heading-title text-warning mb-0">Summary</h5><br>
@@ -380,10 +384,15 @@
                             <base-input label="Signature"></base-input>
                             <base-input label="Date of Report"><date-pickers></date-pickers></base-input>
                         </div>
+                      </form>
+
                     </div>
-                    <div>
+                    <div id="editor"></div>
+                    <div class="row justify-content-center">
                         <!-- <a href="#">Submit</a> -->
-                        <modals class="row justify-content-center"></modals>
+                        <!-- <modals class="row justify-content-center"></modals> -->
+                        <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="saveDraft">Save Draft</base-button>
+                        <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="submit" id="submit-btn">Submit</base-button>
                     </div>
                     <br>
                 </card>
@@ -391,136 +400,219 @@
         </section>
     </div>
 </section>
-</template>
+</template> 
+
 
 <script>
-    const DatePickers = () => import("./JavascriptComponents/DatePickers");
-    import Tabs from "@/components/Tabs/Tabs.vue";
-    import TabPane from "@/components/Tabs/TabPane.vue";
-    import TabsSection from "./JavascriptComponents/TabsSection";
-    import Modals from "./JavascriptComponents/Modals";
-    import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue';
-    import BaseNav from "@/components/BaseNav";
-    import CloseButton from "@/components/CloseButton";
-    import Card from '../../components/Card.vue';
-    import 'quill/dist/quill.core.css';
-    import 'quill/dist/quill.snow.css';
-    import 'quill/dist/quill.bubble.css';
-    import { quillEditor } from 'vue-quill-editor';
+const DatePickers = () => import("./JavascriptComponents/DatePickers");
+import Tabs from "@/components/Tabs/Tabs.vue";
+import TabPane from "@/components/Tabs/TabPane.vue";
+import TabsSection from "./JavascriptComponents/TabsSection";
+import Modals from "./JavascriptComponents/Modals";
+import VueTimepicker from "vue2-timepicker/src/vue-timepicker.vue";
+import BaseNav from "@/components/BaseNav";
+import CloseButton from "@/components/CloseButton";
+import Card from "../../components/Card.vue";
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
+import "quill/dist/quill.bubble.css";
+import { quillEditor } from "vue-quill-editor";
+import html2pdf from 'html2pdf.js';
+import { jsPDF } from "jspdf";
 
-
-    export default {
-        data() {
-            return {    
-                isAnnex: false,
-                isIntent: false,
-                isPlans: false,
-                isResources: false,
-                isPastAttempt: false,
-                isMentalHealth: false,
-                radio: {
-                  radio1: "radio1",
-                  radio2: "radio3"
-              },
-              race: '',
-              name: '',
-              age: '',
-              maritalstatus:'',
-              unit: '',
-              contact: '',
-              enlistment: '',
-              ord : '',
-              reasonsForReferral: '',
-              obsOfPresentation:'',
-              counsellingGoals:'',
-              detailsOfSession:'',
-              caseConceptualisation:'',
-              interventionsProvided:'',
-              reasonsForClosure:'',
-              editorOption: {
-                  // Some Quill options...
-                }
-          }
+export default {
+  data() {
+    return {
+      isAnnex: false,
+      isIntent: false,
+      isPlans: false,
+      isResources: false,
+      isPastAttempt: false,
+      isMentalHealth: false,
+      radio: {
+        radio1: "radio1",
+        radio2: "radio3",
       },
-      components: {
-
-        DatePickers,
-        TabPane,
-        Tabs,
-        TabsSection,
-        Modals,
-        VueTimepicker,
-        BaseNav,
-        CloseButton,
-        Card,
-        quillEditor
-    },
-    methods: {
-        curren_time() {
-          const current = new Date();
-          const minute = current.getMinutes() < 9 ? "0" +current.getMinutes() : current.getMinutes();
-          const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
-          return time;
+      race: "",
+      name: "",
+      age: "",
+      maritalstatus: "",
+      unit: "",
+      contact: "",
+      enlistment: "",
+      ord: "",
+      nric: "",
+      reasonsForReferral: "",
+      obsOfPresentation: "",
+      counsellingGoals: "",
+      detailsOfSession: "",
+      caseConceptualisation: "",
+      interventionsProvided: "",
+      reasonsForClosure: "",
+      editorOption: {
+        // Some Quill options...
+      },
+      session_num: 1,
+    };
   },
-  retrieveData() {    
-    console.log(this.nric) 
-    if (!this.nric) {
-        alert("Please enter NRIC")
-    }
-    else {
-        var info = firebase.database().ref("/S9614554C")
-        info.on('value', (snapshot) => {
-            const data = snapshot.val()
-            this.race = data['Race']
-            this.name = data['Name']
-            this.maritalstatus = data['Marital Status']
-            this.unit = data['Unit']
-            this.contact = data['Contact Number']
-            this.enlistment = data['Enlistment Date']
-            this.age = data['Age']
-            this.ord = data['ORD Date']
+  components: {
+    DatePickers,
+    TabPane,
+    Tabs,
+    TabsSection,
+    Modals,
+    VueTimepicker,
+    BaseNav,
+    CloseButton,
+    Card,
+    quillEditor,
+  },
+  methods: {
+    signOut() {
+      this.$router.push("login");
+    },
+    curren_time() {
+      const current = new Date();
+      const minute =
+        current.getMinutes() < 9
+          ? "0" + current.getMinutes()
+          : current.getMinutes();
+      const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
+      return time;
+    },
+    retrieveData() {
+      var input_nric = this.nric;
+      var patients = ["S9596412E", "S9614554C"];
+      if (!patients.includes(input_nric)) {
+        alert("Please enter a valid NRIC number");
+        return;
+      }
+      var info = firebase.database().ref("/" + input_nric);
+      info.on("value", (snapshot) => {
+        const data = snapshot.val();
+        this.race = data["Race"];
+        this.name = data["Name"];
+        this.maritalstatus = data["Marital Status"];
+        this.unit = data["Unit"];
+        this.contact = data["Contact Number"];
+        this.enlistment = data["Enlistment Date"];
+        this.age = data["Age"];
+        this.ord = data["ORD Date"];
+      });
+    },
+    clearFields() {
+      this.race = "";
+      this.name = "";
+      this.maritalstatus = "";
+      this.unit = "";
+      this.contact = "";
+      this.enlistment = "";
+      this.age = "";
+      this.ord = "";
+      this.nric = "";
+    },
+    saveDraft: function () {
+      const session_num = this.session_num;
+      var nric = document.getElementById("nric").value;
+
+      // in order of form
+      // var venue = document.getElementById('venue');
+      // var venue_value = venue.options[venue.selectedIndex].innerText;
+      // var counsellor = document.getElementById('counsellor');
+      // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
+      var counselling_goals =
+        document.getElementById("counselling_goals").value;
+      var details = document.getElementById("details").value;
+      var conceptualisation =
+        document.getElementById("conceptualisation").value;
+      var verbal_intent = document.getElementById("verbal-intent").value;
+      var ambivalence_intent =
+        document.getElementById("ambivalence-intent").value;
+      var explore_plans = document.getElementById("explore-plans").value;
+      var concrete_plans = document.getElementById("concrete-plans").value;
+      var lethal_means = document.getElementById("lethal-means").value;
+      var social_resource = document.getElementById("social-resource").value;
+      var skills_resource = document.getElementById("skills-resource").value;
+      var suicide_attempt = document.getElementById("suicide-attempt").value;
+      var mental_health = document.getElementById("mental-health").value;
+      // var risk_level = document.getElementById('risk_level');
+      // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
+      var follow_up = document.getElementById("follow-up").value;
+
+      database
+        .collection("forms")
+        .doc(this.nric)
+        .set({
+          session_num: session_num,
+          // venue: venue_value,
+          // counsellor: counsellor_value,
+          counselling_goals: counselling_goals,
+          details: details,
+          conceptualisation: conceptualisation,
+          verbal_intent: verbal_intent,
+          ambivalence_intent: ambivalence_intent,
+          explore_plans: explore_plans,
+          concrete_plans: concrete_plans,
+          lethal_means: lethal_means,
+          social_resource: social_resource,
+          skills_resource: skills_resource,
+          suicide_attempt: suicide_attempt,
+          mental_health: mental_health,
+          follow_up: follow_up,
         })
-    }
-        // this.race = "Malay"
-        // this.name = "Chris"
-        // this.maritalstatus = "Single"
-        // this.unit = "CDA"
-        // this.contact = "912345"
-        // this.enlistment = "8 June 2021"
-  },
+        .then(function (docRef) {
+          console.log("First Session Draft Successfully Saved");
+        })
+        .catch(function (error) {
+          console.error("Error Saving Draft: ", error);
+        });
+    },
+    submit: function () {
+      var filled_form = document.getElementById("first-session");
+      // console.log(filled_form);
+      var options = {
+        jsPDF: {
+          format: "a4",
+        },
+        html2canvas: { letterRendering: true, useCORS: true, logging: true },
+        margin: 2,
+        image: { type: "jpeg", quality: 1 },
+      };
+      var file_name = this.nric + "_" + this.session_num.toString() + ".pdf";
+      console.log(options);
+      html2pdf().set(options).from(filled_form).toPdf().save(file_name);
+    },
     onEditorBlur(quill) {
-        console.log('editor blur!', quill)
-      },
-      onEditorFocus(quill) {
-        console.log('editor focus!', quill)
-      },
-      onEditorReady(quill) {
-        console.log('editor ready!', quill)
-      },
-      onEditorChange({ quill, html, text }) {
-        console.log('editor change!', quill, html, text)
-        this.content = html
-      }
+      console.log("editor blur!", quill);
     },
-    computed: {
-      editor() {
-        return this.$refs.myQuillEditor.quill
-      }
+    onEditorFocus(quill) {
+      console.log("editor focus!", quill);
     },
-    mounted() {
-      console.log('this is current quill instance object', this.editor)
-    }
+    onEditorReady(quill) {
+      console.log("editor ready!", quill);
+    },
+    onEditorChange({ quill, html, text }) {
+      console.log("editor change!", quill, html, text);
+      this.content = html;
+    },
+  },
+  computed: {
+    editor() {
+      return this.$refs.myQuillEditor.quill;
+    },
+  },
+  mounted() {
+    console.log("this is current quill instance object", this.editor);
+  },
 };
 </script>
 <style>
-
-    #outer
-    {
-        width:100%;
-        text-align: center;
-    }
-    .inner
-    {
-        display: inline-block;
-    }
+#outer {
+  width: 100%;
+  text-align: center;
+}
+.inner {
+  display: inline-block;
+}
 </style>
+
