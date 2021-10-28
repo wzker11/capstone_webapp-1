@@ -20,27 +20,22 @@
               <form role="form" ref="form" @submit.prevent="userLogin">
                 <h6 class="text-center">Log In With Your SCDF email</h6>
                 <br>
-                <base-input
-                  alternative
-                  class="mb-3"
-                  placeholder="Email"
-                  addon-left-icon="ni ni-email-83"
-                  name="email"
-                  v-model="user.email"
-                >
+                <base-input alternative
+                            class="mb-3"
+                            placeholder="Email"
+                            addon-left-icon="ni ni-email-83"
+                            name="email"
+                            v-model="user.email">
                 </base-input>
-                <base-input
-                  alternative
-                  type="password"
-                  placeholder="Password"
-                  addon-left-icon="ni ni-lock-circle-open"
-                  name="password"
-                  v-model="user.password"
-                >
+                <base-input alternative
+                            type="password"
+                            placeholder="Password"
+                            addon-left-icon="ni ni-lock-circle-open"
+                            name="password"
+                            v-model="user.password">
                 </base-input>
                 <br>
                 <div class="text-center" id="signin-button">
-                  <!-- <router-link to='/form' :key="$route.form"> -->
                   <input
                     class="btn btn-success"
                     type="submit"
@@ -48,10 +43,10 @@
                   />
                 </div>
                 <br>
-              <div class="row">
-                <router-link :to="{name: 'register'}" style="width:200px">Register</router-link>
-                <router-link :to="{name: 'forgetPassword'}">Forgot Password?</router-link>
-              </div>
+                <div class="row">
+                  <router-link :to="{name: 'register'}" style="width:200px">Register</router-link>
+                  <router-link :to="{name: 'forgetPassword'}">Forgot Password?</router-link>
+                </div>
               </form>
             </template>
           </card>

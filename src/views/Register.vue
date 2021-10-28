@@ -14,32 +14,29 @@
             <div class="container pt-lg-md">
                 <div class="row justify-content-center">
                     <div class="col-lg-5">
-                        <card type="secondary" shadow
-                                    header-classes="bg-white pb-5"
-                                    body-classes="px-lg-5 py-lg-5"
-                                    class="border-0">
+                        <card type="secondary" shadow header-classes="bg-white pb-5" body-classes="px-lg-5 py-lg-5" class="border-0">
                             <form @submit.prevent="userRegistration">
                                 <h6 class="text-center">Sign Up With Your SCDF email</h6>
                                 <br>
                                 <div class="form-group">
-                                    <base-input alternative class="mb-3"
-                                                            placeholder="Email"
-                                                            type="email"
-                                                            addon-left-icon="ni ni-email-83"
-                                                            v-model="user.email"></base-input>
+                                    <base-input alternative 
+                                                class="mb-3"
+                                                placeholder="Email"
+                                                type="email"
+                                                addon-left-icon="ni ni-email-83"
+                                                v-model="user.email">
+                                    </base-input>
                                 </div>
 
                                 <div class="form-group">
                                     <base-input alternative
-                                                            type="password"
-                                                            placeholder="Password"
-                                                            addon-left-icon="ni ni-lock-circle-open"
-                                                            v-model="user.password">
-                                                </base-input>
+                                                type="password"
+                                                placeholder="Password"
+                                                addon-left-icon="ni ni-lock-circle-open"
+                                                v-model="user.password">
+                                    </base-input>
                                 </div>
-                                <button type="submit" class="btn btn-dark btn-lg btn-block">
-                                Sign Up
-                                </button>
+                                <button type="submit" class="btn btn-dark btn-lg btn-block">Sign Up</button>
                                 <br>
                                 <p class="forgot-password text-right">
                                     Already registered 

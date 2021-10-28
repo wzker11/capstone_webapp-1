@@ -64,11 +64,10 @@
                         
                         <div ref="client-information">
                                 <h2 class="heading-title text-warning mb-0">Client Information</h2>
-                                <p> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
-                                <br>
-                                                                 <div class="row">
-                                    <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 85%" v-on:click="clearFields">Clear All Fields</base-button>
-                                </div>
+                                <div class="row">
+                                          <p class="ml-3"> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
+                                            <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 9%" v-on:click="clearFields">Clear All Fields</base-button>
+                                        </div>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
                                     <base-input class="col-sm-6" label="NRIC" v-model="nric"></base-input>
