@@ -18,6 +18,8 @@
           <card type="secondary" shadow header-classes="bg-white pb-5" body-classes="px-lg-5 py-lg-5" class="border-0">
             <template>
               <form role="form" ref="form" @submit.prevent="userLogin">
+                <h6 class="text-center">Log In With Your SCDF email</h6>
+                <br>
                 <base-input
                   alternative
                   class="mb-3"
@@ -36,10 +38,7 @@
                   v-model="user.password"
                 >
                 </base-input>
-                
-                <!-- <base-checkbox>
-                                    Remember me
-                                </base-checkbox> -->
+                <br>
                 <div class="text-center" id="signin-button">
                   <!-- <router-link to='/form' :key="$route.form"> -->
                   <input
@@ -47,21 +46,15 @@
                     type="submit"
                     value="Sign In"
                   />
-                  <!-- </router-link> -->
-                  <!-- <base-button type="primary" class="my-4" v-on:click="authenticate">Sign In</base-button> -->
                 </div>
                 <br>
-                <router-link :to="{name: 'register'}">Register</router-link>
+              <div class="row">
+                <router-link :to="{name: 'register'}" style="width:200px">Register</router-link>
+                <router-link :to="{name: 'forgetPassword'}">Forgot Password?</router-link>
+              </div>
               </form>
             </template>
           </card>
-          <!-- <div class="row mt-3">
-                        <div class="col-6">
-                            <a href="#" class="text-light">
-                                <small>Forgot password?</small>
-                            </a>
-                        </div>
-                    </div> -->
         </div>
       </div>
     </div>
