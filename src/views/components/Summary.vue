@@ -62,9 +62,9 @@
                         </div>
                         <div class="grid-container">
                             <div v-for="(form, index) in forms" :key="index" class="each-grid">
-                               <img id = 'homeAnimalPic' src='./Form.png'/>
-                               <p id = 'genericNames' >{{ form.name}}</p>
-                               <p id = 'SgenericNames' >{{ form.status}}</p>
+                               <p id="SgenericNames">{{index+1}}. {{ form.name}}</p>
+                               <p id="genericNames">{{form.status}}</p>
+                               <br><br>
                             </div>
                         </div>
                     </div>
@@ -211,7 +211,7 @@ export default {
     display: grid;
     column-gap: 20px;
     row-gap: 20px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     position: relative;
     z-index: 2;
     top: 20px;
@@ -253,7 +253,7 @@ export default {
     font-family: Monospace;
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     color: #191970;
     margin-bottom: 10px;
@@ -264,8 +264,8 @@ export default {
     height: auto;
     font-family: Monospace;
     font-style: normal;
-    font-weight: 500;
-    font-size: 15px;
+    font-weight: 700;
+    font-size: 20px;
     text-align: center;
     color: black;
     margin-bottom: 20px;

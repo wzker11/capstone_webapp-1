@@ -10,72 +10,80 @@
             <span></span>
             <span></span>
         </div>
-        <div class="container pt-lg-md">
-            <div class="row justify-content-center">
-                <div class="col-lg-5">
-                    <card type="secondary" shadow
-                          header-classes="bg-white pb-5"
-                          body-classes="px-lg-5 py-lg-5"
-                          class="border-0">
-                        <template>
-                            <div class="text-muted text-center mb-3">
-                                <small>Sign in with</small>
-                            </div>
-                            <div class="btn-wrapper text-center">
-                                <base-button type="neutral">
-                                    <img slot="icon" src="img/icons/common/github.svg">
-                                    Github
-                                </base-button>
+        <div class="vue-tempalte">
+            <div class="container pt-lg-md">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <card type="secondary" shadow header-classes="bg-white pb-5" body-classes="px-lg-5 py-lg-5" class="border-0">
+                            <form @submit.prevent="userRegistration">
+                                <h6 class="text-center">Sign Up With Your SCDF email</h6>
+                                <br>
+                                <div class="form-group">
+                                    <base-input alternative 
+                                                class="mb-3"
+                                                placeholder="Email"
+                                                type="email"
+                                                addon-left-icon="ni ni-email-83"
+                                                v-model="user.email">
+                                    </base-input>
+                                </div>
 
-                                <base-button type="neutral">
-                                    <img slot="icon" src="img/icons/common/google.svg">
-                                    Google
-                                </base-button>
-                            </div>
-                        </template>
-                        <template>
-                            <div class="text-center text-muted mb-4">
-                                <small>Or sign up with credentials</small>
-                            </div>
-                            <form role="form">
-                                <base-input alternative
-                                            class="mb-3"
-                                            placeholder="Name"
-                                            addon-left-icon="ni ni-hat-3">
-                                </base-input>
-                                <base-input alternative
-                                            class="mb-3"
-                                            placeholder="Email"
-                                            addon-left-icon="ni ni-email-83">
-                                </base-input>
-                                <base-input alternative
-                                            type="password"
-                                            placeholder="Password"
-                                            addon-left-icon="ni ni-lock-circle-open">
-                                </base-input>
-                                <div class="text-muted font-italic">
-                                    <small>password strength:
-                                        <span class="text-success font-weight-700">strong</span>
-                                    </small>
+                                <div class="form-group">
+                                    <base-input alternative
+                                                type="password"
+                                                placeholder="Password"
+                                                addon-left-icon="ni ni-lock-circle-open"
+                                                v-model="user.password">
+                                    </base-input>
                                 </div>
-                                <base-checkbox>
-                                    <span>I agree with the
-                                        <a href="#">Privacy Policy</a>
-                                    </span>
-                                </base-checkbox>
-                                <div class="text-center">
-                                    <base-button type="primary" class="my-4">Create account</base-button>
-                                </div>
+                                <button type="submit" class="btn btn-dark btn-lg btn-block">Sign Up</button>
+                                <br>
+                                <p class="forgot-password text-right">
+                                    Already registered 
+                                    <router-link :to="{name: 'login'}">sign in?</router-link>
+                                </p>
                             </form>
-                        </template>
-                    </card>
+                        </card>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 </template>
 <script>
-export default {};
+import firebase from "firebase";
+
+export default {
+  data() {
+    return {
+      user: {
+        name: '',
+        email: '',
+        password: '',
+        password2:''
+      }
+    };
+  },
+  methods: {
+    userRegistration() {
+      firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.user.email, this.user.password)
+      .then((res) => {
+        res.user
+          .updateProfile({
+            displayName: this.user.name
+          })
+          .then(() => {
+            this.$router.push('login')
+          });
+      })
+      .catch((error) => {
+         alert(error.message);
+      });
+    }
+  }
+};
 </script>
 <style>
 </style>
