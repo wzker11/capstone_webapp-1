@@ -135,12 +135,12 @@
                                         </div>
                                         <label>Source of Referral</label>
                                         <div class="row justify-content-left">
-                                            <base-checkbox class="my-1 ml-3 col-lg-1">Self</base-checkbox>
-                                            <base-checkbox class="my-1 col-lg-1">IMH</base-checkbox>
-                                            <base-checkbox class="my-1 ml-1 col-lg-2">Supervisor</base-checkbox>
-                                            <base-checkbox class="my-1 col-lg-2">Medical Officer</base-checkbox>
-                                            <base-checkbox class="my-1 col-lg-2">Others:</base-checkbox>
-                                            <base-input class="col-lg-3.9"></base-input>
+                                            <base-checkbox class="my-1 ml-3 col-lg-1" v-model="sourceOfReferral.self">Self</base-checkbox>
+                                            <base-checkbox class="my-1 col-lg-1" v-model="sourceOfReferral.imh">IMH</base-checkbox>
+                                            <base-checkbox class="my-1 ml-1 col-lg-2" v-model="sourceOfReferral.supervisor">Supervisor</base-checkbox>
+                                            <base-checkbox class="my-1 col-lg-2" v-model="sourceOfReferral.medicalOfficer">Medical Officer</base-checkbox>
+                                            <base-checkbox class="my-1 col-lg-2" v-model="sourceOfReferral.others">Others:</base-checkbox>
+                                            <base-input class="col-lg-3.9" v-model="sourceOfReferral.othersInput"></base-input>
                                         </div>
                                         <div>
                                             <label>Reason(s) for Referral</label><br>
@@ -316,10 +316,10 @@
                                         <br><br>
                                         <div class="row justify-content-center">
                                             <div class="col-lg-3" id="case_management">
-                                                <base-checkbox class="mb-3 flex-column flex-md-row">Client’s supervisors</base-checkbox>
-                                                <base-checkbox class="mb-3 flex-column flex-md-row">Unit Paracounsellor to monitor</base-checkbox>
-                                                <base-checkbox class="mb-3 flex-column flex-md-row">Medical Officer</base-checkbox>
-                                                <base-checkbox class="mb-3 flex-column flex-md-row">Other agencies</base-checkbox>
+                                                <base-checkbox class="mb-3 flex-column flex-md-row" v-model="followUpPlans.client">Client’s supervisors</base-checkbox>
+                                                <base-checkbox class="mb-3 flex-column flex-md-row" v-model="followUpPlans.unit">Unit Paracounsellor to monitor</base-checkbox>
+                                                <base-checkbox class="mb-3 flex-column flex-md-row" v-model="followUpPlans.medical">Medical Officer</base-checkbox>
+                                                <base-checkbox class="mb-3 flex-column flex-md-row" v-model="followUpPlans.other">Other agencies</base-checkbox>
                                             </div>
 
                                             <div class="col-lg-9 mt-5 mt-lg-0">
@@ -422,51 +422,65 @@ import Modal from "@/components/Modal.vue";
 
 
 export default {
-  data() {
-    return {
-      isAnnex: false,
-      isIntent: false,
-      isPlans: false,
-      isResources: false,
-      isPastAttempt: false,
-      isMentalHealth: false,
-      race: "",
-      name: "",
-      age: "",
-      maritalstatus: "",
-      unit: "",
-      contact: "",
-      enlistment: "",
-      ord: "",
-      nric: "",
-      reasonsForReferral: "",
-      obsOfPresentation: "",
-      counsellingGoals: "",
-      detailsOfSession: "",
-      caseConceptualisation: "",
-      interventionsProvided: "",
-      reasonsForClosure: "",
-      session_num: 1,
-      content:"",
-      modal:false,
-      saveSuccess: false,
-      retrieveSuccess: false,
-      submitSuccess: false,
-    };
-  },
-  components: {
-    DatePickers,
-    TabPane,
-    Tabs,
-    TabsSection,
-    Modals,
-    VueTimepicker,
-    BaseNav,
-    CloseButton,
-    Card,
-    VueEditor,
-    Modal
-  },
+    data() {
+        return {
+            isAnnex: false,
+            isIntent: false,
+            isPlans: false,
+            isResources: false,
+            isPastAttempt: false,
+            isMentalHealth: false,
+            race: "",
+            name: "",
+            age: "",
+            maritalstatus: "",
+            unit: "",
+            contact: "",
+            enlistment: "",
+            ord: "",
+            nric: "",
+            reasonsForReferral: "",
+            obsOfPresentation: "",
+            counsellingGoals: "",
+            detailsOfSession: "",
+            caseConceptualisation: "",
+            interventionsProvided: "",
+            reasonsForClosure: "",
+            session_num: 1,
+            content:"",
+            modal:false,
+            saveSuccess: false,
+            retrieveSuccess: false,
+            submitSuccess: false,
+            sourceOfReferral: {
+                self: false,
+                imh: false,
+                supervisor: true,
+                medicalOfficer: false,
+                others: false,
+                othersInput: "",
+                },
+            followUpPlans:{
+                client:false,
+                unit:true,
+                medical:false,
+                other:false,
+            },
+        };
+    },
+    components: {
+        DatePickers,
+        TabPane,
+        Tabs,
+        TabsSection,
+        Modals,
+        VueTimepicker,
+        BaseNav,
+        CloseButton,
+        Card,
+        VueEditor,
+        Modal
+    },
   methods: { 
     saveContent(){
       var input_nric = this.nric;
@@ -497,6 +511,8 @@ export default {
         this.age = data["age"];
         this.ord = data["ordDate"];
         this.reasonsForReferral = data["reasonsForReferral"];
+        this.sourceOfReferral = data['sourceOfReferral'];
+        this.followUpPlans = data['followUpPlans'];
         this.retrieveSuccess = true;
       })
       .catch(function (error) {
@@ -505,113 +521,122 @@ export default {
         });
     },
     signOut() {
-      this.$router.push("login");
+        this.$router.push("login");
     },
     curren_time() {
-      const current = new Date();
-      const minute = current.getMinutes() < 9 ? "0" + current.getMinutes() : current.getMinutes();
-      const hour = current.getHours() < 9 ? "0" + current.getHours() : current.getHours();
-      const time = hour + ":" + minute;
-      return time;
+        const current = new Date();
+        const minute = current.getMinutes() < 9 ? "0" + current.getMinutes() : current.getMinutes();
+        const hour = current.getHours() < 9 ? "0" + current.getHours() : current.getHours();
+        const time = hour + ":" + minute;
+        return time;
     },
     clearFields() {
-      this.race = "";
-      this.name = "";
-      this.maritalstatus = "";
-      this.unit = "";
-      this.contact = "";
-      this.enlistment = "";
-      this.age = "";
-      this.ord = "";
-      this.nric = "";
-      this.reasonsForReferral= "";
-      this.obsOfPresentation= "";
-      this.counsellingGoals= "";
-      this.detailsOfSession= "";
-      this.caseConceptualisation= "";
-      this.interventionsProvided= "";
-      this.reasonsForClosure= "";
-      this.modal = false;
+        this.race = "";
+        this.name = "";
+        this.maritalstatus = "";
+        this.unit = "";
+        this.contact = "";
+        this.enlistment = "";
+        this.age = "";
+        this.ord = "";
+        this.nric = "";
+        this.reasonsForReferral= "";
+        this.obsOfPresentation= "";
+        this.counsellingGoals= "";
+        this.detailsOfSession= "";
+        this.caseConceptualisation= "";
+        this.interventionsProvided= "";
+        this.reasonsForClosure= "";
+        this.sourceOfReferral= {
+            self: false,
+            imh: false,
+            supervisor: false,
+            medicalOfficer: false,
+            others: false,
+            othersInput: "",
+            };
+        this.modal = false;
     },
     saveDraft: function () {
-      const self = this;
-      const session_num = this.session_num;
-      var nric = document.getElementById("nric").value;
+        const self = this;
+        const session_num = this.session_num;
+        var nric = document.getElementById("nric").value;
 
-      // in order of form
-      // var venue = document.getElementById('venue');
-      // var venue_value = venue.options[venue.selectedIndex].innerText;
-      // var counsellor = document.getElementById('counsellor');
-      // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
-      // var counselling_goals = document.getElementById("counselling_goals").value;
-      // var details = document.getElementById("details").value;
-      // var conceptualisation = document.getElementById("conceptualisation").value;
-      // var verbal_intent = document.getElementById("verbal-intent").value;
-      // var ambivalence_intent = document.getElementById("ambivalence-intent").value;
-      // var explore_plans = document.getElementById("explore-plans").value;
-      // var concrete_plans = document.getElementById("concrete-plans").value;
-      // var lethal_means = document.getElementById("lethal-means").value;
-      // var social_resource = document.getElementById("social-resource").value;
-      // var skills_resource = document.getElementById("skills-resource").value;
-      // var suicide_attempt = document.getElementById("suicide-attempt").value;
-      // var mental_health = document.getElementById("mental-health").value;
-      // // var risk_level = document.getElementById('risk_level');
-      // // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
-      // var follow_up = document.getElementById("follow-up").value;
-      // var vue_check = document.getElementById("vuecheck").value;
+        // in order of form
+        // var venue = document.getElementById('venue');
+        // var venue_value = venue.options[venue.selectedIndex].innerText;
+        // var counsellor = document.getElementById('counsellor');
+        // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
+        // var counselling_goals = document.getElementById("counselling_goals").value;
+        // var details = document.getElementById("details").value;
+        // var conceptualisation = document.getElementById("conceptualisation").value;
+        // var verbal_intent = document.getElementById("verbal-intent").value;
+        // var ambivalence_intent = document.getElementById("ambivalence-intent").value;
+        // var explore_plans = document.getElementById("explore-plans").value;
+        // var concrete_plans = document.getElementById("concrete-plans").value;
+        // var lethal_means = document.getElementById("lethal-means").value;
+        // var social_resource = document.getElementById("social-resource").value;
+        // var skills_resource = document.getElementById("skills-resource").value;
+        // var suicide_attempt = document.getElementById("suicide-attempt").value;
+        // var mental_health = document.getElementById("mental-health").value;
+        // // var risk_level = document.getElementById('risk_level');
+        // // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
+        // var follow_up = document.getElementById("follow-up").value;
+        // var vue_check = document.getElementById("vuecheck").value;
 
-      database
-        .collection("forms")
-        .doc(this.nric)
-        .update({
-          // session_num: session_num,
-          // vue_check: vue_check,
-          // // venue: venue_value,
-          // // counsellor: counsellor_value,
-          // counselling_goals: counselling_goals,
-          // details: details,
-          // conceptualisation: conceptualisation,
-          // verbal_intent: verbal_intent,
-          // ambivalence_intent: ambivalence_intent,
-          // explore_plans: explore_plans,
-          // concrete_plans: concrete_plans,
-          // lethal_means: lethal_means,
-          // social_resource: social_resource,
-          // skills_resource: skills_resource,
-          // suicide_attempt: suicide_attempt,
-          // mental_health: mental_health,
-          // follow_up: follow_up,
-          reasonsForReferral: this.reasonsForReferral,
-          obsOfPresentation: this.obsOfPresentation,
-          counsellingGoals: this.counsellingGoals,
-          detailsOfSession: this.detailsOfSession,
-          caseConceptualisation: this.caseConceptualisation,
-          interventionsProvided: this.interventionsProvided,
-          reasonsForClosure: this.reasonsForClosure,
+        database
+            .collection("forms")
+            .doc(this.nric)
+            .update({
+            // session_num: session_num,
+            // vue_check: vue_check,
+            // // venue: venue_value,
+            // // counsellor: counsellor_value,
+            // counselling_goals: counselling_goals,
+            // details: details,
+            // conceptualisation: conceptualisation,
+            // verbal_intent: verbal_intent,
+            // ambivalence_intent: ambivalence_intent,
+            // explore_plans: explore_plans,
+            // concrete_plans: concrete_plans,
+            // lethal_means: lethal_means,
+            // social_resource: social_resource,
+            // skills_resource: skills_resource,
+            // suicide_attempt: suicide_attempt,
+            // mental_health: mental_health,
+            // follow_up: follow_up,
+            reasonsForReferral: this.reasonsForReferral,
+            obsOfPresentation: this.obsOfPresentation,
+            counsellingGoals: this.counsellingGoals,
+            detailsOfSession: this.detailsOfSession,
+            caseConceptualisation: this.caseConceptualisation,
+            interventionsProvided: this.interventionsProvided,
+            reasonsForClosure: this.reasonsForClosure,
+            sourceOfReferral: this.sourceOfReferral,
         })
         .then(function (docRef) {
-          console.log("First Session Draft Successfully Saved");
-          self.saveSuccess = true
+            console.log("First Session Draft Successfully Saved");
+            self.saveSuccess = true
         })
         .catch(function (error) {
-          console.error("Error Saving Draft: ", error);
+            console.error("Error Saving Draft: ", error);
         });
     },
     submit: function () {
-      var filled_form = document.getElementById("first-session");
-      // console.log(filled_form);
-      var options = {
-        jsPDF: {
-          format: "a4",
-        },
-        html2canvas: { letterRendering: true, useCORS: true, logging: true },
-        margin: 2,
-        image: { type: "jpeg", quality: 1 },
-      };
-      var file_name = this.nric + "_" + this.session_num.toString() + ".pdf";
-      console.log(options);
-      html2pdf().set(options).from(filled_form).toPdf().save(file_name);
-      this.submitSuccess = true;
+        var filled_form = document.getElementById("first-session");
+        // console.log(filled_form);
+        var options = {
+            jsPDF: {
+            format: "a4",
+            },
+            html2canvas: { letterRendering: true, useCORS: true, logging: true },
+            margin: 2,
+            image: { type: "jpeg", quality: 1 },
+        };
+        var file_name = this.nric + "_" + this.session_num.toString() + ".pdf";
+        console.log(options);
+        html2pdf().set(options).from(filled_form).toPdf().save(file_name);
+        this.submitSuccess = true;
     },
   },
 };
