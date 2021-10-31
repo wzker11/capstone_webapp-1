@@ -93,7 +93,21 @@
                                 <div class="row">
                                     <base-input class="col-sm-6" label="NRIC" v-model="nric"></base-input>
                                     <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="retrieveData">Retrieve</base-button>
-                                    <!-- <button v-on:click="retrieveData" style = "margin-left: 15px; color: black; margin-bottom: 10px;">Retrieve</button> -->
+                                    <modal :show.sync="retrieveSuccess" gradient="primary" modal-classes="modal-danger modal-dialog-centered">
+                                        <div class="py-3 text-center">
+                                        <i class="ni ni-check-bold ni-3x"></i>
+                                        <h4 class="heading mt-4">Data Retrieved Successfully!</h4>
+                                        </div>
+
+                                        <template slot="footer">
+                                            <base-button type="link"
+                                                        text-color="white"
+                                                        class="ml-auto"
+                                                        @click="retrieveSuccess = false">
+                                                Close window
+                                            </base-button>
+                                        </template>
+                                    </modal>
                                 </div>
                             <div>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
@@ -152,16 +166,6 @@
                                         <img v-show="isAnnex" width="930px" src="./ANNEX2.png" />
                                         <img v-show="isAnnex" width="930px" src="./ANNEX3.png" />
                                     </div>
-                                    <!-- <textarea name="obsOfPresentation_S" row=100 cols=95></textarea> -->
-                                    <!-- <quill-editor
-                                    ref="myQuillEditor"
-                                    style="height:150px"
-                                    theme="snow"
-                                    v-model="obsOfPresentation"
-                                    :options="editorOption"
-                                    @blur="onEditorBlur($event)"
-                                    @focus="onEditorFocus($event)"
-                                    @ready="onEditorReady($event)"/> -->
                                     <vue-editor v-model="obsOfPresentation"></vue-editor>
                                 </div>      
                             </div>
@@ -173,16 +177,6 @@
                                     <h2 class="heading-title text-warning mb-0">Counselling Goals</h2>
                                     <br>
                                     <p>List down client’s counselling/ therapy goals (mutually agreed) to be achieved for counselling and/or during the current session.</p>
-                                    <!-- <textarea name="counsellingGoals_S" row=10 cols=95></textarea> -->
-                                    <!-- <quill-editor
-                                              ref="myQuillEditor"
-                                              style="height:150px"
-                                              theme="snow"
-                                              v-model="counsellingGoals"
-                                              :options="editorOption"
-                                              @blur="onEditorBlur($event)"
-                                              @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/> -->
                                     <vue-editor v-model="counsellingGoals"></vue-editor>
                                     <br><br><br><br>
 
@@ -199,48 +193,18 @@
                                             <li>Feedback on assigned practices/exercises</li>
                                         </ul>
                                     </p>
-                                    <!-- <textarea name="detailsOfSession_S" row=10 cols=95></textarea> -->
-                                    <!-- <quill-editor
-                                              ref="myQuillEditor"
-                                              style="height:150px"
-                                              theme="snow"
-                                              v-model="detailsOfSession"
-                                              :options="editorOption"
-                                              @blur="onEditorBlur($event)"
-                                              @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/> -->
                                     <vue-editor v-model="detailsOfSession"></vue-editor>
                                     <br><br><br><br>
 
                                     <h2 class="heading-title text-warning mb-0">Intervention(s) provided</h2>
                                     <br>
                                     <p><em>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</em></p>
-                                    <!-- <textarea name="interventionsProvided_S" row=10 cols=95></textarea> -->
-                                    <!-- <quill-editor
-                                              ref="myQuillEditor"
-                                              style="height:150px"
-                                              theme="snow"
-                                              v-model="interventionsProvided"
-                                              :options="editorOption"
-                                              @blur="onEditorBlur($event)"
-                                              @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/> -->
                                     <vue-editor v-model="interventionsProvided"></vue-editor>
                                     <br><br><br><br>
 
                                     <h2 class="heading-title text-warning mb-0">Comments</h2>
                                     <br>
                                     <p>Your assessment of the factors that have contributed to his / her progress, effectiveness of the intervention(s) provided, etc.</p>
-                                    <!-- <textarea name="Comments" row=10 cols=95></textarea> -->
-                                    <!-- <quill-editor
-                                              ref="myQuillEditor"
-                                              style="height:150px"
-                                              theme="snow"
-                                              v-model="comments"
-                                              :options="editorOption"
-                                              @blur="onEditorBlur($event)"
-                                              @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/> -->
                                     <vue-editor v-model="comments"></vue-editor>
                                     <br><br><br><br>
 
@@ -350,25 +314,44 @@
                             <label>Next Session Date</label>
                             <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
                             <label>Reason(s) for Closure</label><br>
-                            <!-- <quill-editor
-                                              ref="myQuillEditor"
-                                              style="height:150px"
-                                              theme="snow"
-                                              v-model="reasonsForClosure"
-                                              :options="editorOption"
-                                              @blur="onEditorBlur($event)"
-                                              @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/> -->
                             <vue-editor v-model="reasonsForClosure"></vue-editor>
                         </div>
                         </form>
                         <br><br><br><br>
                        
                         <div class="row justify-content-center">
-                        <!-- <a href="#">Submit</a> -->
-                        <!-- <modals class="row justify-content-center"></modals> -->
                         <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="saveDraft">Save Draft</base-button>
+                        <modal :show.sync="saveSuccess" gradient="primary" modal-classes="modal-danger modal-dialog-centered">
+                            <div class="py-3 text-center">
+                              <i class="ni ni-check-bold ni-3x"></i>
+                              <h4 class="heading mt-4">Save Successfully!</h4>
+                            </div>
+
+                            <template slot="footer">
+                                <base-button type="link"
+                                            text-color="white"
+                                            class="ml-auto"
+                                            @click="saveSuccess = false">
+                                    Close window
+                                </base-button>
+                            </template>
+                        </modal>
                         <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="submit" id="submit-btn">Submit</base-button>
+                        <modal :show.sync="submitSuccess" gradient="primary" modal-classes="modal-danger modal-dialog-centered">
+                            <div class="py-3 text-center">
+                              <i class="ni ni-check-bold ni-3x"></i>
+                              <h4 class="heading mt-4">Submit Successfully!</h4>
+                            </div>
+
+                            <template slot="footer">
+                                <base-button type="link"
+                                            text-color="white"
+                                            class="ml-auto"
+                                            @click="submitSuccess = false">
+                                    Close window
+                                </base-button>
+                            </template>
+                        </modal>
                     </div>
                     <br>
                     </div>
@@ -385,14 +368,11 @@ import Tabs from "@/components/Tabs/Tabs.vue";
 import TabPane from "@/components/Tabs/TabPane.vue";
 import TabsSection from "./JavascriptComponents/TabsSection";
 import Modals from "./JavascriptComponents/Modals";
-import 'quill/dist/quill.core.css';
-import 'quill/dist/quill.snow.css';
-import 'quill/dist/quill.bubble.css';
-import { quillEditor } from 'vue-quill-editor';
 import html2pdf from 'html2pdf.js';
 import { jsPDF } from "jspdf";
 import { VueEditor } from "vue2-editor";
 import Modal from "@/components/Modal.vue";
+import database from '../../firebase';
 
 
 export default {
@@ -404,7 +384,7 @@ export default {
             isResources: false,
             isPastAttempt: false,
             isMentalHealth: false,
-            name : '',
+            name: '',
             nric: '',
             obsOfPresentation:'',
             counsellingGoals:'',
@@ -412,11 +392,11 @@ export default {
             comments:'',
             interventionsProvided:'',
             reasonsForClosure:'',
-            editorOption: {
-                // Some Quill options...
-            },
             session_num: 2,
             modal: false,
+            retrieveSuccess:false,
+            submitSuccess:false,
+            saveSuccess:false,
         }
     },
     components: {
@@ -425,7 +405,6 @@ export default {
         Tabs,
         TabsSection,
         Modals,
-        quillEditor,
         VueEditor,
         Modal
     },
@@ -433,25 +412,26 @@ export default {
         signOut() {
           this.$router.push("login");
         },
-        retrieveData() {
-          var input_nric = this.nric;
-          var patients = ["S9596412E", "S9614554C"];
-          if (!patients.includes(input_nric)) {
-            alert("Please enter a valid NRIC number");
-            return;
-          }
-          var info = firebase.database().ref("/" + input_nric);
-          info.on("value", (snapshot) => {
-            const data = snapshot.val();
-            this.race = data["Race"];
-            this.name = data["Name"];
-            this.maritalstatus = data["Marital Status"];
-            this.unit = data["Unit"];
-            this.contact = data["Contact Number"];
-            this.enlistment = data["Enlistment Date"];
-            this.age = data["Age"];
-            this.ord = data["ORD Date"];
-          });
+        retrieveData(){
+            var input_nric = this.nric;
+            // var string = this.content;
+            const snapshot = database.collection('forms').doc(input_nric).get();
+            snapshot.then((doc) => {
+                const data = doc.data();
+                this.race = data["race"];
+                this.name = data["name"];
+                this.maritalstatus = data["maritalStatus"];
+                this.unit = data["unit"];
+                this.contact = data["contactNumber"];
+                this.enlistment = data["enlistmentDate"];
+                this.age = data["age"];
+                this.ord = data["ordDate"];
+                this.retrieveSuccess = true;
+            })
+            .catch(function (error) {
+                alert("Please check input NRIC again")
+                console.error("Error Retrieving Data: ", error);
+                });
         },
         clearFields() {
           this.race = "";
@@ -472,6 +452,7 @@ export default {
             return time;
         },
         saveDraft: function () {
+            const self = this;
           const session_num = this.session_num;
           var nric = document.getElementById("nric").value;
 
@@ -522,6 +503,7 @@ export default {
             })
             .then(function (docRef) {
               console.log("First Session Draft Successfully Saved");
+              self.saveSuccess = true;
             })
             .catch(function (error) {
               console.error("Error Saving Draft: ", error);
@@ -541,29 +523,9 @@ export default {
           var file_name = this.nric + "_" + this.session_num.toString() + ".pdf";
           console.log(options);
           html2pdf().set(options).from(filled_form).toPdf().save(file_name);
-        },
-        onEditorBlur(quill) {
-            console.log('editor blur!', quill)
-        },
-        onEditorFocus(quill) {
-            console.log('editor focus!', quill)
-        },
-        onEditorReady(quill) {
-            console.log('editor ready!', quill)
-        },
-        onEditorChange({ quill, html, text }) {
-            console.log('editor change!', quill, html, text)
-            this.content = html
+          this.submitSuccess = true;
         }
     },
-    computed: {
-        editor() {
-            return this.$refs.myQuillEditor.quill
-        }
-    },
-    mounted() {
-        console.log('this is current quill instance object', this.editor)
-    }
 };
 </script>
 

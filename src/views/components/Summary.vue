@@ -1,5 +1,5 @@
 <template>
-    <div class="scroll">
+    <div>
     <section class="section-hero section-shaped my-0">
         <div class="shape shape-style-1 shape-primary">
             <span class="span-150"></span>
@@ -77,6 +77,7 @@
         </section>
         </div>
     </section>
+    <br><br><br><br><br><br><br><br><br><br><br>
     </div>
 </template>
 
@@ -87,10 +88,6 @@ import Tabs from "@/components/Tabs/Tabs.vue";
 import TabPane from "@/components/Tabs/TabPane.vue";
 import TabsSection from "./JavascriptComponents/TabsSection";
 import Modals from "./JavascriptComponents/Modals";
-import "quill/dist/quill.core.css";
-import "quill/dist/quill.snow.css";
-import "quill/dist/quill.bubble.css";
-import { quillEditor } from "vue-quill-editor";
 import database from '../../firebase.js';
 
 export default {
@@ -121,8 +118,7 @@ export default {
     TabPane,
     Tabs,
     TabsSection,
-    Modals,
-    quillEditor,
+    Modals
   },
   methods: {
     signOut() {

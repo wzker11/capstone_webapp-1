@@ -98,6 +98,21 @@
                                                 <div class="row">
                                                     <base-input class="col-sm-9" label="NRIC" v-model="nric" id="nric"></base-input>
                                                     <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="retrieveData">Retrieve</base-button>
+                                                    <modal :show.sync="retrieveSuccess" gradient="primary" modal-classes="modal-danger modal-dialog-centered">
+                                                      <div class="py-3 text-center">
+                                                        <i class="ni ni-check-bold ni-3x"></i>
+                                                        <h4 class="heading mt-4">Data Retrieved Successfully!</h4>
+                                                      </div>
+
+                                                      <template slot="footer">
+                                                          <base-button type="link"
+                                                                      text-color="white"
+                                                                      class="ml-auto"
+                                                                      @click="retrieveSuccess = false">
+                                                              Close window
+                                                          </base-button>
+                                                      </template>
+                                                    </modal>
                                                 </div>
                                                 <base-input label="Rank/Name" v-model="name"></base-input>
                                                 <label class="mb-3" >Age</label>
@@ -325,8 +340,6 @@
                                         <label>Next Session Date</label>
                                         <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
                                         <label>Reason(s) for Closure</label><br>
-
-                                        <base-button @click="saveContent"></base-button>
                                         <vue-editor v-model="reasonsForClosure"></vue-editor>
                                     </div>
                                 </div>
@@ -350,7 +363,37 @@
                         <!-- <a href="#">Submit</a> -->
                         <!-- <modals class="row justify-content-center" v-on:click="retrieveData">check</modals> -->
                         <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="saveDraft">Save Draft</base-button>
+                        <modal :show.sync="saveSuccess" gradient="primary" modal-classes="modal-danger modal-dialog-centered">
+                            <div class="py-3 text-center">
+                              <i class="ni ni-check-bold ni-3x"></i>
+                              <h4 class="heading mt-4">Save Successfully!</h4>
+                            </div>
+
+                            <template slot="footer">
+                                <base-button type="link"
+                                            text-color="white"
+                                            class="ml-auto"
+                                            @click="saveSuccess = false">
+                                    Close window
+                                </base-button>
+                            </template>
+                        </modal>
                         <base-button size="sm " type="primary" style = "height:45px; width:105px; margin-top:31px" v-on:click="submit" id="submit-btn">Submit</base-button>
+                        <modal :show.sync="submitSuccess" gradient="primary" modal-classes="modal-danger modal-dialog-centered">
+                            <div class="py-3 text-center">
+                              <i class="ni ni-check-bold ni-3x"></i>
+                              <h4 class="heading mt-4">Submit Successfully!</h4>
+                            </div>
+
+                            <template slot="footer">
+                                <base-button type="link"
+                                            text-color="white"
+                                            class="ml-auto"
+                                            @click="submitSuccess = false">
+                                    Close window
+                                </base-button>
+                            </template>
+                        </modal>
                     </div>
                     <br>
                 </card>
@@ -374,7 +417,6 @@ import Card from "../../components/Card.vue";
 import html2pdf from 'html2pdf.js';
 import { jsPDF } from "jspdf";
 import { VueEditor } from "vue2-editor";
-import { addDoc, collection } from "firebase/firestore"; 
 import database from '../../firebase';
 import Modal from "@/components/Modal.vue";
 
@@ -404,12 +446,12 @@ export default {
       caseConceptualisation: "",
       interventionsProvided: "",
       reasonsForClosure: "",
-      editorOption: {
-        // Some Quill options...
-      },
       session_num: 1,
       content:"",
       modal:false,
+      saveSuccess: false,
+      retrieveSuccess: false,
+      submitSuccess: false,
     };
   },
   components: {
@@ -454,6 +496,8 @@ export default {
         this.enlistment = data["enlistmentDate"];
         this.age = data["age"];
         this.ord = data["ordDate"];
+        this.reasonsForReferral = data["reasonsForReferral"];
+        this.retrieveSuccess = true;
       })
       .catch(function (error) {
         alert("Please check input NRIC again")
@@ -470,27 +514,6 @@ export default {
       const time = hour + ":" + minute;
       return time;
     },
-    // retrieveData() {
-    //   var input_nric = this.nric;
-    //   var patients = ["S9596412E", "S9614554C"];
-    //   if (!patients.includes(input_nric)) {
-    //     alert("Please enter a valid NRIC number");
-    //     return;
-    //   }
-    //   var info = firebase.database().ref("/" + input_nric);
-    //   info.on("value", (snapshot) => {
-    //     const data = snapshot.val();
-    //     this.race = data["Race"];
-    //     this.name = data["Name"];
-    //     this.maritalstatus = data["Marital Status"];
-    //     this.unit = data["Unit"];
-    //     this.contact = data["Contact Number"];
-    //     this.enlistment = data["Enlistment Date"];
-    //     this.age = data["Age"];
-    //     this.ord = data["ORD Date"];
-    //     this.content = data["content"];
-    //   });
-    // },
     clearFields() {
       this.race = "";
       this.name = "";
@@ -511,6 +534,7 @@ export default {
       this.modal = false;
     },
     saveDraft: function () {
+      const self = this;
       const session_num = this.session_num;
       var nric = document.getElementById("nric").value;
 
@@ -519,47 +543,55 @@ export default {
       // var venue_value = venue.options[venue.selectedIndex].innerText;
       // var counsellor = document.getElementById('counsellor');
       // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
-      var counselling_goals = document.getElementById("counselling_goals").value;
-      var details = document.getElementById("details").value;
-      var conceptualisation = document.getElementById("conceptualisation").value;
-      var verbal_intent = document.getElementById("verbal-intent").value;
-      var ambivalence_intent = document.getElementById("ambivalence-intent").value;
-      var explore_plans = document.getElementById("explore-plans").value;
-      var concrete_plans = document.getElementById("concrete-plans").value;
-      var lethal_means = document.getElementById("lethal-means").value;
-      var social_resource = document.getElementById("social-resource").value;
-      var skills_resource = document.getElementById("skills-resource").value;
-      var suicide_attempt = document.getElementById("suicide-attempt").value;
-      var mental_health = document.getElementById("mental-health").value;
-      // var risk_level = document.getElementById('risk_level');
-      // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
-      var follow_up = document.getElementById("follow-up").value;
-      var vue_check = document.getElementById("vuecheck").value;
+      // var counselling_goals = document.getElementById("counselling_goals").value;
+      // var details = document.getElementById("details").value;
+      // var conceptualisation = document.getElementById("conceptualisation").value;
+      // var verbal_intent = document.getElementById("verbal-intent").value;
+      // var ambivalence_intent = document.getElementById("ambivalence-intent").value;
+      // var explore_plans = document.getElementById("explore-plans").value;
+      // var concrete_plans = document.getElementById("concrete-plans").value;
+      // var lethal_means = document.getElementById("lethal-means").value;
+      // var social_resource = document.getElementById("social-resource").value;
+      // var skills_resource = document.getElementById("skills-resource").value;
+      // var suicide_attempt = document.getElementById("suicide-attempt").value;
+      // var mental_health = document.getElementById("mental-health").value;
+      // // var risk_level = document.getElementById('risk_level');
+      // // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
+      // var follow_up = document.getElementById("follow-up").value;
+      // var vue_check = document.getElementById("vuecheck").value;
 
       database
         .collection("forms")
         .doc(this.nric)
         .update({
-          session_num: session_num,
-          vue_check: vue_check,
-          // venue: venue_value,
-          // counsellor: counsellor_value,
-          counselling_goals: counselling_goals,
-          details: details,
-          conceptualisation: conceptualisation,
-          verbal_intent: verbal_intent,
-          ambivalence_intent: ambivalence_intent,
-          explore_plans: explore_plans,
-          concrete_plans: concrete_plans,
-          lethal_means: lethal_means,
-          social_resource: social_resource,
-          skills_resource: skills_resource,
-          suicide_attempt: suicide_attempt,
-          mental_health: mental_health,
-          follow_up: follow_up,
+          // session_num: session_num,
+          // vue_check: vue_check,
+          // // venue: venue_value,
+          // // counsellor: counsellor_value,
+          // counselling_goals: counselling_goals,
+          // details: details,
+          // conceptualisation: conceptualisation,
+          // verbal_intent: verbal_intent,
+          // ambivalence_intent: ambivalence_intent,
+          // explore_plans: explore_plans,
+          // concrete_plans: concrete_plans,
+          // lethal_means: lethal_means,
+          // social_resource: social_resource,
+          // skills_resource: skills_resource,
+          // suicide_attempt: suicide_attempt,
+          // mental_health: mental_health,
+          // follow_up: follow_up,
+          reasonsForReferral: this.reasonsForReferral,
+          obsOfPresentation: this.obsOfPresentation,
+          counsellingGoals: this.counsellingGoals,
+          detailsOfSession: this.detailsOfSession,
+          caseConceptualisation: this.caseConceptualisation,
+          interventionsProvided: this.interventionsProvided,
+          reasonsForClosure: this.reasonsForClosure,
         })
         .then(function (docRef) {
           console.log("First Session Draft Successfully Saved");
+          self.saveSuccess = true
         })
         .catch(function (error) {
           console.error("Error Saving Draft: ", error);
@@ -579,6 +611,7 @@ export default {
       var file_name = this.nric + "_" + this.session_num.toString() + ".pdf";
       console.log(options);
       html2pdf().set(options).from(filled_form).toPdf().save(file_name);
+      this.submitSuccess = true;
     },
   },
 };
