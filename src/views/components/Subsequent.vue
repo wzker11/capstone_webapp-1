@@ -65,9 +65,30 @@
                         <div ref="client-information">
                                 <h2 class="heading-title text-warning mb-0">Client Information</h2>
                                 <div class="row">
-                                          <p class="ml-3"> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
-                                            <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 9%" v-on:click="clearFields">Clear All Fields</base-button>
+                                    <p class="ml-3"> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
+                                        <!-- <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 9%" v-on:click="clearFields">Clear All Fields</base-button> -->
+                                        <div>
+                                            <base-button size="sm " block type="warning" class=" mb-3" @click="modal = true" style = "height:30px; width:130px; margin-top:0px; margin-left: 70%"> Clear All Fields </base-button>
+                                            <modal :show.sync="modal" gradient="danger" modal-classes="modal-danger modal-dialog-centered">
+                                                <h6 slot="header" class="modal-title" id="modal-title-notification">Your attention is required</h6>
+                                                <div class="py-3 text-center">
+                                                <i class="ni ni-bell-55 ni-3x"></i>
+                                                <h4 class="heading mt-4">You are about to clear all fields in this form</h4>
+                                                <p>Are you sure you want to proceed?</p>
+                                                </div>
+
+                                                <template slot="footer">
+                                                    <base-button type="white" @click="clearFields">Yes, clear all fields.</base-button>
+                                                    <base-button type="link"
+                                                                text-color="white"
+                                                                class="ml-auto"
+                                                                @click="modal = false">
+                                                        Check again
+                                                    </base-button>
+                                                </template>
+                                            </modal>
                                         </div>
+                                </div>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
                                 <div class="row">
                                     <base-input class="col-sm-6" label="NRIC" v-model="nric"></base-input>
@@ -132,7 +153,7 @@
                                         <img v-show="isAnnex" width="930px" src="./ANNEX3.png" />
                                     </div>
                                     <!-- <textarea name="obsOfPresentation_S" row=100 cols=95></textarea> -->
-                                    <quill-editor
+                                    <!-- <quill-editor
                                     ref="myQuillEditor"
                                     style="height:150px"
                                     theme="snow"
@@ -140,7 +161,8 @@
                                     :options="editorOption"
                                     @blur="onEditorBlur($event)"
                                     @focus="onEditorFocus($event)"
-                                    @ready="onEditorReady($event)"/>
+                                    @ready="onEditorReady($event)"/> -->
+                                    <vue-editor v-model="obsOfPresentation"></vue-editor>
                                 </div>      
                             </div>
                             <br><br><br><br>
@@ -152,7 +174,7 @@
                                     <br>
                                     <p>List down client’s counselling/ therapy goals (mutually agreed) to be achieved for counselling and/or during the current session.</p>
                                     <!-- <textarea name="counsellingGoals_S" row=10 cols=95></textarea> -->
-                                    <quill-editor
+                                    <!-- <quill-editor
                                               ref="myQuillEditor"
                                               style="height:150px"
                                               theme="snow"
@@ -160,7 +182,8 @@
                                               :options="editorOption"
                                               @blur="onEditorBlur($event)"
                                               @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/>
+                                              @ready="onEditorReady($event)"/> -->
+                                    <vue-editor v-model="counsellingGoals"></vue-editor>
                                     <br><br><br><br>
 
                                     <h2 class="heading-title text-warning mb-0">Details Of Session</h2>
@@ -177,7 +200,7 @@
                                         </ul>
                                     </p>
                                     <!-- <textarea name="detailsOfSession_S" row=10 cols=95></textarea> -->
-                                    <quill-editor
+                                    <!-- <quill-editor
                                               ref="myQuillEditor"
                                               style="height:150px"
                                               theme="snow"
@@ -185,14 +208,15 @@
                                               :options="editorOption"
                                               @blur="onEditorBlur($event)"
                                               @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/>
+                                              @ready="onEditorReady($event)"/> -->
+                                    <vue-editor v-model="detailsOfSession"></vue-editor>
                                     <br><br><br><br>
 
                                     <h2 class="heading-title text-warning mb-0">Intervention(s) provided</h2>
                                     <br>
                                     <p><em>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</em></p>
                                     <!-- <textarea name="interventionsProvided_S" row=10 cols=95></textarea> -->
-                                    <quill-editor
+                                    <!-- <quill-editor
                                               ref="myQuillEditor"
                                               style="height:150px"
                                               theme="snow"
@@ -200,14 +224,15 @@
                                               :options="editorOption"
                                               @blur="onEditorBlur($event)"
                                               @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/>
+                                              @ready="onEditorReady($event)"/> -->
+                                    <vue-editor v-model="interventionsProvided"></vue-editor>
                                     <br><br><br><br>
 
                                     <h2 class="heading-title text-warning mb-0">Comments</h2>
                                     <br>
                                     <p>Your assessment of the factors that have contributed to his / her progress, effectiveness of the intervention(s) provided, etc.</p>
                                     <!-- <textarea name="Comments" row=10 cols=95></textarea> -->
-                                    <quill-editor
+                                    <!-- <quill-editor
                                               ref="myQuillEditor"
                                               style="height:150px"
                                               theme="snow"
@@ -215,7 +240,8 @@
                                               :options="editorOption"
                                               @blur="onEditorBlur($event)"
                                               @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/>
+                                              @ready="onEditorReady($event)"/> -->
+                                    <vue-editor v-model="comments"></vue-editor>
                                     <br><br><br><br>
 
                                 </div>
@@ -324,7 +350,7 @@
                             <label>Next Session Date</label>
                             <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
                             <label>Reason(s) for Closure</label><br>
-                            <quill-editor
+                            <!-- <quill-editor
                                               ref="myQuillEditor"
                                               style="height:150px"
                                               theme="snow"
@@ -332,7 +358,8 @@
                                               :options="editorOption"
                                               @blur="onEditorBlur($event)"
                                               @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/>
+                                              @ready="onEditorReady($event)"/> -->
+                            <vue-editor v-model="reasonsForClosure"></vue-editor>
                         </div>
                         </form>
                         <br><br><br><br>
@@ -364,6 +391,8 @@ import 'quill/dist/quill.bubble.css';
 import { quillEditor } from 'vue-quill-editor';
 import html2pdf from 'html2pdf.js';
 import { jsPDF } from "jspdf";
+import { VueEditor } from "vue2-editor";
+import Modal from "@/components/Modal.vue";
 
 
 export default {
@@ -387,6 +416,7 @@ export default {
                 // Some Quill options...
             },
             session_num: 2,
+            modal: false,
         }
     },
     components: {
@@ -395,7 +425,9 @@ export default {
         Tabs,
         TabsSection,
         Modals,
-        quillEditor
+        quillEditor,
+        VueEditor,
+        Modal
     },
     methods: {
         signOut() {
@@ -431,6 +463,7 @@ export default {
           this.age = "";
           this.ord = "";
           this.nric = "";
+          this.modal = false;
         },
         curren_time() {
             const current = new Date();

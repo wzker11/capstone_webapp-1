@@ -69,7 +69,28 @@
                                         <h2 class="heading-title text-warning mb-0">Client Information</h2>
                                         <div class="row">
                                           <p class="ml-3"> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
-                                            <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 9%" v-on:click="clearFields">Clear All Fields</base-button>
+                                            <!-- <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 9%" v-on:click="clearFields">Clear All Fields</base-button> -->
+                                            <div>
+                                              <base-button size="sm " block type="warning" class=" mb-3" @click="modal = true" style = "height:30px; width:130px; margin-top:0px; margin-left: 70%"> Clear All Fields </base-button>
+                                              <modal :show.sync="modal" gradient="danger" modal-classes="modal-danger modal-dialog-centered">
+                                                  <h6 slot="header" class="modal-title" id="modal-title-notification">Your attention is required</h6>
+                                                  <div class="py-3 text-center">
+                                                    <i class="ni ni-bell-55 ni-3x"></i>
+                                                    <h4 class="heading mt-4">You are about to clear all fields in this form</h4>
+                                                    <p>Are you sure you want to proceed?</p>
+                                                  </div>
+
+                                                  <template slot="footer">
+                                                      <base-button type="white" @click="clearFields">Yes, clear all fields.</base-button>
+                                                      <base-button type="link"
+                                                                  text-color="white"
+                                                                  class="ml-auto"
+                                                                  @click="modal = false">
+                                                          Check again
+                                                      </base-button>
+                                                  </template>
+                                              </modal>
+                                            </div>
                                         </div>
                                         <br>
                                         <div class="row">
@@ -355,6 +376,7 @@ import { jsPDF } from "jspdf";
 import { VueEditor } from "vue2-editor";
 import { addDoc, collection } from "firebase/firestore"; 
 import database from '../../firebase';
+import Modal from "@/components/Modal.vue";
 
 
 export default {
@@ -387,6 +409,7 @@ export default {
       },
       session_num: 1,
       content:"",
+      modal:false,
     };
   },
   components: {
@@ -400,6 +423,7 @@ export default {
     CloseButton,
     Card,
     VueEditor,
+    Modal
   },
   methods: { 
     saveContent(){
@@ -484,6 +508,7 @@ export default {
       this.caseConceptualisation= "";
       this.interventionsProvided= "";
       this.reasonsForClosure= "";
+      this.modal = false;
     },
     saveDraft: function () {
       const session_num = this.session_num;
@@ -494,14 +519,11 @@ export default {
       // var venue_value = venue.options[venue.selectedIndex].innerText;
       // var counsellor = document.getElementById('counsellor');
       // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
-      var counselling_goals =
-        document.getElementById("counselling_goals").value;
+      var counselling_goals = document.getElementById("counselling_goals").value;
       var details = document.getElementById("details").value;
-      var conceptualisation =
-        document.getElementById("conceptualisation").value;
+      var conceptualisation = document.getElementById("conceptualisation").value;
       var verbal_intent = document.getElementById("verbal-intent").value;
-      var ambivalence_intent =
-        document.getElementById("ambivalence-intent").value;
+      var ambivalence_intent = document.getElementById("ambivalence-intent").value;
       var explore_plans = document.getElementById("explore-plans").value;
       var concrete_plans = document.getElementById("concrete-plans").value;
       var lethal_means = document.getElementById("lethal-means").value;
@@ -558,27 +580,6 @@ export default {
       console.log(options);
       html2pdf().set(options).from(filled_form).toPdf().save(file_name);
     },
-    onEditorBlur(quill) {
-      console.log("editor blur!", quill);
-    },
-    onEditorFocus(quill) {
-      console.log("editor focus!", quill);
-    },
-    onEditorReady(quill) {
-      console.log("editor ready!", quill);
-    },
-    onEditorChange({ quill, html, text }) {
-      console.log("editor change!", quill, html, text);
-      this.content = html;
-    },
-  },
-  computed: {
-    editor() {
-      return this.$refs.myQuillEditor.quill;
-    },
-  },
-  mounted() {
-    console.log("this is current quill instance object", this.editor);
   },
 };
 </script>
