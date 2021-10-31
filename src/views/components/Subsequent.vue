@@ -166,16 +166,6 @@
                                         <img v-show="isAnnex" width="930px" src="./ANNEX2.png" />
                                         <img v-show="isAnnex" width="930px" src="./ANNEX3.png" />
                                     </div>
-                                    <!-- <textarea name="obsOfPresentation_S" row=100 cols=95></textarea> -->
-                                    <!-- <quill-editor
-                                    ref="myQuillEditor"
-                                    style="height:150px"
-                                    theme="snow"
-                                    v-model="obsOfPresentation"
-                                    :options="editorOption"
-                                    @blur="onEditorBlur($event)"
-                                    @focus="onEditorFocus($event)"
-                                    @ready="onEditorReady($event)"/> -->
                                     <vue-editor v-model="obsOfPresentation"></vue-editor>
                                 </div>      
                             </div>
@@ -187,16 +177,6 @@
                                     <h2 class="heading-title text-warning mb-0">Counselling Goals</h2>
                                     <br>
                                     <p>List down client’s counselling/ therapy goals (mutually agreed) to be achieved for counselling and/or during the current session.</p>
-                                    <!-- <textarea name="counsellingGoals_S" row=10 cols=95></textarea> -->
-                                    <!-- <quill-editor
-                                              ref="myQuillEditor"
-                                              style="height:150px"
-                                              theme="snow"
-                                              v-model="counsellingGoals"
-                                              :options="editorOption"
-                                              @blur="onEditorBlur($event)"
-                                              @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/> -->
                                     <vue-editor v-model="counsellingGoals"></vue-editor>
                                     <br><br><br><br>
 
@@ -213,48 +193,18 @@
                                             <li>Feedback on assigned practices/exercises</li>
                                         </ul>
                                     </p>
-                                    <!-- <textarea name="detailsOfSession_S" row=10 cols=95></textarea> -->
-                                    <!-- <quill-editor
-                                              ref="myQuillEditor"
-                                              style="height:150px"
-                                              theme="snow"
-                                              v-model="detailsOfSession"
-                                              :options="editorOption"
-                                              @blur="onEditorBlur($event)"
-                                              @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/> -->
                                     <vue-editor v-model="detailsOfSession"></vue-editor>
                                     <br><br><br><br>
 
                                     <h2 class="heading-title text-warning mb-0">Intervention(s) provided</h2>
                                     <br>
                                     <p><em>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</em></p>
-                                    <!-- <textarea name="interventionsProvided_S" row=10 cols=95></textarea> -->
-                                    <!-- <quill-editor
-                                              ref="myQuillEditor"
-                                              style="height:150px"
-                                              theme="snow"
-                                              v-model="interventionsProvided"
-                                              :options="editorOption"
-                                              @blur="onEditorBlur($event)"
-                                              @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/> -->
                                     <vue-editor v-model="interventionsProvided"></vue-editor>
                                     <br><br><br><br>
 
                                     <h2 class="heading-title text-warning mb-0">Comments</h2>
                                     <br>
                                     <p>Your assessment of the factors that have contributed to his / her progress, effectiveness of the intervention(s) provided, etc.</p>
-                                    <!-- <textarea name="Comments" row=10 cols=95></textarea> -->
-                                    <!-- <quill-editor
-                                              ref="myQuillEditor"
-                                              style="height:150px"
-                                              theme="snow"
-                                              v-model="comments"
-                                              :options="editorOption"
-                                              @blur="onEditorBlur($event)"
-                                              @focus="onEditorFocus($event)"
-                                              @ready="onEditorReady($event)"/> -->
                                     <vue-editor v-model="comments"></vue-editor>
                                     <br><br><br><br>
 
@@ -455,7 +405,6 @@ export default {
         Tabs,
         TabsSection,
         Modals,
-        quillEditor,
         VueEditor,
         Modal
     },
