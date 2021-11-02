@@ -28,23 +28,23 @@ Open `http://localhost:8080/` and enjoy!
 <ul>
   <li>Login Page</li>
   <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Login.png" alt="Lamp" width="1000" height="450">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Login.png" alt="Lamp" width="1000" height="400">
   <br><br>
   <li>Signup Page</li>
   <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Signup.png" alt="Lamp" width="1000" height="450">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Signup.png" alt="Lamp" width="1000" height="400">
   <br><br>
   <li>First Session Form Page</li>
   <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/First_Session.png" alt="Lamp" width="1000" height="450">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/First_Session.png" alt="Lamp" width="1000" height="400">
   <br><br>
   <li>Subsequent Session Form Page</li>
   <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session.png" alt="Lamp" width="1000" height="450">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session.png" alt="Lamp" width="1000" height="400">
   <br><br>
   <li>Summary Page</li>
   <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Summary.png" alt="Lamp" width="1000" height="450">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Summary.png" alt="Lamp" width="1000" height="400">
   <br><br>
 </ul>
 
