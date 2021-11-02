@@ -44,8 +44,8 @@
                 </div>
                 <br>
                 <div class="row">
-                  <router-link :to="{name: 'register'}" style="width:200px">Register</router-link>
-                  <router-link :to="{name: 'forgetPassword'}">Forgot Password?</router-link>
+                  <router-link :to="{name: 'register'}" style="margin-left: 5%">Register</router-link>
+                  <router-link :to="{name: 'forgetPassword'}" style="margin-left: 35%">Forgot Password?</router-link>
                 </div>
               </form>
             </template>
@@ -75,20 +75,6 @@ export default {
     };
   },
   methods: {
-    // authenticate() {
-    //   var email = this.$refs.form.email.value;
-    //   var password = this.$refs.form.password.value;
-    //   if (email != '1') {
-    //       alert("Email not registered")
-    //   } else if (password != '2') {
-    //       alert("Incorrect password")
-    //   }
-    //   else {
-    //       console.log("Login successful")
-    //       //Change landing page
-    //       this.$router.push('first-session')
-    //   }
-    // },
     userLogin() {
         firebase
         .auth()

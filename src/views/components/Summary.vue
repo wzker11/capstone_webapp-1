@@ -1,5 +1,5 @@
 <template>
-    <div class="scroll">
+    <div>
     <section class="section-hero section-shaped my-0">
         <div class="shape shape-style-1 shape-primary">
             <span class="span-150"></span>
@@ -61,18 +61,23 @@
                             <h2><strong>Summary</strong></h2>
                         </div>
                         <div class="grid-container">
-                            <div v-for="(form, index) in forms" :key="index" class="each-grid">
-                               <p id="SgenericNames">{{index+1}}. {{ form.name}}</p>
-                               <p id="genericNames">{{form.status}}</p>
-                               <br><br>
-                            </div>
+                            <p id="SgenericNames">NRIC</p> <p id="SgenericNames">Name</p> <p id="SgenericNames">Status</p> <p id="SgenericNames">First/Subsequent</p>
                         </div>
+                        <div v-for="(form, index) in forms" :key="index">
+                           <div class="grid-container">
+                             <p id="genericNames">{{form.id}}</p> <p id="genericNames">{{form.name}}</p> <p id="genericNames"></p>
+                             <p v-if="form.session_num == 1" id = "genericNames">First Session</p>
+                             <p v-if="form.session_num == 0" id = "genericNames">Subsequent Session</p>
+                          </div>
+                        </div>
+                        <br><br>
                     </div>
                 </card>
             </div>
         </section>
         </div>
     </section>
+    <br><br><br><br><br><br><br><br><br><br><br>
     </div>
 </template>
 
@@ -83,10 +88,6 @@ import Tabs from "@/components/Tabs/Tabs.vue";
 import TabPane from "@/components/Tabs/TabPane.vue";
 import TabsSection from "./JavascriptComponents/TabsSection";
 import Modals from "./JavascriptComponents/Modals";
-import "quill/dist/quill.core.css";
-import "quill/dist/quill.snow.css";
-import "quill/dist/quill.bubble.css";
-import { quillEditor } from "vue-quill-editor";
 import database from '../../firebase.js';
 
 export default {
@@ -117,8 +118,7 @@ export default {
     TabPane,
     Tabs,
     TabsSection,
-    Modals,
-    quillEditor,
+    Modals
   },
   methods: {
     signOut() {
@@ -180,9 +180,11 @@ export default {
     fetchItems:function() {
         database.collection('forms').get().then(snapshot => {
             snapshot.docs.forEach(doc => {
+             let id = doc.id
+             this.forms.push(id)
              this.forms.push(doc.data());})
              })
-         },
+    },
     route:function(name) {
         this.$router.push({name: 'indivform', params: {name: name}})
       }
@@ -210,8 +212,8 @@ export default {
 .grid-container {
     display: grid;
     column-gap: 20px;
-    row-gap: 20px;
-    grid-template-columns: repeat(3, 1fr);
+    row-gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
     position: relative;
     z-index: 2;
     top: 20px;
@@ -229,7 +231,7 @@ export default {
     position: relative;
     max-height: 100%;
     max-width: 100%;
-    font-family: Mohave;
+    font-family: Serif;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -250,10 +252,10 @@ export default {
     position: relative;
     width: auto;
     height: auto;
-    font-family: Monospace;
+    font-family: Sans-serif;
     font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: 16px;
     text-align: center;
     color: #191970;
     margin-bottom: 10px;
@@ -262,13 +264,14 @@ export default {
     position: relative;
     width: auto;
     height: auto;
-    font-family: Monospace;
+    font-family: Sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
     text-align: center;
     color: black;
     margin-bottom: 20px;
+    background: lightgray;
 }
 
 </style>
