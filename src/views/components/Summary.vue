@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="scroll">
     <section class="section-hero section-shaped my-0">
         <div class="shape shape-style-1 shape-primary">
             <span class="span-150"></span>
@@ -179,10 +179,11 @@ export default {
     },
     fetchItems:function() {
         database.collection('forms').get().then(snapshot => {
+            let form = {}
             snapshot.docs.forEach(doc => {
-             let id = doc.id
-             this.forms.push(id)
-             this.forms.push(doc.data());})
+             form = doc.data()
+             form.id = doc.id
+             this.forms.push(form)})
              })
     },
     route:function(name) {
