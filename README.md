@@ -26,21 +26,26 @@ Open `http://localhost:8080/` and enjoy!
 <h2 id="demo">Demo</h2>
 
 <ul>
-  <li><a href="https://demos.creative-tim.com/vue-argon-design-system">Index Page</a></li>
-  <li><a href="https://demos.creative-tim.com/vue-argon-design-system/#/landing">Landing page</a></li>
-  <li><a href="https://demos.creative-tim.com/vue-argon-design-system/#/profile">Profile Page</a></li>
-  <li><a href="https://demos.creative-tim.com/vue-argon-design-system/#/login">Login Page</a></li>
-  <li><a href="https://demos.creative-tim.com/vue-argon-design-system/#/register">Register Page</a></li>
-</ul>
-
-<p><a href="https://demos.creative-tim.com/argon-design-system">View More</a></p>
-
-<h2 id="quick-start">Quick start</h2>
-
-<ul>
-  <li><a href="https://github.com/creativetimofficial/vue-argon-design-system/archive/master.zip">Download from Github</a>.</li>
-  <li><a href="https://www.creative-tim.com/product/vue-argon-design-system">Download from Creative Tim</a>.</li>
-  <li>Clone the repo: <code class="highlighter-rouge">git clone https://github.com/creativetimofficial/vue-argon-design-system.git</code>.</li>
+  <li>Login Page</li>
+  <br>
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Login.png" alt="Lamp" width="1000" height="450">
+  <br><br>
+  <li>Signup Page</li>
+  <br>
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Signup.png" alt="Lamp" width="1000" height="450">
+  <br><br>
+  <li>First Session Form Page</li>
+  <br>
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/First_Session.png" alt="Lamp" width="1000" height="450">
+  <br><br>
+  <li>Subsequent Session Form Page</li>
+  <br>
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session.png" alt="Lamp" width="1000" height="450">
+  <br><br>
+  <li>Summary Page</li>
+  <br>
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Summary.png" alt="Lamp" width="1000" height="450">
+  <br><br>
 </ul>
 
 
