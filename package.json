@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@popperjs/core": "^2.10.2",
     "bootstrap-vue": "^2.0.4",
     "flatpickr": "^4.5.1",
     "html2pdf": "^0.0.11",

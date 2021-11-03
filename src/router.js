@@ -12,6 +12,7 @@ import ForgetPassword from "./views/ForgetPassword.vue";
 // import subsequent-session from "./views/components/Subsequent.vue";
 import Sub_show from "./views/Sub_show.vue";
 import Summary from "./views/components/Summary.vue";
+import Guideline from "./views/Guideline.vue";
 
 Vue.use(Router);
 
@@ -110,6 +111,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: ForgetPassword,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/guideline",
+      name: "guideline",
+      components: {
+        header: AppHeader,
+        default: Guideline,
         footer: AppFooter
       }
     },

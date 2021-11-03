@@ -59,6 +59,9 @@
                                 </base-button>
                             </template>
                         </modal>
+                        <router-link to="/Guideline" title="General Guideline">
+                            <base-button size="sm" type="neutral" style="margin-right:660px">Guideline</base-button>
+                        </router-link>
                     </div>
                         <div class="px-4">
                             <div class="row justify-content-center">
@@ -162,7 +165,17 @@
                                             <base-input class="col-lg-3.9" v-model="sourceOfReferral.othersInput"></base-input>
                                         </div>
                                         <div>
-                                            <label>Reason(s) for Referral</label><br>
+                                            <div class="d-flex flex-row pt-sm">
+                                                <label style="margin-top:2px">Reason(s) for Referral</label><br>
+                                                <base-button 
+                                                size="sm" 
+                                                outline 
+                                                type="secondary"
+                                                style="margin-left:5px ;margin-bottom:5px"
+                                                v-b-popover.hover.right="'Reason(s) for referrals are indicated in the referral email sent by EBSC. This can include “stressed from tensions occurring at workplace”, “stressed from relationship problems”, “anxiety during turnouts” and so forth. .'"> ⓘ
+                                                </base-button>
+                                            </div>
+
                                               <vue-editor v-model="reasonsForReferral"></vue-editor>
                                         </div>      
                                     </div>
@@ -204,7 +217,20 @@
                                             </div>
                                             <br><br>
                                             <div>
+                                                <div class="d-flex flex-row pt-sm">
                                               <h5 class="heading-title text-warning mb-0">Observations of Presentation</h5>
+                                                <base-button 
+                                                size="sm" 
+                                                outline 
+                                                type="secondary"
+                                                style="margin-left:5px ;margin-bottom:5px"
+                                                v-b-popover.hover.right= "'This section allows attending counsellors to pay attention to the verbal and non-verbal behaviours. \
+                                                This allows a more comprehensive cross-sectional description of the client’s mental state at a given point in time.  \
+                                                When combined with biographical and historical information, it allows the counsellor to make a more accurate understanding of the presenting problems, which are required for coherent intervention. \
+                                                Domains can include appearance, behaviour, mood and affect, cognition and judgment. Please refer to the annex section of the case notes template for more information. \
+                                                Observing the presentation of the client could also allow you to assess potential risk of harm to themselves or others, or both.'"> ⓘ
+                                                </base-button>
+                                                </div>
                                               <br>
                                               <div class="row justify-content-left">
                                                   <p class="ml-3">Click on the annex button to get a guide for this section. </p>
@@ -224,7 +250,16 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <h5 class="heading-title text-warning mb-0">Counselling Goals</h5>
+                                                <div class="d-flex flex-row pt-sm">
+                                              <h5 class="heading-title text-warning mb-0">Counselling Goals</h5>
+                                                <base-button 
+                                                size="sm" 
+                                                outline 
+                                                type="secondary"
+                                                style="margin-left:5px ;margin-bottom:5px"
+                                                v-b-popover.hover.right= "'Counselling goals should be mutually agreed upon. Identifying a S.M.A.R.T. goal can help build a conversational tool during your session – be specific, measurable, attainable, realistic and timely in setting the goals.'"> ⓘ
+                                                </base-button>
+                                                </div>
                                                 <p>List down client’s counselling/ therapy goals (mutually agreed) to be achieved for counselling and/or during the current session.</p>
                                               <vue-editor v-model="counsellingGoals"></vue-editor>
                                                 <br><br><br><br>
@@ -246,10 +281,21 @@
                                               <vue-editor v-model="detailsOfSession"></vue-editor>
                                                 <br><br><br>
 
+                                                <div class="d-flex flex-row pt-sm">
                                                 <h5 class="heading-title text-warning mb-0">Case Conceptualisation</h5>
+                                                <base-button 
+                                                size="sm" 
+                                                outline 
+                                                type="secondary"
+                                                style="margin-left:5px ;margin-bottom:5px"
+                                                v-b-popover.hover.right= "'Understanding the client’s needs helps to build a coherent plan for focused interventions. It identifies contributing (note: not causal) factors that trigger and maintain the presenting issue.  Use a framework that you may be more familiar with (e.g., biopsychosocial framework shared during P.S.L.E.) . Always check in on your case conceptualisation with EBSC, wherever possible. '"> ⓘ
+                                                </base-button>
+                                                </div>
+
+                                                
                                                 <p>Your assessment of the client’s key underlying issues, obstacles that prevent him / her from resolving the issues, factors that have contributed to his / her progress, personal strengths that could be leveraged to help client manage his / her issues better, perceived social support network to help client manage presenting problem(s), any suspected psychological conditions that the client may be presenting, etc.</p>
 
-                                              <vue-editor v-model="caseConceptualisation"></vue-editor>
+                                                <vue-editor v-model="caseConceptualisation"></vue-editor>
                                                 <br><br><br><br>
 
                                                 <h5 class="heading-title text-warning mb-0">Intervention(s) provided</h5>
@@ -438,9 +484,15 @@ import { jsPDF } from "jspdf";
 import { VueEditor } from "vue2-editor";
 import database from '../../firebase';
 import Modal from "@/components/Modal.vue";
+import { VBTooltip } from "bootstrap-vue/esm/directives/tooltip/tooltip";
+import { VBPopover } from "bootstrap-vue/esm/directives/popover/popover";
 
 
 export default {
+    directives: {
+        BTooltip: VBTooltip,
+        BPopover: VBPopover,
+    },
     data() {
         return {
             isAnnex: false,
@@ -498,7 +550,7 @@ export default {
         CloseButton,
         Card,
         VueEditor,
-        Modal
+        Modal,
     },
   methods: { 
     retrieveData(){

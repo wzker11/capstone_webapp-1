@@ -57,6 +57,9 @@
                                 </base-button>
                             </template>
                         </modal>
+                        <router-link to="/Guideline" title="General Guideline">
+                            <base-button size="sm" type="neutral" style="margin-right:660px">Guideline</base-button>
+                        </router-link>
                     </div>
                     <div class="px-4">
                         <div class="row justify-content-center">
