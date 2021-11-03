@@ -38,8 +38,27 @@
             <section class="section section-skew">
                 <div class="container" style = "margin-top: -32.8%;">
                     <card shadow class="card-profile mt--300" no-body>
-                    <div>
-                        <base-button size="sm " type="primary" style = "height:30px; width:90px; margin-top:31px; margin-left: 90%" v-on:click="signOut">Sign Out</base-button>
+                    <div class="d-flex flex-row-reverse pt-sm">
+                        <base-button size="sm" type="primary" style = "height:30px; width:90px;" v-on:click="signOut">Sign Out</base-button>
+                        <base-button size="sm" block type="warning" class=" mb-3 float-right" @click="modal = true" style = "height:30px; width:130px;"> Clear All Fields </base-button>
+                        <modal :show.sync="modal" gradient="danger" modal-classes="modal-danger modal-dialog-centered">
+                            <h6 slot="header" class="modal-title" id="modal-title-notification">Your attention is required</h6>
+                            <div class="py-3 text-center">
+                                <i class="ni ni-bell-55 ni-3x"></i>
+                                <h4 class="heading mt-4">You are about to clear all fields in this form</h4>
+                                <p>Are you sure you want to proceed?</p>
+                            </div>
+
+                            <template slot="footer">
+                                <base-button type="white" @click="clearFields">Yes, clear all fields.</base-button>
+                                <base-button type="link"
+                                text-color="white"
+                                class="ml-auto"
+                                @click="modal = false">
+                                Check again
+                                </base-button>
+                            </template>
+                        </modal>
                     </div>
                         <div class="px-4">
                             <div class="row justify-content-center">
@@ -70,7 +89,7 @@
                                         <div class="row">
                                           <p class="ml-3"> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                             <!-- <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 9%" v-on:click="clearFields">Clear All Fields</base-button> -->
-                                            <div>
+                                            <!-- <div>
                                               <base-button size="sm " block type="warning" class=" mb-3" @click="modal = true" style = "height:30px; width:130px; margin-top:0px; margin-left: 70%"> Clear All Fields </base-button>
                                               <modal :show.sync="modal" gradient="danger" modal-classes="modal-danger modal-dialog-centered">
                                                   <h6 slot="header" class="modal-title" id="modal-title-notification">Your attention is required</h6>
@@ -90,7 +109,7 @@
                                                       </base-button>
                                                   </template>
                                               </modal>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <br>
                                         <div class="row">
@@ -482,20 +501,20 @@ export default {
         Modal
     },
   methods: { 
-    saveContent(){
-      var input_nric = this.nric;
-      // var string = this.content;
-      database.collection('forms').doc(input_nric).
-      update({
-        reasonsForClosure: this.reasonsForClosure,
-        reasonsForReferral: this.reasonsForReferral,
-        obsOfPresentation: this.obsOfPresentation,
-        counsellingGoals: this.counsellingGoals,
-        detailsOfSession: this.detailsOfSession,
-        caseConceptualisation: this.caseConceptualisation,
-        interventionsProvided: this.interventionsProvided,
-      });
-    },
+    // saveContent(){
+    //   var input_nric = this.nric;
+    //   // var string = this.content;
+    //   database.collection('forms').doc(input_nric).
+    //   update({
+    //     reasonsForClosure: this.reasonsForClosure,
+    //     reasonsForReferral: this.reasonsForReferral,
+    //     obsOfPresentation: this.obsOfPresentation,
+    //     counsellingGoals: this.counsellingGoals,
+    //     detailsOfSession: this.detailsOfSession,
+    //     caseConceptualisation: this.caseConceptualisation,
+    //     interventionsProvided: this.interventionsProvided,
+    //   });
+    // },
     retrieveData(){
       var input_nric = this.nric;
       // var string = this.content;
@@ -557,62 +576,50 @@ export default {
             };
         this.modal = false;
     },
-    saveDraft: function () {
+    extractContent(s) {
+        var span = document.createElement('span');
+        span.innerHTML = s;
+        return span.textContent || span.innerText;
+    },
+    checkOpen(s) {
+        // if reasons for closure box is empty, case is still open
+        if (s == "") {
+            status = true;
+        } else {
+            status = false;
+        }
+        return status
+    },
+    saveDraft() {
         const self = this;
         const session_num = this.session_num;
         var nric = document.getElementById("nric").value;
 
-        // in order of form
-        // var venue = document.getElementById('venue');
-        // var venue_value = venue.options[venue.selectedIndex].innerText;
-        // var counsellor = document.getElementById('counsellor');
-        // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
-        // var counselling_goals = document.getElementById("counselling_goals").value;
-        // var details = document.getElementById("details").value;
-        // var conceptualisation = document.getElementById("conceptualisation").value;
-        // var verbal_intent = document.getElementById("verbal-intent").value;
-        // var ambivalence_intent = document.getElementById("ambivalence-intent").value;
-        // var explore_plans = document.getElementById("explore-plans").value;
-        // var concrete_plans = document.getElementById("concrete-plans").value;
-        // var lethal_means = document.getElementById("lethal-means").value;
-        // var social_resource = document.getElementById("social-resource").value;
-        // var skills_resource = document.getElementById("skills-resource").value;
-        // var suicide_attempt = document.getElementById("suicide-attempt").value;
-        // var mental_health = document.getElementById("mental-health").value;
-        // // var risk_level = document.getElementById('risk_level');
-        // // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
-        // var follow_up = document.getElementById("follow-up").value;
-        // var vue_check = document.getElementById("vuecheck").value;
-
         database
-            .collection("forms")
+            .collection("patients")
             .doc(this.nric)
-            .update({
-            // session_num: session_num,
-            // vue_check: vue_check,
-            // // venue: venue_value,
-            // // counsellor: counsellor_value,
-            // counselling_goals: counselling_goals,
-            // details: details,
-            // conceptualisation: conceptualisation,
-            // verbal_intent: verbal_intent,
-            // ambivalence_intent: ambivalence_intent,
-            // explore_plans: explore_plans,
-            // concrete_plans: concrete_plans,
-            // lethal_means: lethal_means,
-            // social_resource: social_resource,
-            // skills_resource: skills_resource,
-            // suicide_attempt: suicide_attempt,
-            // mental_health: mental_health,
-            // follow_up: follow_up,
-            reasonsForReferral: this.reasonsForReferral,
-            obsOfPresentation: this.obsOfPresentation,
-            counsellingGoals: this.counsellingGoals,
-            detailsOfSession: this.detailsOfSession,
-            caseConceptualisation: this.caseConceptualisation,
-            interventionsProvided: this.interventionsProvided,
-            reasonsForClosure: this.reasonsForClosure,
-            sourceOfReferral: this.sourceOfReferral,
+            .collection("forms")
+            .doc(session_num.toString())
+            .set({
+            // sessionNum: this.session_num,
+            reasonsForReferral: this.extractContent(this.reasonsForReferral),
+            obsOfPresentation: this.extractContent(this.obsOfPresentation),
+            counsellingGoals: this.extractContent(this.counsellingGoals),
+            detailsOfSession: this.extractContent(this.detailsOfSession),
+            caseConceptualisation: this.extractContent(this.caseConceptualisation),
+            interventionsProvided: this.extractContent(this.interventionsProvided),
+            verbaliseIntent: document.getElementById("verbal-intent").value,
+            ambivalenceIntent: document.getElementById("ambivalence-intent").value,
+            explorePlans: document.getElementById("explore-plans").value,
+            concretePlans: document.getElementById("concrete-plans").value,
+            lethalMeans: document.getElementById("lethal-means").value,
+            socialResource: document.getElementById("social-resource").value,
+            skillsResource: document.getElementById("skills-resource").value,
+            suicideAttempt: document.getElementById("suicide-attempt").value,
+            mentalHealth: document.getElementById("mental-health").value,
+            reasonsForClosure: this.extractContent(this.reasonsForClosure),
+            isOpen: this.checkOpen(this.reasonsForClosure),
+            sourceOfReferral: this.extractContent(this.sourceOfReferral),
         })
         .then(function (docRef) {
             console.log("First Session Draft Successfully Saved");
@@ -624,7 +631,7 @@ export default {
     },
     submit: function () {
         var filled_form = document.getElementById("first-session");
-        // console.log(filled_form);
+        var draft = false;
         var options = {
             jsPDF: {
             format: "a4",
@@ -634,10 +641,11 @@ export default {
             image: { type: "jpeg", quality: 1 },
         };
         var file_name = this.nric + "_" + this.session_num.toString() + ".pdf";
-        console.log(options);
+        this.saveDraft();
         html2pdf().set(options).from(filled_form).toPdf().save(file_name);
         this.submitSuccess = true;
     },
+    
   },
 };
 </script>
