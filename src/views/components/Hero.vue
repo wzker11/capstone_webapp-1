@@ -501,24 +501,11 @@ export default {
         Modal
     },
   methods: { 
-    // saveContent(){
-    //   var input_nric = this.nric;
-    //   // var string = this.content;
-    //   database.collection('forms').doc(input_nric).
-    //   update({
-    //     reasonsForClosure: this.reasonsForClosure,
-    //     reasonsForReferral: this.reasonsForReferral,
-    //     obsOfPresentation: this.obsOfPresentation,
-    //     counsellingGoals: this.counsellingGoals,
-    //     detailsOfSession: this.detailsOfSession,
-    //     caseConceptualisation: this.caseConceptualisation,
-    //     interventionsProvided: this.interventionsProvided,
-    //   });
-    // },
     retrieveData(){
       var input_nric = this.nric;
       // var string = this.content;
-      const snapshot = database.collection('forms').doc(input_nric).get();
+      const snapshot = database.collection('patients').doc(input_nric).collection('info').doc('info').get();
+      // const snapshot = database.collection('patients').doc(input_nric).get();
       snapshot.then((doc) => {
         const data = doc.data();
         this.race = data["race"];
@@ -590,10 +577,37 @@ export default {
         }
         return status
     },
+
+    saveInfo() {
+        const self = this;
+        var nric = document.getElementById("nric").value;
+
+        database
+            .collection("patients")
+            .doc(this.nric)
+            .collection("info")
+            .doc("info")
+            .set({
+            race: this.race,
+            name: this.name,
+            maritalStatus: this.maritalstatus,
+            unit: this.unit,
+            contactNumber: this.contact,
+            enlistmentDate: this.enlistment, 
+            age: this.age,
+            ord: this.ord, 
+            reasonsForReferral: this.reasonsForReferral,
+            sourceOfReferral: this.sourceOfReferral,
+            followUpPlans: this.followUpPlans
+        })
+    },
+
     saveDraft() {
         const self = this;
         const session_num = this.session_num;
         var nric = document.getElementById("nric").value;
+
+        this.saveInfo();
 
         database
             .collection("patients")
