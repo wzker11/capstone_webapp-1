@@ -12,11 +12,11 @@
             <span class="span-50"></span>
             <span class="span-100"></span>
         </div>
-        <div class="container shape-container d-flex align-items-center">
+        <div class="container shape-container d-flex align-items-center" style="height:100px">
             <div class="col px-0">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-7 text-center pt-lg">
-                        <h1 class="text-white mt-5 mb-6"><span>Session Case Notes</span></h1>
+                        <h1 class="text-white mt-0 mb-9">Session Case Notes</h1>
                     </div>
                 </div>
             </div>
@@ -36,9 +36,28 @@
         <section class="section section-skew">
             <div class="container" style = "margin-top: -32.8%;">
                 <card shadow class="card-profile mt--300" no-body>
-                                                        <div>
-                    <base-button size="sm " type="primary" style = "height:30px; width:90px; margin-top:31px; margin-left: 90%" v-on:click="signOut">Sign Out</base-button>
-                </div>
+                    <div class="d-flex flex-row-reverse pt-sm">
+                        <base-button size="sm" type="primary" style = "height:30px; width:90px;" v-on:click="signOut">Sign Out</base-button>
+                        <base-button size="sm" block type="warning" class=" mb-3 float-right" @click="modal = true" style = "height:30px; width:130px;"> Clear All Fields </base-button>
+                        <modal :show.sync="modal" gradient="danger" modal-classes="modal-danger modal-dialog-centered">
+                            <h6 slot="header" class="modal-title" id="modal-title-notification">Your attention is required</h6>
+                            <div class="py-3 text-center">
+                                <i class="ni ni-bell-55 ni-3x"></i>
+                                <h4 class="heading mt-4">You are about to clear all fields in this form</h4>
+                                <p>Are you sure you want to proceed?</p>
+                            </div>
+
+                            <template slot="footer">
+                                <base-button type="white" @click="clearFields">Yes, clear all fields.</base-button>
+                                <base-button type="link"
+                                text-color="white"
+                                class="ml-auto"
+                                @click="modal = false">
+                                Check again
+                                </base-button>
+                            </template>
+                        </modal>
+                    </div>
                     <div class="px-4">
                         <div class="row justify-content-center">
                             <div class="col-lg-4.5 order-lg-3">
@@ -68,8 +87,8 @@
                                     <p class="ml-3"> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
                                         <!-- <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 9%" v-on:click="clearFields">Clear All Fields</base-button> -->
                                         <div>
-                                            <base-button size="sm " block type="warning" class=" mb-3" @click="modal = true" style = "height:30px; width:130px; margin-top:0px; margin-left: 70%"> Clear All Fields </base-button>
-                                            <modal :show.sync="modal" gradient="danger" modal-classes="modal-danger modal-dialog-centered">
+                                            <!-- <base-button size="sm " block type="warning" class=" mb-3" @click="modal = true" style = "height:30px; width:130px; margin-top:0px; margin-left: 70%"> Clear All Fields </base-button> -->
+                                            <!-- <modal :show.sync="modal" gradient="danger" modal-classes="modal-danger modal-dialog-centered">
                                                 <h6 slot="header" class="modal-title" id="modal-title-notification">Your attention is required</h6>
                                                 <div class="py-3 text-center">
                                                 <i class="ni ni-bell-55 ni-3x"></i>
@@ -86,7 +105,7 @@
                                                         Check again
                                                     </base-button>
                                                 </template>
-                                            </modal>
+                                            </modal> -->
                                         </div>
                                 </div>
                                 <!-- <form class="tr" method="post" action="blah.html"> -->
