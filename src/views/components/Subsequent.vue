@@ -240,10 +240,10 @@
                             <div id="intent" v-show="isIntent">
                                 <br>
                                 <p>Verbalises thoughts of suicide</p>
-                                <textarea name="intent1_S" row=20 cols=95></textarea>
+                                <textarea name="intent1_S" row=20 cols=95 id='verbal-intent'></textarea>
                                 <br>
                                 <p>Ambivalence towards suicide</p>
-                                <textarea name="intent2_S" row=20 cols=95></textarea>
+                                <textarea name="intent2_S" row=20 cols=95 id='ambivalence-intent'></textarea>
                                 <br><br>
                             </div>
                             <br>
@@ -252,11 +252,11 @@
                             <div id="plans" v-show="isPlans">
                                 <br>
                                 <p>Explore about suicide (e.g., research)</p>
-                                <textarea name="plan1_S" row=20 cols=95></textarea>
+                                <textarea name="plan1_S" row=20 cols=95 id='explore-plans'></textarea>
                                 <p>Have concrete plans to attempt suicide</p>
-                                <textarea name="plan2_S" row=20 cols=95></textarea>
+                                <textarea name="plan2_S" row=20 cols=95 id='concrete-plans'></textarea>
                                 <p>Have access to lethal means for suicide</p>
-                                <textarea name="plan3_S" row=20 cols=95></textarea>
+                                <textarea name="plan3_S" row=20 cols=95 id='lethal-means'></textarea>
                                 <br><br>
                             </div>
                             <br>
@@ -265,9 +265,9 @@
                             <div id="resources" v-show="isResources">
                                 <br>
                                 <p>Strength of social support</p>
-                                <textarea name="resources1_S" row=20 cols=95></textarea>
+                                <textarea name="resources1_S" row=20 cols=95 id='social-resource'></textarea>
                                 <p>Problem solving skills</p>
-                                <textarea name="resources2_S" row=20 cols=95></textarea>
+                                <textarea name="resources2_S" row=20 cols=95 id='skills-resource'></textarea>
                                 <br><br>
                             </div>
                             <br>
@@ -276,7 +276,7 @@
                             <div id="pastAttempts" v-show="isPastAttempt">
                                 <br>
                                 <p>History of past suicide attempts</p>
-                                <textarea name="pastAttempt_S" row=20 cols=95></textarea>
+                                <textarea name="pastAttempt_S" row=20 cols=95 id='suicide-attempt'></textarea>
                                 <br><br>
                             </div>
                             <br>
@@ -285,7 +285,7 @@
                             <div id="mentalHealth" v-show="isMentalHealth">
                                 <br>
                                 <p>Presence of mental health illness</p>
-                                <textarea name="mentalHealth_S" row=20 cols=95></textarea>
+                                <textarea name="mentalHealth_S" row=20 cols=95 id='mental-health'></textarea>
                                 <br><br>
                             </div>
                             <br><br>
@@ -382,56 +382,56 @@
 </template>
 
 <script>
-const DatePickers = () => import("./JavascriptComponents/DatePickers");
-import Tabs from "@/components/Tabs/Tabs.vue";
-import TabPane from "@/components/Tabs/TabPane.vue";
-import TabsSection from "./JavascriptComponents/TabsSection";
-import Modals from "./JavascriptComponents/Modals";
-import html2pdf from 'html2pdf.js';
-import { jsPDF } from "jspdf";
-import { VueEditor } from "vue2-editor";
-import Modal from "@/components/Modal.vue";
-import database from '../../firebase';
+    const DatePickers = () => import("./JavascriptComponents/DatePickers");
+    import Tabs from "@/components/Tabs/Tabs.vue";
+    import TabPane from "@/components/Tabs/TabPane.vue";
+    import TabsSection from "./JavascriptComponents/TabsSection";
+    import Modals from "./JavascriptComponents/Modals";
+    import html2pdf from 'html2pdf.js';
+    import { jsPDF } from "jspdf";
+    import { VueEditor } from "vue2-editor";
+    import Modal from "@/components/Modal.vue";
+    import database from '../../firebase';
 
 
-export default {
-    data() {
-        return {
-            isAnnex: false,
-            isIntent: false,
-            isPlans: false,
-            isResources: false,
-            isPastAttempt: false,
-            isMentalHealth: false,
-            name: '',
-            nric: '',
-            obsOfPresentation:'',
-            counsellingGoals:'',
-            detailsOfSession:'',
-            comments:'',
-            interventionsProvided:'',
-            reasonsForClosure:'',
-            session_num: 2,
-            modal: false,
-            retrieveSuccess:false,
-            submitSuccess:false,
-            saveSuccess:false,
-        }
-    },
-    components: {
-        DatePickers,
-        TabPane,
-        Tabs,
-        TabsSection,
-        Modals,
-        VueEditor,
-        Modal
-    },
-    methods: {
-        signOut() {
-          this.$router.push("login");
+    export default {
+        data() {
+            return {
+                isAnnex: false,
+                isIntent: false,
+                isPlans: false,
+                isResources: false,
+                isPastAttempt: false,
+                isMentalHealth: false,
+                name: '',
+                nric: '',
+                obsOfPresentation:'',
+                counsellingGoals:'',
+                detailsOfSession:'',
+                comments:'',
+                interventionsProvided:'',
+                reasonsForClosure:'',
+                session_num: 2,
+                modal: false,
+                retrieveSuccess:false,
+                submitSuccess:false,
+                saveSuccess:false,
+            }
         },
-        retrieveData(){
+        components: {
+            DatePickers,
+            TabPane,
+            Tabs,
+            TabsSection,
+            Modals,
+            VueEditor,
+            Modal
+        },
+        methods: {
+            signOut() {
+              this.$router.push("login");
+          },
+          retrieveData(){
             var input_nric = this.nric;
             // var string = this.content;
             const snapshot = database.collection('forms').doc(input_nric).get();
@@ -450,7 +450,7 @@ export default {
             .catch(function (error) {
                 alert("Please check input NRIC again")
                 console.error("Error Retrieving Data: ", error);
-                });
+            });
         },
         clearFields() {
           this.race = "";
@@ -462,101 +462,112 @@ export default {
           this.age = "";
           this.ord = "";
           this.nric = "";
+          this.obsOfPresentation= "";
+          this.counsellingGoals= "";
+          this.detailsOfSession= "";
+          this.caseConceptualisation= "";
+          this.interventionsProvided= "";
+          this.reasonsForClosure= "";
+          this.comments= "";
           this.modal = false;
-        },
-        curren_time() {
-            const current = new Date();
-            const minute = current.getMinutes() < 9 ? "0" +current.getMinutes() : current.getMinutes();
+      },
+      curren_time() {
+        const current = new Date();
+        const minute = current.getMinutes() < 9 ? "0" +current.getMinutes() : current.getMinutes();
             const time = current.getHours() + ":" + minute; // + ":" + current.getSeconds();
             return time;
         },
-        saveDraft: function () {
-            const self = this;
-          const session_num = this.session_num;
-          var nric = document.getElementById("nric").value;
-
-          // in order of form
-          // var venue = document.getElementById('venue');
-          // var venue_value = venue.options[venue.selectedIndex].innerText;
-          // var counsellor = document.getElementById('counsellor');
-          // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
-          var counselling_goals =
-            document.getElementById("counselling_goals").value;
-          var details = document.getElementById("details").value;
-          var conceptualisation =
-            document.getElementById("conceptualisation").value;
-          var verbal_intent = document.getElementById("verbal-intent").value;
-          var ambivalence_intent =
-            document.getElementById("ambivalence-intent").value;
-          var explore_plans = document.getElementById("explore-plans").value;
-          var concrete_plans = document.getElementById("concrete-plans").value;
-          var lethal_means = document.getElementById("lethal-means").value;
-          var social_resource = document.getElementById("social-resource").value;
-          var skills_resource = document.getElementById("skills-resource").value;
-          var suicide_attempt = document.getElementById("suicide-attempt").value;
-          var mental_health = document.getElementById("mental-health").value;
-          // var risk_level = document.getElementById('risk_level');
-          // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
-          var follow_up = document.getElementById("follow-up").value;
-
-          database
-            .collection("forms")
-            .doc(this.nric)
-            .set({
-              session_num: session_num,
-              // venue: venue_value,
-              // counsellor: counsellor_value,
-              counselling_goals: counselling_goals,
-              details: details,
-              conceptualisation: conceptualisation,
-              verbal_intent: verbal_intent,
-              ambivalence_intent: ambivalence_intent,
-              explore_plans: explore_plans,
-              concrete_plans: concrete_plans,
-              lethal_means: lethal_means,
-              social_resource: social_resource,
-              skills_resource: skills_resource,
-              suicide_attempt: suicide_attempt,
-              mental_health: mental_health,
-              follow_up: follow_up,
-            })
-            .then(function (docRef) {
-              console.log("First Session Draft Successfully Saved");
-              self.saveSuccess = true;
-            })
-            .catch(function (error) {
-              console.error("Error Saving Draft: ", error);
-            });
+        extractContent(s) {
+            var span = document.createElement('span');
+            span.innerHTML = s;
+            return span.textContent || span.innerText;
         },
-        submit: function () {
-          var filled_form = document.getElementById("sub-session");
+        checkOpen(s) {
+            // if reasons for closure box is empty, case is still open
+            if (s == "") {
+                status = true;
+            } else {
+                status = false;
+            }
+            return status
+        },
+        saveDraft() {
+            const self = this;
+            // var nric = document.getElementById("nric").value;
+
+            // console.log(this.nric);
+            var input_nric = this.nric;
+            // var string = this.content;
+            for (var n = 10; n > 0; n--) {
+                const snapshot = database.collection('patients').doc(input_nric).collection('forms').doc(n.toString()).get();
+                if (snapshot != null) {
+                    var session_num = n + 1;
+                }
+            }
+
+              database
+              .collection("patients")
+              .doc(this.nric)
+              .collection("forms")
+              .doc(session_num.toString())
+              .set({
+                sessionNum: this.session_num,
+                obsOfPresentation: this.extractContent(this.obsOfPresentation),
+                counsellingGoals: this.extractContent(this.counsellingGoals),
+                detailsOfSession: this.extractContent(this.detailsOfSession),
+                caseConceptualisation: this.extractContent(this.caseConceptualisation),
+                interventionsProvided: this.extractContent(this.interventionsProvided),
+                comments: this.extractContent(this.comments),
+                verbaliseIntent: document.getElementById("verbal-intent").value,
+                ambivalenceIntent: document.getElementById("ambivalence-intent").value,
+                explorePlans: document.getElementById("explore-plans").value,
+                concretePlans: document.getElementById("concrete-plans").value,
+                lethalMeans: document.getElementById("lethal-means").value,
+                socialResource: document.getElementById("social-resource").value,
+                skillsResource: document.getElementById("skills-resource").value,
+                suicideAttempt: document.getElementById("suicide-attempt").value,
+                mentalHealth: document.getElementById("mental-health").value,
+                reasonsForClosure: this.extractContent(this.reasonsForClosure),
+                isOpen: this.checkOpen(this.reasonsForClosure),
+            })
+              .then(function (docRef) {
+                console.log("Session Draft Successfully Saved");
+                self.saveSuccess = true
+            })
+              .catch(function (error) {
+                console.error("Error Saving Draft: ", error);
+            });
+          },
+
+          submit: function () {
+              var filled_form = document.getElementById("sub-session");
           // console.log(filled_form);
           var options = {
             jsPDF: {
               format: "a4",
-            },
-            html2canvas: { letterRendering: true, useCORS: true, logging: true },
-            margin: 2,
-            image: { type: "jpeg", quality: 1 },
-          };
-          var file_name = this.nric + "_" + this.session_num.toString() + ".pdf";
-          console.log(options);
-          html2pdf().set(options).from(filled_form).toPdf().save(file_name);
-          this.submitSuccess = true;
-        }
-    },
+          },
+          html2canvas: { letterRendering: true, useCORS: true, logging: true },
+          margin: 2,
+          image: { type: "jpeg", quality: 1 },
+      };
+      var file_name = this.nric + "_" + this.session_num.toString() + ".pdf";
+      console.log(options);
+      html2pdf().set(options).from(filled_form).toPdf().save(file_name);
+      this.submitSuccess = true;
+  }
+},
 };
 </script>
 
 <style>
-#outer
-{
-    width:100%;
-    text-align: center;
-}
-.inner
-{
-    display: inline-block;
-}
+    #outer
+    {
+        width:100%;
+        text-align: center;
+    }
+    .inner
+    {
+        display: inline-block;
+    }
 </style>
 

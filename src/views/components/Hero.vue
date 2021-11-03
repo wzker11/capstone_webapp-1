@@ -501,20 +501,20 @@ export default {
         Modal
     },
   methods: { 
-    saveContent(){
-      var input_nric = this.nric;
-      // var string = this.content;
-      database.collection('forms').doc(input_nric).
-      update({
-        reasonsForClosure: this.reasonsForClosure,
-        reasonsForReferral: this.reasonsForReferral,
-        obsOfPresentation: this.obsOfPresentation,
-        counsellingGoals: this.counsellingGoals,
-        detailsOfSession: this.detailsOfSession,
-        caseConceptualisation: this.caseConceptualisation,
-        interventionsProvided: this.interventionsProvided,
-      });
-    },
+    // saveContent(){
+    //   var input_nric = this.nric;
+    //   // var string = this.content;
+    //   database.collection('forms').doc(input_nric).
+    //   update({
+    //     reasonsForClosure: this.reasonsForClosure,
+    //     reasonsForReferral: this.reasonsForReferral,
+    //     obsOfPresentation: this.obsOfPresentation,
+    //     counsellingGoals: this.counsellingGoals,
+    //     detailsOfSession: this.detailsOfSession,
+    //     caseConceptualisation: this.caseConceptualisation,
+    //     interventionsProvided: this.interventionsProvided,
+    //   });
+    // },
     retrieveData(){
       var input_nric = this.nric;
       // var string = this.content;
@@ -576,62 +576,50 @@ export default {
             };
         this.modal = false;
     },
-    saveDraft: function () {
+    extractContent(s) {
+        var span = document.createElement('span');
+        span.innerHTML = s;
+        return span.textContent || span.innerText;
+    },
+    checkOpen(s) {
+        // if reasons for closure box is empty, case is still open
+        if (s == "") {
+            status = true;
+        } else {
+            status = false;
+        }
+        return status
+    },
+    saveDraft() {
         const self = this;
         const session_num = this.session_num;
         var nric = document.getElementById("nric").value;
 
-        // in order of form
-        // var venue = document.getElementById('venue');
-        // var venue_value = venue.options[venue.selectedIndex].innerText;
-        // var counsellor = document.getElementById('counsellor');
-        // var counsellor_value = counsellor.options[counsellor.selectedIndex].innerText;
-        // var counselling_goals = document.getElementById("counselling_goals").value;
-        // var details = document.getElementById("details").value;
-        // var conceptualisation = document.getElementById("conceptualisation").value;
-        // var verbal_intent = document.getElementById("verbal-intent").value;
-        // var ambivalence_intent = document.getElementById("ambivalence-intent").value;
-        // var explore_plans = document.getElementById("explore-plans").value;
-        // var concrete_plans = document.getElementById("concrete-plans").value;
-        // var lethal_means = document.getElementById("lethal-means").value;
-        // var social_resource = document.getElementById("social-resource").value;
-        // var skills_resource = document.getElementById("skills-resource").value;
-        // var suicide_attempt = document.getElementById("suicide-attempt").value;
-        // var mental_health = document.getElementById("mental-health").value;
-        // // var risk_level = document.getElementById('risk_level');
-        // // var risk_level_value = risk_level.tabs[risk_level.selectedIndex].value;
-        // var follow_up = document.getElementById("follow-up").value;
-        // var vue_check = document.getElementById("vuecheck").value;
-
         database
-            .collection("forms")
+            .collection("patients")
             .doc(this.nric)
-            .update({
-            // session_num: session_num,
-            // vue_check: vue_check,
-            // // venue: venue_value,
-            // // counsellor: counsellor_value,
-            // counselling_goals: counselling_goals,
-            // details: details,
-            // conceptualisation: conceptualisation,
-            // verbal_intent: verbal_intent,
-            // ambivalence_intent: ambivalence_intent,
-            // explore_plans: explore_plans,
-            // concrete_plans: concrete_plans,
-            // lethal_means: lethal_means,
-            // social_resource: social_resource,
-            // skills_resource: skills_resource,
-            // suicide_attempt: suicide_attempt,
-            // mental_health: mental_health,
-            // follow_up: follow_up,
-            reasonsForReferral: this.reasonsForReferral,
-            obsOfPresentation: this.obsOfPresentation,
-            counsellingGoals: this.counsellingGoals,
-            detailsOfSession: this.detailsOfSession,
-            caseConceptualisation: this.caseConceptualisation,
-            interventionsProvided: this.interventionsProvided,
-            reasonsForClosure: this.reasonsForClosure,
-            sourceOfReferral: this.sourceOfReferral,
+            .collection("forms")
+            .doc(session_num.toString())
+            .set({
+            // sessionNum: this.session_num,
+            reasonsForReferral: this.extractContent(this.reasonsForReferral),
+            obsOfPresentation: this.extractContent(this.obsOfPresentation),
+            counsellingGoals: this.extractContent(this.counsellingGoals),
+            detailsOfSession: this.extractContent(this.detailsOfSession),
+            caseConceptualisation: this.extractContent(this.caseConceptualisation),
+            interventionsProvided: this.extractContent(this.interventionsProvided),
+            verbaliseIntent: document.getElementById("verbal-intent").value,
+            ambivalenceIntent: document.getElementById("ambivalence-intent").value,
+            explorePlans: document.getElementById("explore-plans").value,
+            concretePlans: document.getElementById("concrete-plans").value,
+            lethalMeans: document.getElementById("lethal-means").value,
+            socialResource: document.getElementById("social-resource").value,
+            skillsResource: document.getElementById("skills-resource").value,
+            suicideAttempt: document.getElementById("suicide-attempt").value,
+            mentalHealth: document.getElementById("mental-health").value,
+            reasonsForClosure: this.extractContent(this.reasonsForClosure),
+            isOpen: this.checkOpen(this.reasonsForClosure),
+            sourceOfReferral: this.extractContent(this.sourceOfReferral),
         })
         .then(function (docRef) {
             console.log("First Session Draft Successfully Saved");
@@ -643,7 +631,7 @@ export default {
     },
     submit: function () {
         var filled_form = document.getElementById("first-session");
-        // console.log(filled_form);
+        var draft = false;
         var options = {
             jsPDF: {
             format: "a4",
@@ -653,10 +641,11 @@ export default {
             image: { type: "jpeg", quality: 1 },
         };
         var file_name = this.nric + "_" + this.session_num.toString() + ".pdf";
-        console.log(options);
+        this.saveDraft();
         html2pdf().set(options).from(filled_form).toPdf().save(file_name);
         this.submitSuccess = true;
     },
+    
   },
 };
 </script>
