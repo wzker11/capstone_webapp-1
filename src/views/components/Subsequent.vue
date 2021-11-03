@@ -434,7 +434,8 @@
           retrieveData(){
             var input_nric = this.nric;
             // var string = this.content;
-            const snapshot = database.collection('forms').doc(input_nric).get();
+            const snapshot = database.collection('patients').doc(input_nric).collection('info').doc('info').get();
+            // const snapshot = database.collection('forms').doc(input_nric).get();
             snapshot.then((doc) => {
                 const data = doc.data();
                 this.race = data["race"];
@@ -551,7 +552,7 @@
           image: { type: "jpeg", quality: 1 },
       };
       var file_name = this.nric + "_" + this.session_num.toString() + ".pdf";
-      console.log(options);
+      this.saveDraft();
       html2pdf().set(options).from(filled_form).toPdf().save(file_name);
       this.submitSuccess = true;
   }
