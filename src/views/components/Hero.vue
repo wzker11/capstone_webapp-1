@@ -600,6 +600,16 @@ export default {
             sourceOfReferral: this.sourceOfReferral,
             followUpPlans: this.followUpPlans
         })
+
+        database
+            .collection("forms")
+            .doc()
+            .set({
+                name: this.name,
+                session_num: 1,
+                nric: this.nric,
+                reasonsForClosure: this.reasonsForClosure
+            })
     },
 
     saveDraft() {
