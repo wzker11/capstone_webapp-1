@@ -61,8 +61,13 @@
                             <h2><strong>Summary</strong></h2>
                         </div>
                         <div class="grid-container">
-                            <p id="SgenericNames">NRIC</p> <p id="SgenericNames">Name</p> <p id="SgenericNames">Status</p> <p id="SgenericNames">Type of Form</p>
+                            <!-- <p id="SgenericNames">NRIC</p> <p id="SgenericNames">Name</p> <p id="SgenericNames">Status</p> <p id="SgenericNames">Type of Form</p> -->
+                            <h5 class="heading-title text-warning text-center">NRIC</h5>
+                            <h5 class="heading-title text-warning text-center">Name</h5>
+                            <h5 class="heading-title text-warning text-center">Status</h5>
+                            <h5 class="heading-title text-warning text-center">Type of Form</h5>
                         </div>
+                        <h6 class="text-center">_____________________________________________________________________________________________________________________________________</h6>
                         <div v-for="(form, index) in forms" :key="index">
                            <div class="grid-container">
                              <p id="genericNames">{{form.nric}}</p> <p id="genericNames">{{form.name}}</p> 
