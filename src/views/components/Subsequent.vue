@@ -508,6 +508,15 @@
                     var session_num = n + 1;
                 }
             }
+            database
+            .collection("forms")
+            .doc()
+            .set({
+                name: this.name,
+                session_num: 0,
+                nric: this.nric,
+                reasonsForClosure: this.reasonsForClosure
+            })
 
               database
               .collection("patients")

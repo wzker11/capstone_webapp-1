@@ -65,7 +65,9 @@
                         </div>
                         <div v-for="(form, index) in forms" :key="index">
                            <div class="grid-container">
-                             <p id="genericNames">{{form.id}}</p> <p id="genericNames">{{form.name}}</p> <p id="genericNames"></p>
+                             <p id="genericNames">{{form.nric}}</p> <p id="genericNames">{{form.name}}</p> 
+                             <p v-if="form.reasonsForClosure == ''" id="genericNames">Open</p>
+                             <p v-if="form.reasonsForClosure != ''" id="genericNames">Closed</p>
                              <p v-if="form.session_num == 1" id = "genericNames">First Session</p>
                              <p v-if="form.session_num == 0" id = "genericNames">Subsequent Session</p>
                           </div>
