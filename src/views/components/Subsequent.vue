@@ -165,11 +165,51 @@
                                         <!-- <base-input placeholder="Counsellor(s)"></base-input> -->
                                         <base-input label= "Counsellor">
                                             <select class="form-control">
-                                                <option>Shichao</option>
-                                                <option>Clara</option>
-                                                <option>Keif</option>
-                                                <option>Wang Zi</option>
-                                                <option>Amanda</option>
+                                                <option>Abel Sim</option>
+                                                <option>Azharee Bin Arsad</option>
+                                                <option>Bryan Goh</option>
+                                                <option>Caleb Kelvin Cheang</option>
+                                                <option>Cheo Peng Seng</option>
+                                                <option>Cheryl Low </option>
+                                                <option>Clara Cheang</option>
+                                                <option>Cyrus Chng</option>
+                                                <option>Doris Low</option>
+                                                <option>Eleena</option>
+                                                <option>Faizal Mazlan</option>
+                                                <option>Ghazali Ahmad</option>
+                                                <option>Hasan Kuddos</option>
+                                                <option>Hazeeq Firoz</option>
+                                                <option>Jared Koh</option>
+                                                <option>Jumilah Julie</option>
+                                                <option>Kelvin Chang</option>
+                                                <option>Khairiyah Kassim</option>
+                                                <option>Khoo Swee Giang</option>
+                                                <option>Kuang Zhong Xuan</option>
+                                                <option>Low Hwee Lang</option>
+                                                <option>Maisya Bte Abd Karim</option>
+                                                <option>Md Ariffin Bin Haris</option>
+                                                <option>Md Halmy Md Timyati</option>
+                                                <option>Mohd Halmy Bin Timyati</option>
+                                                <option>Mohd Shariff Bin Syed Mohd </option>
+                                                <option>Muhammad Tasnim Bin Zainuddin</option>
+                                                <option>Nasir Bin Ahmad</option>
+                                                <option>Nasiruddin Ghaffor</option>
+                                                <option>Ng Song Lim</option>
+                                                <option>Noor Asrik Bin Masahlan</option>
+                                                <option>Norashikin Imran</option>
+                                                <option>Nurhamizah Anwar</option>
+                                                <option>Nursyahrin</option>
+                                                <option>Poh Han Wei</option>
+                                                <option>Rafidah Mahmood</option>
+                                                <option>Raymond Choo</option>
+                                                <option>Raymond Lee</option>
+                                                <option>Razali Othman</option>
+                                                <option>Rizwan Ahmad</option>
+                                                <option>Sasi Kumar Asokuma </option>
+                                                <option>Sharifah Muslimah</option>
+                                                <option>Siti Zarinah Bte Sarip</option>
+                                                <option>Soffeyan Sabirin</option>
+                                                <option>Teo Mei Tin</option>
                                             </select>
                                         </base-input>
                                     </div>
@@ -220,7 +260,7 @@
 
                                     <h2 class="heading-title text-warning mb-0">Intervention(s) provided</h2>
                                     <br>
-                                    <p><em>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</em></p>
+                                    <p>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</p>
                                     <vue-editor v-model="interventionsProvided"></vue-editor>
                                     <br><br><br><br>
 
@@ -295,28 +335,39 @@
 
                             <h2 class="heading-title text-warning mb-0">Overall Risk Level</h2>
                             <br>
-                            <tabs tabNavClasses="nav-fill flex-column flex-sm-row">
-                                <tab-pane title="Low"></tab-pane>
-                                <tab-pane title="Moderate"></tab-pane>
-                                <tab-pane title="High"></tab-pane>
-                            </tabs>
-                            <card shadow>
-                                <p class="small mb-1">It is recommended that suicide risk is managed during and immediately after the session. If there is a high risk of suicide, attending aracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan. <br>The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. <br>When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).</p>
-                            </card>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-3" id="risk_level">
+                                    <br>
+                                    <base-checkbox class="mb-3 flex-column flex-md-row" v-model="riskLevel.low">Low</base-checkbox><br>
+                                    <base-checkbox class="mb-3 flex-column flex-md-row" v-model="riskLevel.medium">Moderate</base-checkbox><br>
+                                    <base-checkbox class="mb-3 flex-column flex-md-row" v-model="riskLevel.high">High</base-checkbox>
+                                </div>
+
+                                <div class="col-lg-9 mt-5 mt-lg-0">
+                                    <br>
+                                    <card shadow>
+                                        <p class="small mb-1">It is recommended that suicide risk is managed during and immediately after the session. </p>
+                                        <p class="small mb-1">If there is a high risk of suicide, attending aracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan.</p>
+                                        <p class="small mb-1">The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. </p>
+                                        <p class="small mb-1">When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).</p>
+                                    </card>
+                                </div>
+                            </div>
                         </div>
                         <br><br>
                         <div>
                             <h2 class="heading-title text-warning mb-0">Follow-up Plans</h2>
-                            <br>
                             <p class="small">Indicate your follow-up plans for the case.</p>
+                            <br>
                             <h2 class="heading mb-2">Case management</h2>
                             <p class="small">To update or reach out to the following:</p>
+                            <br>
                             <div class="row justify-content-center">
-                                <div class="col-lg-3">
-                                    <base-checkbox class="mb-3 flex-column flex-md-row">Client’s supervisors</base-checkbox>
-                                    <base-checkbox class="mb-3 flex-column flex-md-row">Unit Paracounsellor to monitor</base-checkbox>
-                                    <base-checkbox class="mb-3 flex-column flex-md-row">Medical Officer</base-checkbox>
-                                    <base-checkbox class="mb-3 flex-column flex-md-row">Other agencies</base-checkbox>
+                                <div class="col-lg-3" id="case_management">
+                                    <base-checkbox class="mb-3 flex-column flex-md-row" v-model="followUpPlans.client">Client’s supervisors</base-checkbox>
+                                    <base-checkbox class="mb-3 flex-column flex-md-row" v-model="followUpPlans.unit">Unit Paracounsellor to monitor</base-checkbox>
+                                    <base-checkbox class="mb-3 flex-column flex-md-row" v-model="followUpPlans.medical">Medical Officer</base-checkbox>
+                                    <base-checkbox class="mb-3 flex-column flex-md-row" v-model="followUpPlans.other">Other agencies</base-checkbox>
                                 </div>
 
                                 <div class="col-lg-9 mt-5 mt-lg-0">
@@ -419,6 +470,17 @@
                 retrieveSuccess:false,
                 submitSuccess:false,
                 saveSuccess:false,
+                riskLevel:{
+                    low:true,
+                    medium:false,
+                    high:false,
+                },
+                followUpPlans:{
+                    client:false,
+                    unit:true,
+                    medical:false,
+                    other:false,
+                },
             }
         },
         components: {

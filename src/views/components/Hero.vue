@@ -91,28 +91,6 @@
                                         <h2 class="heading-title text-warning mb-0">Client Information</h2>
                                         <div class="row">
                                           <p class="ml-3"> The client's information can be automatically filled up by entering their NRIC and clicking on "Retrieve".</p>
-                                            <!-- <base-button size="sm " type="primary" style = "height:30px; width:130px; margin-top:0px; margin-left: 9%" v-on:click="clearFields">Clear All Fields</base-button> -->
-                                            <!-- <div>
-                                              <base-button size="sm " block type="warning" class=" mb-3" @click="modal = true" style = "height:30px; width:130px; margin-top:0px; margin-left: 70%"> Clear All Fields </base-button>
-                                              <modal :show.sync="modal" gradient="danger" modal-classes="modal-danger modal-dialog-centered">
-                                                  <h6 slot="header" class="modal-title" id="modal-title-notification">Your attention is required</h6>
-                                                  <div class="py-3 text-center">
-                                                    <i class="ni ni-bell-55 ni-3x"></i>
-                                                    <h4 class="heading mt-4">You are about to clear all fields in this form</h4>
-                                                    <p>Are you sure you want to proceed?</p>
-                                                  </div>
-
-                                                  <template slot="footer">
-                                                      <base-button type="white" @click="clearFields">Yes, clear all fields.</base-button>
-                                                      <base-button type="link"
-                                                                  text-color="white"
-                                                                  class="ml-auto"
-                                                                  @click="modal = false">
-                                                          Check again
-                                                      </base-button>
-                                                  </template>
-                                              </modal>
-                                            </div> -->
                                         </div>
                                         <br>
                                         <div class="row">
@@ -146,10 +124,14 @@
                                                 <base-input label="Marital Status" v-model="maritalstatus"></base-input>
                                                 <base-input label="Race" v-model="race"></base-input>
                                                 <label class="my-auto">Gender</label>
-                                                <tabs tabNavClasses="nav-fill flex-column flex-sm-row">
+                                                <!-- <tabs tabNavClasses="nav-fill flex-column flex-sm-row">
                                                     <tab-pane title="Male"></tab-pane>
                                                     <tab-pane title="Female"></tab-pane>
-                                                </tabs>
+                                                </tabs> -->
+                                                <div class="row justify-content-left">
+                                                    <base-checkbox style="margin-left:4%;margin-top:5%;margin-bottom:6%" v-model="gender.male">Male</base-checkbox>
+                                                    <base-checkbox style="margin-left:25%;margin-top:5%;margin-bottom:6%" v-model="gender.female">Female</base-checkbox>
+                                                </div>
                                                 <base-input label="Contact No" v-model="contact"></base-input>
                                                 <base-input label="Expected ORD (for NSFs)" v-model = "ord"></base-input>
                                                 <!-- <base-input label="Expected ORD (for NSFs)"><date-pickers></date-pickers></base-input> -->
@@ -159,10 +141,10 @@
                                         <div class="row justify-content-left">
                                             <base-checkbox class="my-1 ml-3 col-lg-1" v-model="sourceOfReferral.self">Self</base-checkbox>
                                             <base-checkbox class="my-1 col-lg-1" v-model="sourceOfReferral.imh">IMH</base-checkbox>
-                                            <base-checkbox class="my-1 ml-1 col-lg-2" v-model="sourceOfReferral.supervisor">Supervisor</base-checkbox>
-                                            <base-checkbox class="my-1 col-lg-2" v-model="sourceOfReferral.medicalOfficer">Medical Officer</base-checkbox>
-                                            <base-checkbox class="my-1 col-lg-2" v-model="sourceOfReferral.others">Others:</base-checkbox>
-                                            <base-input class="col-lg-3.9" v-model="sourceOfReferral.othersInput"></base-input>
+                                            <base-checkbox style="margin-right:30px" class="my-1" v-model="sourceOfReferral.supervisor">Supervisor</base-checkbox>
+                                            <base-checkbox style="margin-right:30px" class="my-1" v-model="sourceOfReferral.medicalOfficer">Medical Officer</base-checkbox>
+                                            <base-checkbox style="margin-right:15px" class="my-1" v-model="sourceOfReferral.others">Others:</base-checkbox>
+                                            <base-input v-model="sourceOfReferral.othersInput"></base-input>
                                         </div>
                                         <div>
                                             <div class="d-flex flex-row pt-sm">
@@ -206,11 +188,51 @@
                                                     <!-- <base-input placeholder="Counsellor(s)"></base-input> -->
                                                     <base-input label= "Counsellor">
                                                         <select class="form-control" id="counsellor">
-                                                            <option>Shichao</option>
-                                                            <option>Clara</option>
-                                                            <option>Keif</option>
-                                                            <option>Wang Zi</option>
-                                                            <option>Amanda</option>
+                                                            <option>Abel Sim</option>
+                                                            <option>Azharee Bin Arsad</option>
+                                                            <option>Bryan Goh</option>
+                                                            <option>Caleb Kelvin Cheang</option>
+                                                            <option>Cheo Peng Seng</option>
+                                                            <option>Cheryl Low </option>
+                                                            <option>Clara Cheang</option>
+                                                            <option>Cyrus Chng</option>
+                                                            <option>Doris Low</option>
+                                                            <option>Eleena</option>
+                                                            <option>Faizal Mazlan</option>
+                                                            <option>Ghazali Ahmad</option>
+                                                            <option>Hasan Kuddos</option>
+                                                            <option>Hazeeq Firoz</option>
+                                                            <option>Jared Koh</option>
+                                                            <option>Jumilah Julie</option>
+                                                            <option>Kelvin Chang</option>
+                                                            <option>Khairiyah Kassim</option>
+                                                            <option>Khoo Swee Giang</option>
+                                                            <option>Kuang Zhong Xuan</option>
+                                                            <option>Low Hwee Lang</option>
+                                                            <option>Maisya Bte Abd Karim</option>
+                                                            <option>Md Ariffin Bin Haris</option>
+                                                            <option>Md Halmy Md Timyati</option>
+                                                            <option>Mohd Halmy Bin Timyati</option>
+                                                            <option>Mohd Shariff Bin Syed Mohd </option>
+                                                            <option>Muhammad Tasnim Bin Zainuddin</option>
+                                                            <option>Nasir Bin Ahmad</option>
+                                                            <option>Nasiruddin Ghaffor</option>
+                                                            <option>Ng Song Lim</option>
+                                                            <option>Noor Asrik Bin Masahlan</option>
+                                                            <option>Norashikin Imran</option>
+                                                            <option>Nurhamizah Anwar</option>
+                                                            <option>Nursyahrin</option>
+                                                            <option>Poh Han Wei</option>
+                                                            <option>Rafidah Mahmood</option>
+                                                            <option>Raymond Choo</option>
+                                                            <option>Raymond Lee</option>
+                                                            <option>Razali Othman</option>
+                                                            <option>Rizwan Ahmad</option>
+                                                            <option>Sasi Kumar Asokuma </option>
+                                                            <option>Sharifah Muslimah</option>
+                                                            <option>Siti Zarinah Bte Sarip</option>
+                                                            <option>Soffeyan Sabirin</option>
+                                                            <option>Teo Mei Tin</option>
                                                         </select>
                                                     </base-input>
                                                 </div>
@@ -299,7 +321,7 @@
                                                 <br><br><br><br>
 
                                                 <h5 class="heading-title text-warning mb-0">Intervention(s) provided</h5>
-                                                <p><em>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</em></p>
+                                                <p>Brief but clear summary of the intervention work that has been undertaken with the client during the session (e.g., what were the proposed plans that were agreed upon, any homework assigned to the client, etc.). If client expressed suicidal ideation, include suicide safety plan.</p>
                                                 <vue-editor v-model="interventionsProvided"></vue-editor>
                                                 <br><br><br><br>
                                             </div>
@@ -362,21 +384,31 @@
                                         </div>
                                         <br><br>
                                         <h5>Overall Risk Level</h5>
-                                        <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row" id="risk_level">
-                                            <tab-pane title="Low"></tab-pane>
-                                            <tab-pane title="Moderate"></tab-pane>
-                                            <tab-pane title="High"></tab-pane>
-                                        </tabs>
-                                        <card shadow>
-                                            <p class="small mb-1">It is recommended that suicide risk is managed during and immediately after the session. If there is a high risk of suicide, attending aracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan. <br>The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. <br>When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).</p>
-                                        </card>
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-3" id="risk_level">
+                                                <br>
+                                                <base-checkbox class="mb-3 flex-column flex-md-row" v-model="riskLevel.low">Low</base-checkbox><br>
+                                                <base-checkbox class="mb-3 flex-column flex-md-row" v-model="riskLevel.medium">Moderate</base-checkbox><br>
+                                                <base-checkbox class="mb-3 flex-column flex-md-row" v-model="riskLevel.high">High</base-checkbox>
+                                            </div>
+
+                                            <div class="col-lg-9 mt-5 mt-lg-0">
+                                                <br>
+                                                <card shadow>
+                                                    <p class="small mb-1">It is recommended that suicide risk is managed during and immediately after the session. </p>
+                                                    <p class="small mb-1">If there is a high risk of suicide, attending aracounsellors/ counsellors should inform and discuss with the unit supervisor on the safety plan.</p>
+                                                    <p class="small mb-1">The safety plan can include seeking medical attention from the SCDF Medical Centre, conveyance to IMH or the nearest A&E or a restructured hospital. </p>
+                                                    <p class="small mb-1">When in doubt, please reach out to EBSC or the SCDF Counselling Helpline (1800 286 6666).</p>
+                                              </card>
+                                            </div>
+                                        </div>
                                     </div>
                                     <br><br>
                                     <div>
                                         <h5 class="heading-title text-warning mb-0">Follow-up Plans</h5>
-                                        <small>Indicate your follow-up plans for the case.</small>
-                                        <br><br>
-                                        <h2 class="heading mb-2">Case management</h2>
+                                        <p>Indicate your follow-up plans for the case.</p>
+                                        <br>
+                                        <h6>Case management</h6>
                                         <small>To update or reach out to the following:</small>
                                         <br><br>
                                         <div class="row justify-content-center">
@@ -400,7 +432,7 @@
                                         <br>
                            
                                         <br>
-                                        <h2 class="heading mb-2">Follow-up Plans</h2>
+                                        <h6>Follow-up Plans</h6>
                                         <p class="small">Include next date of session, if applicable. <br>If no follow up is required, state reasons for closure. <br>If case is required for handover, please append handover form upon submission of case notes.</p>
                                         <label>Next Session Date</label>
                                         <base-input class="row justify-content-left col-lg-4"><date-pickers></date-pickers></base-input>
@@ -408,8 +440,8 @@
                                         <vue-editor v-model="reasonsForClosure"></vue-editor>
                                     </div>
                                 </div>
-                        <br><br><br><br>
-                        <div>
+                        <br><br><br>
+                        <!-- <div>
                             <h5 class="heading-title text-warning mb-0">Summary</h5><br>
                             <label>Report Prepared By</label>
                             <tabs class='ma-0' tabNavClasses="nav-fill flex-column flex-sm-row">
@@ -419,6 +451,22 @@
                             <base-input label="Rank/Name"></base-input>
                             <base-input label="Signature"></base-input>
                             <base-input label="Date of Report"><date-pickers></date-pickers></base-input>
+                        </div> -->
+
+                        <h5 class="heading-title text-warning mb-0">Summary</h5><br>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <label>Report Prepared By</label>
+                                <div class="row justify-content-left">
+                                    <base-checkbox style="margin-left:4%; margin-top:10px; margin-bottom:28px" v-model="reportPreparedBy.ebsc">EBSC staff</base-checkbox>
+                                    <base-checkbox style="margin-left:25%; margin-top:10px; margin-bottom:28px" v-model="reportPreparedBy.para">Paracounsellor</base-checkbox>
+                                </div>
+                                <base-input label="Signature"></base-input>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <base-input label="Rank/Name"></base-input>
+                                <base-input label="Date of Report"><date-pickers></date-pickers></base-input>
+                            </div>
                         </div>
                       </form>
 
@@ -537,6 +585,19 @@ export default {
                 medical:false,
                 other:false,
             },
+            gender:{
+                male:true,
+                female:false,
+            },
+            riskLevel:{
+                low:true,
+                medium:false,
+                high:false,
+            },
+            reportPreparedBy:{
+                ebsc:false,
+                para:true,
+            }
         };
     },
     components: {
