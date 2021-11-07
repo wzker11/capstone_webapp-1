@@ -99,84 +99,75 @@
                                         <p style="margin-left:50px">  •	e.g., “Client is hysterical and is difficult”. </p>
                                         <br>
                                         <h5 class="heading-title text-warning mb-0">Guidelines to fill up session notes template </h5>
-                                        a.	Reason for Referral
+                                        <br>
+                                        <h6>a.	Reason for Referral</h6>
+                                        <br>
+                                        <p style="margin-left:50px">Reason(s) for referrals are indicated in the referral email sent by EBSC. This can include “stressed from tensions occurring at workplace”, “stressed from relationship problems”, “anxiety during turnouts” and so forth. </p>
+                                        <br>
+                                        <h6>b.	Observations of presentation</h6>
+                                        <br>
+                                        <p style="margin-left:50px">This section allows attending counsellors to pay attention to the verbal and non-verbal behaviours. This allows a more comprehensive cross-sectional description of the client’s mental state at a given point in time.</p>
+                                        <p style="margin-left:50px">When combined with biographical and historical information, it allows the counsellor to make a more accurate understanding of the presenting problems, which are required for coherent intervention. </p>
+                                        <p style="margin-left:50px">Domains can include appearance, behaviour, mood and affect, cognition and judgment. Please refer to the annex section of the case notes template for more information. </p>
+                                        <p style="margin-left:50px">Observing the presentation of the client could also allow you to assess potential risk of harm to themselves or others, or both.</p>
+                                        <br>
+                                        <h6>c.	Counselling goals</h6>
+                                        <br>
+                                        <p style="margin-left:50px">Counselling goals should be mutually agreed upon. Setting goals helps you to remain accountable for the things you want to achieve. Counselling is only useful when it involves having a set plan for what the client hopes to accomplish and experience.</p>
+                                        <p style="margin-left:50px">While the goals can be broadly identified, it is important to work through the concrete goals during your sessions. Identifying a S.M.A.R.T. goal can help build a conversational tool during your session – be specific, measurable, attainable, realistic and timely in setting the goals.</p>
+                                        <p style="margin-left:50px">Some questions that you may find helpful to use in your sessions are: </p>
+                                        <p style="margin-left:100px">1. What would you like to attain from the counselling experience?</p>
+                                        <p style="margin-left:100px">2. What is your opinion on the factors that inhibit your progress to achieve your goals?</p>
+                                        <p style="margin-left:100px">3. What are your expectations and motivations to make the changes?</p>
+                                        <br>
+                                        <h6>d.	Details of session </h6>
+                                        <br>
+                                        <p style="margin-left:50px">1st session - First session is important in counselling. It often includes establishing rapport and assessing the extent of problems that the client may have. Information is customarily gathered to identify relevant and distal factors that could be contributing to the client’s issues. Gathering information during the first session can be dynamic and requires skills necessary to adapt to each individual client’s needs. </p>
+                                        <p style="margin-left:50px">The following domains can still be covered during the first session.</p>
+                                        <p style="margin-left:100px">o	Family/ childhood background and issues</p>
+                                        <p style="margin-left:100px">o	Educational background</p>
+                                        <p style="margin-left:100px">o	Employment history and issues</p>
+                                        <p style="margin-left:100px">o	Interpersonal relationships</p>
+                                        <p style="margin-left:100px">o	Financial issues</p>
+                                        <p style="margin-left:100px">o	History of substance use (alcohol and drugs)</p>
+                                        <p style="margin-left:100px">o	Lifestyle issues</p>
+                                        <p style="margin-left:100px">o	Medical history</p>
+                                        <p style="margin-left:100px">o	Mental health history</p>
+                                        <p style="margin-left:100px">o	Perceived strengths/ resilience factors </p>
 
-                                        Reason(s) for referrals are indicated in the referral email sent by EBSC. This can include “stressed from tensions occurring at workplace”, “stressed from relationship problems”, “anxiety during turnouts” and so forth. 
-
-                                        b.	Observations of presentation
-
-                                        •	This section allows attending counsellors to pay attention to the verbal and non-verbal behaviours. This allows a more comprehensive cross-sectional description of the client’s mental state at a given point in time.  
-
-                                        •	When combined with biographical and historical information, it allows the counsellor to make a more accurate understanding of the presenting problems, which are required for coherent intervention. 
-
-                                        •	Domains can include appearance, behaviour, mood and affect, cognition and judgment. Please refer to the annex section of the case notes template for more information. 
-
-                                        •	Observing the presentation of the client could also allow you to assess potential risk of harm to themselves or others, or both.
-
-                                        c.	Counselling goals
-
-                                        •	Counselling goals should be mutually agreed upon. Setting goals helps you to remain accountable for the things you want to achieve. Counselling is only useful when it involves having a set plan for what the client hopes to accomplish and experience.
-
-                                        •	While the goals can be broadly identified, it is important to work through the concrete goals during your sessions. Identifying a S.M.A.R.T. goal can help build a conversational tool during your session – be specific, measurable, attainable, realistic and timely in setting the goals.
-
-                                        •	Some questions that you may find helpful to use in your sessions are: 
-                                        o	What would you like to attain from the counselling experience?
-                                        o	What is your opinion on the factors that inhibit your progress to achieve your goals?
-                                        o	What are your expectations and motivations to make the changes?
-
-                                        d.	Details of session 
-
-                                        •	1st session - First session is important in counselling. It often includes establishing rapport and assessing the extent of problems that the client may have. Information is customarily gathered to identify relevant and distal factors that could be contributing to the client’s issues. Gathering information during the first session can be dynamic and requires skills necessary to adapt to each individual client’s needs. 
-
-                                        •	The following domains can still be covered during the first session.
-                                        o	Family/ childhood background and issues
-                                        o	Educational background
-                                        o	Employment history and issues
-                                        o	Interpersonal relationships
-                                        o	Financial issues
-                                        o	History of substance use (alcohol and drugs)
-                                        o	Lifestyle issues
-                                        o	Medical history
-                                        o	Mental health history
-                                        o	Perceived strengths/ resilience factors 
-
-                                        •	Subsequent sessions – Upon gathering sufficient background information during the initial session, subsequent sessions should focus on progress of the counselling process. The following areas can be considered for this section
-                                        o	General well-being between sessions
-                                        o	Severity of presenting problem(s)
-                                        o	‘New’ issues that have arisen between sessions
-                                        o	Insight into presenting issues
-                                        o	Effectiveness of coping strategies
-                                        o	Effectiveness of personal resources  
-                                        o	Feedback on assigned practices/exercises
-
-                                        e.	Suicide risk considerations
-
-                                        •	The dynamic situational factors that clients experience can result in acute crisis. Although paracounsellors are assigned with cases that have low suicide risk, there could be times where clients may experience challenges that push them to think about suicide. In such situations, always seek EBSC inputs on the management of cases with suicide risk. 
-
-                                        •	Hence, if the client active expresses suicidal ideation during your session unexpectedly, do not panic. Refer the case to the Medical Officer immediately. 
-                                        o	If you are not trained in suicide intervention or management, refer the client to the Medical Officer immediately. 
-
-                                        •	Otherwise, ensure the safety of your client (e.g., developing a basic safety plan) before you end your session. You may consider reaching out to your EBSC as you pause your session, too. 
-
-                                        f.	Interventions provided
-
-                                        •	Basic attending skills is fundamental in counselling process. Additionally, the following interventions can take place during your sessions (refer to Annex). 
-                                        o	Problem solving
-                                        o	Cost-benefit analysis
-                                        o	Consequential thinking
-                                        o	Effective approval and disapproval
-                                        o	Motivating client towards change
-                                        o	Drawing thought-behaviour link 
-
-                                        g.	Case conceptualisation 
-
-                                        •	Understanding the client’s needs helps to build a coherent plan for focused interventions. It identifies contributing (note: not causal) factors that trigger and maintain the presenting issue. This can help guide our counselling efforts and establish short-term, intermediate, and long-term goals and the means by which they can be achieved. 
-                                        •	There are many theoretical frameworks that guide our understanding of the case. Use a framework that you may be more familiar with (e.g., biopsychosocial framework shared during P.S.L.E.) 
-                                        •	Always check in on your case conceptualisation with EBSC, wherever possible. 
-
+                                        <p style="margin-left:50px">Subsequent sessions – Upon gathering sufficient background information during the initial session, subsequent sessions should focus on progress of the counselling process. The following areas can be considered for this section</p>
+                                        <p style="margin-left:100px">o	General well-being between sessions</p>
+                                        <p style="margin-left:100px">o	Severity of presenting problem(s)</p>
+                                        <p style="margin-left:100px">o	‘New’ issues that have arisen between sessions</p>
+                                        <p style="margin-left:100px">o	Insight into presenting issues</p>
+                                        <p style="margin-left:100px">o	Effectiveness of coping strategies</p>
+                                        <p style="margin-left:100px">o	Effectiveness of personal resources</p>
+                                        <p style="margin-left:100px">o	Feedback on assigned practices/exercises</p>
+                                        <br>
+                                        <h6>e.	Suicide risk considerations</h6>
+                                        <br>
+                                        <p style="margin-left:50px">The dynamic situational factors that clients experience can result in acute crisis. Although paracounsellors are assigned with cases that have low suicide risk, there could be times where clients may experience challenges that push them to think about suicide. In such situations, always seek EBSC inputs on the management of cases with suicide risk. </p>
+                                        <p style="margin-left:50px">Hence, if the client active expresses suicidal ideation during your session unexpectedly, do not panic. Refer the case to the Medical Officer immediately. </p>
+                                        <p style="margin-left:100px">If you are not trained in suicide intervention or management, refer the client to the Medical Officer immediately. </p>
+                                        <p style="margin-left:50px">Otherwise, ensure the safety of your client (e.g., developing a basic safety plan) before you end your session. You may consider reaching out to your EBSC as you pause your session, too. </p>
+                                        <br>
+                                        <h6>f.	Interventions provided</h6>
+                                        <br>
+                                        <p style="margin-left:50px">Basic attending skills is fundamental in counselling process. Additionally, the following interventions can take place during your sessions (refer to Annex). </p>
+                                        <p style="margin-left:100px">o	Problem solving</p>
+                                        <p style="margin-left:100px">o	Cost-benefit analysis</p>
+                                        <p style="margin-left:100px">o	Consequential thinking</p>
+                                        <p style="margin-left:100px">o	Effective approval and disapproval</p>
+                                        <p style="margin-left:100px">o	Motivating client towards change</p>
+                                        <p style="margin-left:100px">o	Drawing thought-behaviour link </p>
+                                        <br>
+                                        <h6>g.	Case conceptualisation</h6>
+                                        <br>
+                                        <p style="margin-left:50px">Understanding the client’s needs helps to build a coherent plan for focused interventions. It identifies contributing (note: not causal) factors that trigger and maintain the presenting issue. This can help guide our counselling efforts and establish short-term, intermediate, and long-term goals and the means by which they can be achieved. </p>
+                                        <p style="margin-left:50px">There are many theoretical frameworks that guide our understanding of the case. Use a framework that you may be more familiar with (e.g., biopsychosocial framework shared during P.S.L.E.) </p>
+                                        <p style="margin-left:50px">Always check in on your case conceptualisation with EBSC, wherever possible. </p>
                                 </div>
                             </form>
-
                         </div>
                     </card>
                 </div>
