@@ -614,12 +614,23 @@ export default {
         Modal,
     },
   methods: { 
-    retrieveData(){
+    async retrieveData(){
       var input_nric = this.nric;
       // var string = this.content;
-      const snapshot = database.collection('patients').doc(input_nric).collection('info').doc('info').get();
+      const snapshot = database.collection('patients').doc(input_nric).collection('info').get();
       // const snapshot = database.collection('patients').doc(input_nric).get();
-      snapshot.then((doc) => {
+
+    //   database.collection('patients').doc(input_nric).collection('info').get()
+    // .then(querySnapshot => {
+    //     querySnapshot.forEach(doc => {
+    //         console.log(doc.id, " => ", doc.data());
+    //     });
+    // });
+
+      snapshot.then(
+        querySnapshot => {
+        querySnapshot.forEach(doc => {
+        console.log(doc);
         const data = doc.data();
         this.race = data["race"];
         this.name = data["name"];
@@ -633,7 +644,7 @@ export default {
         this.sourceOfReferral = data['sourceOfReferral'];
         this.followUpPlans = data['followUpPlans'];
         this.retrieveSuccess = true;
-      })
+      })})
       .catch(function (error) {
         alert("Please check input NRIC again")
         console.error("Error Retrieving Data: ", error);
