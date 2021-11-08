@@ -615,8 +615,7 @@ export default {
     },
   methods: { 
     
-    signOut() {
-        this.$router.push("login");async retrieveData(){
+    async retrieveData(){
         var input_nric = this.nric;
         const snapshot = database.collection('patients').doc(input_nric).collection('info').get();
 
@@ -646,7 +645,6 @@ export default {
             alert("Please check input NRIC again")
             console.error("Error Retrieving Data: ", error);
         });
-    },
     },
     curren_time() {
         const current = new Date();
