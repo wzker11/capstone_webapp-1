@@ -614,44 +614,39 @@ export default {
         Modal,
     },
   methods: { 
-    async retrieveData(){
-      var input_nric = this.nric;
-      // var string = this.content;
-      const snapshot = database.collection('patients').doc(input_nric).collection('info').get();
-      // const snapshot = database.collection('patients').doc(input_nric).get();
+    
+    signOut() {
+        this.$router.push("login");async retrieveData(){
+        var input_nric = this.nric;
+        const snapshot = database.collection('patients').doc(input_nric).collection('info').get();
 
-    //   database.collection('patients').doc(input_nric).collection('info').get()
-    // .then(querySnapshot => {
-    //     querySnapshot.forEach(doc => {
-    //         console.log(doc.id, " => ", doc.data());
-    //     });
-    // });
-
-      snapshot.then(
-        querySnapshot => {
-        querySnapshot.forEach(doc => {
-        console.log(doc);
-        const data = doc.data();
-        this.race = data["race"];
-        this.name = data["name"];
-        this.maritalstatus = data["maritalStatus"];
-        this.unit = data["unit"];
-        this.contact = data["contactNumber"];
-        this.enlistment = data["enlistmentDate"];
-        this.age = data["age"];
-        this.ord = data["ordDate"];
-        this.reasonsForReferral = data["reasonsForReferral"];
-        this.sourceOfReferral = data['sourceOfReferral'];
-        this.followUpPlans = data['followUpPlans'];
-        this.retrieveSuccess = true;
-      })})
-      .catch(function (error) {
-        alert("Please check input NRIC again")
-        console.error("Error Retrieving Data: ", error);
+        snapshot.then(
+            querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    console.log(doc); 
+                    const data = doc.data();
+                    this.race = data["race"];
+                    this.name = data["name"];
+                    this.maritalstatus = data["maritalStatus"];
+                    this.unit = data["unit"];
+                    this.contact = data["contactNumber"];
+                    this.enlistment = data["enlistmentDate"];
+                    this.age = data["age"];
+                    this.ord = data["ordDate"];
+                    this.reasonsForReferral = data["reasonsForReferral"];
+                    this.sourceOfReferral = data['sourceOfReferral'];
+                    this.followUpPlans = data['followUpPlans'];
+                    this.retrieveSuccess = true;
+                }).catch(function (error) {
+            alert("Please check input NRIC again")
+            console.error("Error Retrieving Data: ", error);
+        })
+            }
+        ).catch(function (error) {
+            alert("Please check input NRIC again")
+            console.error("Error Retrieving Data: ", error);
         });
     },
-    signOut() {
-        this.$router.push("login");
     },
     curren_time() {
         const current = new Date();
