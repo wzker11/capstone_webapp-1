@@ -37,8 +37,11 @@
         <section class="section section-skew">
             <div class="container" style = "margin-top: -32.8%;">
                 <card shadow class="card-profile mt--300" no-body>
-                                    <div>
-                    <base-button size="sm " type="primary" style = "height:30px; width:90px; margin-top:31px; margin-left: 90%" v-on:click="signOut">Sign Out</base-button>
+                    <div class="d-flex flex-row-reverse pt-sm">
+                      <base-button size="sm " type="primary" style = "" v-on:click="signOut">Sign Out</base-button>
+                      <router-link to="/Guideline" title="General Guideline">
+                        <base-button size="sm" type="neutral" style="margin-right:820px">Guideline</base-button>
+                      </router-link>
                 </div>
                     <div class="px-4">
                         <div class="row justify-content-center">
