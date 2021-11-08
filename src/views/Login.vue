@@ -80,7 +80,7 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.user.email, this.user.password)
         .then(() => {
-            this.$router.push('first-session')
+            this.$router.push('summary')
         })
         .catch((error) => {
           alert(error.message);
