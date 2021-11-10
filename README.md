@@ -42,20 +42,20 @@ Open `http://localhost:8080/` and enjoy!
   <br>
   <p>Summary page will present the user with a summary of the submitted forms. It includes information about the NRIC, patient name, status (open/closed) and the type of form (first/subsequent). </p>
   <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Summary.png" alt="Lamp" width="1000" height="400">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Summary.png" alt="Lamp" width="1000" height="300">
   <br><br>
   <li>First Session Form Page</li>
   <br>
   <p>Users can use this page to record first session records for the clients. </p>
   <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/First_Session.png" alt="Lamp" width="1000" height="400">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/First_Session.png" alt="Lamp" width="1000" height="500">
   <br><br>
   <li>Subsequent Session Form Page</li>
   <br>
   <p>Users can use this page to record subsequent session records for the clients. </p>
   <br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session.png" alt="Lamp" width="1000" height="400">
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session1.png" alt="Lamp" width="1000" height="400">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session1.png" alt="Lamp" width="1000" height="430">
   <br><br>
   <li>Guidline Page</li>
   <br>
