@@ -1,7 +1,7 @@
 <h1>BT4103 Capstone - Case Note Taking Web Application</h1>
 
 
-## Requirement
+## Requirements
 
 - npm
 - Github
@@ -20,7 +20,7 @@ Go into the project directory and run the command:
 $ npm run serve
 ```
 
-Open `http://localhost:8080/` and enjoy!
+Open `http://localhost:8080/` to access the web app.
 
 
 <h2 id="demo">Demo</h2>
