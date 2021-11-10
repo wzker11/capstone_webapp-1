@@ -38,27 +38,27 @@ Open `http://localhost:8080/` and enjoy!
   <br><br>
   <li>Summary Page</li>
   <br>
-  <p>Summary page will present the user with a summary of the submitted forms. It includes information about the NRIC, patient name, status (open/closed) and the type of form (first/subsequent). </p>
+  <p>Upon logging in, the user will be brought to the summary page which will present the user with a summary of their previously submitted forms. It includes information about the patient’s name and NRIC, the status of the  case, (open or closed) and the type of form (first or subsequent)</p>
   <br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Summary.png" alt="Lamp" width="1000" height="300">
   <br><br>
-  <li>First Session Form Page</li>
+  <li>First Session Form </li>
   <br>
-  <p>Users can use this page to record first session records for the clients. </p>
+  <p>Users can make use of this form for clients who are attending their first counselling session. </p>
   <br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/First_Session.png" alt="Lamp" width="1000" height="650">
   <br><br>
   <li>Subsequent Session Form Page</li>
   <br>
-  <p>Users can use this page to record subsequent session records for the clients. </p>
+  <p>Users can make use of this form for clients who are attending their subsequent counselling sessions. </p>
   <br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session2.png" alt="Lamp" width="1000" height="400">
   <br><br><br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session1.png" alt="Lamp" width="1000" height="460">
   <br><br>
-  <li>Guidline Page</li>
+  <li>Guidelines Page</li>
   <br>
-  <p>This page includes information regarding the purpose of case notes, confidentiality, general guidelines and general guidelines to fill up the session notes template. </p>
+  <p>This page includes  includes information regarding the purpose of case notes, confidentiality terms to abide, and general guidelines the counsellor should follow when filling up the forms. </p>
   <br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Guidline.png" alt="Lamp" width="1000" height="550">
   <br><br>
@@ -66,13 +66,5 @@ Open `http://localhost:8080/` and enjoy!
 </ul>
 
 
-<h2 id="browser-support">Browser Support</h2>
 
-<p>At present, we officially aim to support the last two versions of the following browsers:</p>
-
-<p><img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64" />
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64" />
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64" />
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64" />
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64" /></p>
 
