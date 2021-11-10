@@ -28,24 +28,42 @@ Open `http://localhost:8080/` and enjoy!
 <ul>
   <li>Login Page</li>
   <br>
+  <p>Page for users to log in. If a user does not type in an email address of the correct format, a pop up window will appear to notify the user to key in the correct credentials as shown in Figure 26 to 28.</p>
+  <br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Login.png" alt="Lamp" width="1000" height="400">
   <br><br>
   <li>Signup Page</li>
   <br>
+  <p>Users will be able to register with their own SCDF email address.</p>
+  <br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Signup.png" alt="Lamp" width="1000" height="400">
   <br><br>
+  <li>Summary Page</li>
+  <br>
+  <p>Summary page will present the user with a summary of the submitted forms. It includes information about the NRIC, patient name, status (open/closed) and the type of form (first/subsequent). </p>
+  <br>
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Summary.png" alt="Lamp" width="1000" height="400">
+  <br><br>
   <li>First Session Form Page</li>
+  <br>
+  <p>Users can use this page to record first session records for the clients. </p>
   <br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/First_Session.png" alt="Lamp" width="1000" height="400">
   <br><br>
   <li>Subsequent Session Form Page</li>
   <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session.png" alt="Lamp" width="1000" height="400">
-  <br><br>
-  <li>Summary Page</li>
+  <p>Users can use this page to record subsequent session records for the clients. </p>
   <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Summary.png" alt="Lamp" width="1000" height="400">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session.png" alt="Lamp" width="1000" height="400">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session1.png" alt="Lamp" width="1000" height="400">
   <br><br>
+  <li>Guidline Page</li>
+  <br>
+  <p>This page includes information regarding the purpose of case notes, confidentiality, general guidelines and general guidelines to fill up the session notes template. </p>
+  <br>
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Guidline.png" alt="Lamp" width="1000" height="400">
+  <br><br>
+  
 </ul>
 
 
