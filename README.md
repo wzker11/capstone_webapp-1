@@ -35,11 +35,6 @@ Open `http://localhost:8080/` and enjoy!
   <br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Login.png" alt="Lamp" width="1000" height="400">
   <br><br>
-  <li>Signup Page</li>
-  <br>
-  <p>Users will be able to register with their own SCDF email address.</p>
-  <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Signup.png" alt="Lamp" width="1000" height="400">
   <br><br>
   <li>Summary Page</li>
   <br>
