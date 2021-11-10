@@ -28,7 +28,10 @@ Open `http://localhost:8080/` and enjoy!
 <ul>
   <li>Login Page</li>
   <br>
-  <p>Page for users to log in. If a user does not type in an email address of the correct format, a pop up window will appear to notify the user to key in the correct credentials.</p>
+  <p>The login page will require users to log in before they are given access to any further functionalities of the web app. If a user does not type in an email address of the correct format, a pop up window will appear to notify the user to key in the correct credentials.
+  
+    As we currently make use of Firebase Authentication to implement the login system for the sake of demonstration, it is recommended that SCDF make the appropriate changes to the security system based on the organization's requirements.
+  </p>
   <br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Login.png" alt="Lamp" width="1000" height="400">
   <br><br>
