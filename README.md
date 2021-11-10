@@ -28,7 +28,7 @@ Open `http://localhost:8080/` and enjoy!
 <ul>
   <li>Login Page</li>
   <br>
-  <p>Page for users to log in. If a user does not type in an email address of the correct format, a pop up window will appear to notify the user to key in the correct credentials as shown in Figure 26 to 28.</p>
+  <p>Page for users to log in. If a user does not type in an email address of the correct format, a pop up window will appear to notify the user to key in the correct credentials.</p>
   <br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Login.png" alt="Lamp" width="1000" height="400">
   <br><br>
