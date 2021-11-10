@@ -48,20 +48,21 @@ Open `http://localhost:8080/` and enjoy!
   <br>
   <p>Users can use this page to record first session records for the clients. </p>
   <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/First_Session.png" alt="Lamp" width="1000" height="500">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/First_Session.png" alt="Lamp" width="1000" height="600">
   <br><br>
   <li>Subsequent Session Form Page</li>
   <br>
   <p>Users can use this page to record subsequent session records for the clients. </p>
   <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session.png" alt="Lamp" width="1000" height="400">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session2.png" alt="Lamp" width="1000" height="400">
+  <br>
   <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Subsequent_Session1.png" alt="Lamp" width="1000" height="430">
   <br><br>
   <li>Guidline Page</li>
   <br>
   <p>This page includes information regarding the purpose of case notes, confidentiality, general guidelines and general guidelines to fill up the session notes template. </p>
   <br>
-  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Guidline.png" alt="Lamp" width="1000" height="400">
+  <img src="https://github.com/sigridqqq/capstone_webapp/blob/main/public/img/brand/Guidline.png" alt="Lamp" width="1000" height="500">
   <br><br>
   
 </ul>
