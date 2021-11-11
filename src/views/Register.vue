@@ -39,8 +39,8 @@
                                 <button type="submit" class="btn btn-dark btn-lg btn-block">Sign Up</button>
                                 <br>
                                 <p class="forgot-password text-right">
-                                    Already registered 
-                                    <router-link :to="{name: 'login'}">sign in?</router-link>
+                                    Already registered? 
+                                    <router-link :to="{name: 'login'}">sign in</router-link>
                                 </p>
                             </form>
                         </card>
