@@ -27,7 +27,7 @@
                                         <button type="submit" class="btn btn-dark btn-lg btn-block">Reset password</button>
                                     </div>
                                     <br>
-                                    <div class="row justify-content-center"><router-link :to="{name: 'login'}">Sign in</router-link></div>
+                                    <div class="row justify-content-center"><router-link :to="{name: 'login'}">Sign In</router-link></div>
                                 </form>
                             </card>
                         </div>
