@@ -40,7 +40,7 @@
                                 <br>
                                 <p class="forgot-password text-right">
                                     Already registered? 
-                                    <router-link :to="{name: 'login'}">sign in</router-link>
+                                    <router-link :to="{name: 'login'}">Sign In</router-link>
                                 </p>
                             </form>
                         </card>
