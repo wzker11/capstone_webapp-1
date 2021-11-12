@@ -14,7 +14,13 @@ Clone it!
 $ git clone https://github.com/sigridqqq/capstone_webapp.git
 ```
 
-Go into the project directory and run the command:
+Go into the project directory and first install npm:
+
+```
+$ npm install
+```
+
+Then launch the web app with  the command:
 
 ```
 $ npm run serve
