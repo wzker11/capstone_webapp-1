@@ -41,6 +41,9 @@
                     <div class="d-flex flex-row-reverse pt-sm">
                         <base-button size="sm" type="primary" style = "height:30px; width:90px;" v-on:click="signOut">Sign Out</base-button>
                         <base-button size="sm" block type="warning" class=" mb-3 float-right" @click="modal = true" style = "height:30px; width:130px;"> Clear All Fields </base-button>
+                        <router-link to="/Guideline" title="General Guideline">
+                            <base-button size="sm"  type="neutral" style="height:30px; margin-right:660px">Guideline</base-button>
+                        </router-link>
                         <modal :show.sync="modal" gradient="danger" modal-classes="modal-danger modal-dialog-centered">
                             <h6 slot="header" class="modal-title" id="modal-title-notification">Your attention is required</h6>
                             <div class="py-3 text-center">
@@ -59,9 +62,7 @@
                                 </base-button>
                             </template>
                         </modal>
-                        <router-link to="/Guideline" title="General Guideline">
-                            <base-button size="sm" type="neutral" style="margin-right:660px">Guideline</base-button>
-                        </router-link>
+                        
                     </div>
                         <div class="px-4">
                             <div class="row justify-content-center">
@@ -574,29 +575,29 @@ export default {
             sourceOfReferral: {
                 self: false,
                 imh: false,
-                supervisor: true,
+                supervisor: false,
                 medicalOfficer: false,
                 others: false,
                 othersInput: "",
                 },
             followUpPlans:{
                 client:false,
-                unit:true,
+                unit:false,
                 medical:false,
                 other:false,
             },
             gender:{
-                male:true,
+                male:false,
                 female:false,
             },
             riskLevel:{
-                low:true,
+                low:false,
                 medium:false,
                 high:false,
             },
             reportPreparedBy:{
                 ebsc:false,
-                para:true,
+                para:false,
             }
         };
     },
@@ -614,6 +615,9 @@ export default {
         Modal,
     },
   methods: { 
+    signOut() {
+      this.$router.push("login");
+    },
     
     async retrieveData(){
         var input_nric = this.nric;
@@ -628,21 +632,24 @@ export default {
                         const data = doc.data();
                         this.race = data["race"];
                         this.name = data["name"];
+                        this.gender = data["gender"];
                         this.maritalstatus = data["maritalStatus"];
                         this.unit = data["unit"];
                         this.contact = data["contactNumber"];
                         this.enlistment = data["enlistmentDate"];
                         this.age = data["age"];
-                        this.ord = data["ordDate"];
+                        this.ord = data["ord"];
                         this.reasonsForReferral = data["reasonsForReferral"];
                         this.sourceOfReferral = data['sourceOfReferral'];
                         this.followUpPlans = data['followUpPlans'];
+                        this.reportPreparedBy = data['reportPreparedBy'];
                         this.retrieveSuccess = true;
                     })}
                     else {
                         alert("Please check input NRIC again")
                     }
                 })
+        
     },
     curren_time() {
         const current = new Date();
@@ -705,6 +712,7 @@ export default {
             .set({
             race: this.race,
             name: this.name,
+            gender: this.gender,
             maritalStatus: this.maritalstatus,
             unit: this.unit,
             contactNumber: this.contact,
@@ -741,12 +749,20 @@ export default {
             .doc(session_num.toString())
             .set({
             // sessionNum: this.session_num,
-            reasonsForReferral: this.extractContent(this.reasonsForReferral),
-            obsOfPresentation: this.extractContent(this.obsOfPresentation),
-            counsellingGoals: this.extractContent(this.counsellingGoals),
-            detailsOfSession: this.extractContent(this.detailsOfSession),
-            caseConceptualisation: this.extractContent(this.caseConceptualisation),
-            interventionsProvided: this.extractContent(this.interventionsProvided),
+            // reasonsForReferral: this.extractContent(this.reasonsForReferral),
+            // obsOfPresentation: this.extractContent(this.obsOfPresentation),
+            // counsellingGoals: this.extractContent(this.counsellingGoals),
+            // detailsOfSession: this.extractContent(this.detailsOfSession),
+            // caseConceptualisation: this.extractContent(this.caseConceptualisation),
+            // interventionsProvided: this.extractContent(this.interventionsProvided),
+
+            reasonsForReferral: this.reasonsForReferral,
+            obsOfPresentation: this.obsOfPresentation,
+            counsellingGoals: this.counsellingGoals,
+            detailsOfSession: this.detailsOfSession,
+            caseConceptualisation: this.caseConceptualisation,
+            interventionsProvided: this.interventionsProvided,
+
             verbaliseIntent: document.getElementById("verbal-intent").value,
             ambivalenceIntent: document.getElementById("ambivalence-intent").value,
             explorePlans: document.getElementById("explore-plans").value,
@@ -759,6 +775,7 @@ export default {
             reasonsForClosure: this.extractContent(this.reasonsForClosure),
             isOpen: this.checkOpen(this.reasonsForClosure),
             sourceOfReferral: this.extractContent(this.sourceOfReferral),
+            reportPreparedBy: this.reportPreparedBy,
         })
         .then(function (docRef) {
             console.log("First Session Draft Successfully Saved");
